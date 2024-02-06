@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@vue/composition-api': ^1.7.2
   '@xkit-yx/core-kit': ^0.10.2
   '@xkit-yx/im-store': ^0.0.7
   '@xkit-yx/utils': ^0.5.3
@@ -23,6 +24,7 @@ specifiers:
   vue-socket.io: ^3.0.10
 
 dependencies:
+  '@vue/composition-api': 1.7.2
   '@xkit-yx/core-kit': 0.10.8
   '@xkit-yx/im-store': 0.0.7
   '@xkit-yx/utils': 0.5.6
@@ -292,6 +294,12 @@ packages:
 
   /@types/webrtc/0.0.31:
     resolution: {integrity: sha512-GEoJIoM/ddxdaGnu0enJVDTdvwwr3/tPkpXz0LBTSi282gqxWDg1ffk4fzHU2dosNshp+Slq1kfGxpKs5083Nw==}
+    dev: false
+
+  /@vue/composition-api/1.7.2:
+    resolution: {integrity: sha512-M8jm9J/laYrYT02665HkZ5l2fWTK4dcVg3BsDHm/pfz+MjDYwX+9FUaZyGwEyXEDonQYRCo0H7aLgdklcIELjw==}
+    peerDependencies:
+      vue: '>= 2.5 < 2.7'
     dev: false
 
   /@vue/devtools-api/6.5.1:

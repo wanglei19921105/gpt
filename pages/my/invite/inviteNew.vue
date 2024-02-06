@@ -135,10 +135,10 @@
                   <view class="ClearB"></view>
                 </view>
                 <view class="Unit Width_20 TextCenter">
-                  <text class="Block FontS_28rpx Color_FFC393 FontBold">{{ item.points }}</text>
+                  <text class="Block FontS_28rpx Color_FFC393 FontBold">{{ item.red_packet }}</text>
                 </view>
                 <view class="Unit Width_20 TextCenter">
-                  <text class="Block FontS_28rpx Color_FFC393 FontBold">{{ item.red_packet }}</text>
+                  <text class="Block FontS_28rpx Color_FFC393 FontBold">{{ item.points }}</text>
                 </view>
                 <view class="Unit Width_20 TextRight">
                   <text class="Block FontS_28rpx Color_FFC393 FontBold">{{ item.total_invitations }}</text>

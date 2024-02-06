@@ -1,0 +1,41 @@
+{
+  "dependencies": {
+    "@vue/composition-api": "^1.7.2",
+    "@xkit-yx/core-kit": "^0.10.2",
+    "@xkit-yx/im-store": "^0.0.7",
+    "@xkit-yx/utils": "^0.5.3",
+    "axios": "^1.6.5",
+    "composition-api": "0.0.0",
+    "dayjs": "^1.11.10",
+    "jweixin-module": "^1.6.0",
+    "mobx": "^6.11.0",
+    "moment": "^2.29.4",
+    "nim-web-sdk-ng": "^0.15.0",
+    "open-im-sdk": "^2.3.0-beta.2",
+    "pinyin": "^3.0.0-alpha.5",
+    "tim-js-sdk": "^2.25.0",
+    "trtc-js-sdk": "^4.15.1",
+    "trtc-wx-sdk": "^1.0.5-beta.4",
+    "uuid": "^9.0.0",
+    "uview-ui": "^1.8.6",
+    "vue-i18n": "^9.6.5",
+    "vue-socket.io": "^3.0.10"
+  },
+  "id": "tf-verify-img",
+  "name": "高性能多端拼图滑动验证",
+  "version": "1.0.2",
+  "description": "一款高性能的多端拼图滑动验证组件",
+  "keywords": [
+    "拼图",
+    "滑动验证"
+  ],
+  "dcloudext": {
+    "category": [
+      "前端组件",
+      "通用组件"
+    ]
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

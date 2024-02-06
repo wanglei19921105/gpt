@@ -1,0 +1,1938 @@
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{ //首页
+			"path": "pages/tabbar/home/home",
+			"style": {
+				"navigationBarTitleText": "GPTAPP",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+
+		},
+		{
+			"path": "pages/checkUpdate/checkUpdate",
+			"style": {
+				"disableScroll": true,
+				"app-plus": {
+					"backgroundColorTop": "transparent",
+					"background": "transparent",
+					"titleNView": false,
+					"scrollIndicator": false,
+					"popGesture": "none",
+					"animationType": "fade-in",
+					"animationDuration": 200
+				}
+			}
+		},
+		{ //市场
+			"path": "pages/tabbar/bazaar/bazaar",
+			"style": {
+				"navigationBarTitleText": "版权品",
+				"enablePullDownRefresh": true
+			}
+
+		}, { //市场
+			"path": "pages/tabbar/bazaar/bazaar-cq",
+			"style": {
+				"navigationBarTitleText": "抽签",
+				"enablePullDownRefresh": true
+			}
+
+		},
+		{ //优先购
+			"path": "pages/tabbar/bazaar/bazaar-yxg",
+			"style": {
+				"navigationBarTitleText": "版权品优先购",
+				"enablePullDownRefresh": true
+			}
+		},
+		{ //盲盒优先购
+			"path": "pages/tabbar/bazaar/bazaar-yxg-mh",
+			"style": {
+				"navigationBarTitleText": "盲盒优先购",
+				"enablePullDownRefresh": true
+			}
+		},
+		{ //市场
+			"path": "pages/tabbar/bazaar/bazaar-second",
+			"style": {
+				"navigationBarTitleText": "流转市场",
+				"enablePullDownRefresh": true,
+				// "navigationBarBackgroundColor":"#FBF7F2"
+				"navigationStyle": "custom"
+			}
+
+		},
+		{
+			"path": "pages/threeD/threeD",
+			"style": {
+				"navigationBarTitleText": "",
+				"transparentTitle": "auto"
+			}
+		},
+		{
+			"path": "uni_modules/uni-upgrade-center-app/pages/upgrade-popup",
+			"style": {
+				"disableScroll": true,
+				"app-plus": {
+					"backgroundColorTop": "transparent",
+					"background": "transparent",
+					"titleNView": false,
+					"scrollIndicator": false,
+					"popGesture": "none",
+					"animationType": "fade-in",
+					"animationDuration": 200
+
+				}
+			}
+		},
+		{ //铸造
+			"path": "pages/tabbar/foundry/foundry",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationBarTitleText": "铸造",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //资讯
+			"path": "pages/tabbar/blogs/blogs",
+			"style": {
+				"navigationBarTitleText": "资讯",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //公告
+			"path": "pages/tabbar/blogs/interrelated",
+			"style": {
+				"navigationBarTitleText": "相关公告",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //我的
+			"path": "pages/tabbar/mine/mine",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		},
+		{ //登录主页面
+			"path": "pages/login/index/logInMain",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+				// "backgroundColor": "#FBF7F2"
+			}
+		},
+		{ //账号密码登录
+			"path": "pages/login/index/logInAccount",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+				// "backgroundColor": "#FBF7F2"
+			}
+		},
+		{ //账号密码登录
+			"path": "pages/login/index/logInRegister",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+				// "backgroundColor": "#FBF7F2"
+			}
+		},
+		{ //登录
+			"path": "pages/login/index/index",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+				// "backgroundColor": "#FBF7F2"
+			}
+		},
+		{ //注册
+			"path": "pages/login/register/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+
+			}
+		},
+		{ //快捷登录
+			"path": "pages/login/fastLogin/fastLogin",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{ //账号绑定(未有账号)
+			"path": "pages/login/bind/bind",
+			"style": {
+				"navigationBarTitleText": "账号绑定",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //账号绑定(已有账号)
+			"path": "pages/login/bindHave/bindHave",
+			"style": {
+				"navigationBarTitleText": "账号绑定",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{ //隐私政策
+			"path": "pages/login/policy/policy",
+			"style": {
+				"navigationBarTitleText": "隐私政策",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //用户协议
+			"path": "pages/login/protocol/protocol",
+			"style": {
+				"navigationBarTitleText": "用户协议",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //证照信息
+			"path": "pages/login/certificate/certificate",
+			"style": {
+				"navigationBarTitleText": "证照信息",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //NFT盲盒
+			"path": "pages/frontPage/blindBox/blindBox",
+			"style": {
+				"navigationBarTitleText": "盲盒",
+				"enablePullDownRefresh": true
+			}
+		},
+		{ //NFT盲盒详情
+			"path": "pages/frontPage/blindBox-def/blindBox-def",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //立即购买-订单详情
+			"path": "pages/frontPage/order-def/order-def",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{ //banner详情
+			"path": "pages/frontPage/banner-def/banner-def",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //NFT商品详情
+			"path": "pages/market/goods-def/goods-def",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false,
+				// "navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/market/goods-def/goods-batch",
+			"style": {
+				"navigationBarTitleText": "藏品详情",
+				"navigationStyle": "custom"
+				// "app-plus": {
+				// 	"titleNView": {
+				// 		"type": "transparent"
+				// 	}
+				// }
+			}
+		},
+		{ //空投奖励
+			"path": "pages/my/airdrop-award/airdrop-activity",
+			"style": {
+				"navigationBarTitleText": "邀请排行榜",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //NFT商品详情
+			"path": "pages/market/goods-def/goods-def-one",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{ //
+			"path": "pages/market/goods-def/goods-detail",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "default"
+			}
+		},
+		{ //铸造品-立即购买
+			"path": "pages/market/casting-buy/casting-buy",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //参与拍卖-支付保证金
+			"path": "pages/market/auction-pay/auction-pay",
+			"style": {
+				"navigationBarTitleText": "支付",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //参与拍卖-支付出价
+			"path": "pages/market/auction-payTheBid/auction-payTheBid",
+			"style": {
+				"navigationBarTitleText": "出价",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			// NFT铸造支付
+			"path": "pages/casting/casting-pay/casting-pay",
+			"style": {
+				"navigationBarTitleText": "铸造支付",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //公告详情
+			"path": "pages/blog/blog-def/blog-def",
+			"style": {
+				"navigationBarTitleText": "资讯详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //空页面
+			"path": "pages/blog/fans/fans",
+			"style": {
+				"navigationBarTitleText": "我的粉丝",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //我的关注
+			"path": "pages/my/focus-on/focus-on",
+			"style": {
+				"navigationBarTitleText": "我的关注",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //我的粉丝
+			"path": "pages/my/fans/fans",
+			"style": {
+				"navigationBarTitleText": "我的粉丝",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //我喜欢的
+			"path": "pages/my/i-like/i-like",
+			"style": {
+				"navigationBarTitleText": "我的喜欢",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{ // 签到
+			"path": "pages/my/signIn/index",
+			"style": {
+				"navigationBarTitleText": "签到",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //浏览历史
+			"path": "pages/my/browse-history/browse-history",
+			"style": {
+				"navigationBarTitleText": "浏览历史",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "清空记录",
+							"fontSize": "14px",
+							"width": "65px"
+						}]
+					}
+				}
+			}
+		},
+		{ //我的藏品
+			"path": "pages/my/collections/collections",
+			"style": {
+				"navigationBarTitleText": "我的藏品",
+				"enablePullDownRefresh": true
+			}
+		},
+		{ //我的藏品
+			"path": "pages/my/collections/collections-detail",
+			"style": {
+				"navigationBarTitleText": "系列藏品",
+				"enablePullDownRefresh": true
+			}
+		},
+		{ //发起拍卖
+			"path": "pages/my/auction/auction",
+			"style": {
+				"navigationBarTitleText": "拍卖",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //上架
+			"path": "pages/my/go-up/go-up",
+			"style": {
+				"navigationBarTitleText": "流转上架",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //我的铸造
+			"path": "pages/my/casting/casting",
+			"style": {
+				"navigationBarTitleText": "我的铸造",
+				"enablePullDownRefresh": true
+			}
+		},
+		{ //钱包管理
+			"path": "pages/my/wallet/wallet",
+			"style": {
+				"navigationBarTitleText": "钱包管理",
+				"enablePullDownRefresh": false
+				// "app-plus": {
+				// 	"titleNView": {
+				// 		"buttons": [{
+				// 			"text": "绑定银行卡",
+				// 			"width": "auto",
+				// 			"fontSize": "14px"
+				// 		}]
+				// 	}
+				// }
+			}
+		},
+		{ //钱包管理
+			"path": "pages/my/manage/manage",
+			"style": {
+				"navigationBarTitleText": "卡包管理",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/manage/embedded",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": {
+						"autoBackButton": false
+					}
+				}
+			}
+		},
+		{ //充值
+			"path": "pages/my/recharge/recharge",
+			"style": {
+				"navigationBarTitleText": "余额充值",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //余额提现
+			"path": "pages/my/withdraw/withdraw",
+			"style": {
+				"navigationBarTitleText": "余额提现",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "提现记录",
+							"fontSize": "14px",
+							"width": "65px"
+						}]
+					}
+				}
+			}
+		},
+		{ //提现记录
+			"path": "pages/my/withdraw-record/withdraw-record",
+			"style": {
+				"navigationBarTitleText": "提现记录",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //全部账单
+			"path": "pages/my/bill/bill",
+			"style": {
+				"navigationBarTitleText": "全部账单",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //空投奖励
+			"path": "pages/my/airdrop-award/airdrop-award",
+			"style": {
+				"navigationBarTitleText": "积分商城",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //空投奖励-新
+			"path": "pages/my/airdrop-award/airdrop-award-new",
+			"style": {
+				"navigationBarTitleText": "积分商城",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //空投奖励-新
+			"path": "pages/my/airdrop-award/airdrop-award-new-info",
+			"style": {
+				"navigationBarTitleText": "积分商城",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //积分订单确认-新
+			"path": "pages/my/airdrop-award/airdrop-award-new-info-order",
+			"style": {
+				"navigationBarTitleText": "订单确认",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //兑换记录
+			"path": "pages/my/airdrop-award/airdrop-award-new-info-change-log",
+			"style": {
+				"navigationBarTitleText": "兑换记录",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //规则
+			"path": "pages/my/airdrop-award/regulation",
+			"style": {
+				"navigationBarTitleText": "规则",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //积分账户
+			"path": "pages/my/airdrop-award/airdrop-award-copy",
+			"style": {
+				"navigationBarTitleText": "积分账户",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //空投充值
+			"path": "pages/my/airdrop-award/recharge",
+			"style": {
+				"navigationBarTitleText": "积分充值",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //空投账单
+			"path": "pages/my/airdrop-bill/airdrop-bill",
+			"style": {
+				"navigationBarTitleText": "积分账单",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //我卖出的
+			"path": "pages/my/sell/sell",
+			"style": {
+				"navigationBarTitleText": "我卖出的",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "default"
+			}
+		},
+		{ //卖出详情
+			"path": "pages/my/sell-def/sell-def",
+			"style": {
+				"navigationBarTitleText": "卖出详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //我买到的 待付款/已完成
+			"path": "pages/my/pending-payment/pending-payment",
+			"style": {
+				"navigationBarTitleText": "我买到的",
+				"enablePullDownRefresh": true
+			}
+		},
+		{ //交易记录
+			"path": "pages/my/transaction/transaction",
+			"style": {
+				"navigationBarTitleText": "交易记录",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //我上架的 全部/审核中/上架中/已售罄/被拒绝
+			"path": "pages/my/release/release",
+			"style": {
+				"navigationBarTitleText": "我的上架",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //NFT数字资产转赠
+			"path": "pages/my/giveAway/giveAway",
+			"style": {
+				"navigationBarTitleText": "我的转赠",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "转赠记录",
+							"fontSize": "14px",
+							"width": "70px"
+						}]
+					}
+				}
+			}
+		},
+		{ //NFT转赠记录
+			"path": "pages/my/transferRecord/transferRecord",
+			"style": {
+				"navigationBarTitleText": "转赠记录",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //转赠版权品
+			"path": "pages/my/copyright/copyright",
+			"style": {
+				"navigationBarTitleText": "对外转增",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //转赠衍生品
+			"path": "pages/my/derivatives/derivatives",
+			"style": {
+				"navigationBarTitleText": "转赠",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //个人设置
+			"path": "pages/my/settings/settings",
+			"style": {
+				"navigationBarTitleText": "个人设置",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //个人信息
+			"path": "pages/my/info/info",
+			"style": {
+				"navigationBarTitleText": "个人资料",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "default"
+			}
+		},
+		{ //实名认证
+			"path": "pages/my/verified/verified",
+			"style": {
+				"navigationBarTitleText": "实名认证",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ // 实名认证
+			"path": "pages/my/verified/verifiedSuccess",
+			"style": {
+				"navigationBarTitleText": "实名认证",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //绑定手机号
+			"path": "pages/my/bindPhone/bindPhone",
+			"style": {
+				"navigationBarTitleText": "绑定手机号",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //设置支付密码
+			"path": "pages/my/transaction-pwd/transaction-pwd",
+			"style": {
+				"navigationBarTitleText": "设置支付密码",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //修改登录密码
+			"path": "pages/my/revise-pwd/revise-pwd",
+			"style": {
+				"navigationBarTitleText": "忘记密码",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //邮箱绑定
+			"path": "pages/my/bind-email/bind-email",
+			"style": {
+				"navigationBarTitleText": "绑定邮箱",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //支付宝绑定
+			"path": "pages/my/bind-alipay/bind-alipay",
+			"style": {
+				"navigationBarTitleText": "绑定支付宝",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //创作者认证
+			"path": "pages/my/creator/creator",
+			"style": {
+				"navigationBarTitleText": "艺术家认证",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //关于我们
+			"path": "pages/my/about-us/about-us",
+			"style": {
+				"navigationBarTitleText": "关于我们",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //常见问题
+			"path": "pages/my/faq/faq",
+			"style": {
+				"navigationBarTitleText": "常见问题",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //问题详情
+			"path": "pages/my/problem-def/problem-def",
+			"style": {
+				"navigationBarTitleText": "问题详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //邀请好友
+			"path": "pages/my/invite-friends/invite-friends",
+			"style": {
+				"navigationBarTitleText": "邀请好友",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{ //艺术家空间
+			"path": "pages/market/artist-space/artist-space",
+			"style": {
+				"navigationBarTitleText": "艺术家空间",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{ //市场-艺术家
+			"path": "pages/market/artist/artist",
+			"style": {
+				"navigationBarTitleText": "艺术家",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //NFT商品详情-已售罄
+			"path": "pages/market/goods-soldOut/goods-soldOut",
+			"style": {
+				"navigationBarTitleText": "商品详情-已售罄",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //NFT商品-拍卖详情
+			"path": "pages/market/goods-auctionDef/goods-auctionDef",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //NFT商品详情-预售
+			"path": "pages/market/goods-presale/goods-presale",
+			"style": {
+				"navigationBarTitleText": "商品详情-预售",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //NFT商品详情-版权品
+			"path": "pages/market/goods-copyright/goods-copyright",
+			"style": {
+				"navigationBarTitleText": "商品详情-版权品",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //我的竞拍
+			"path": "pages/my/my-auction/my-auction",
+			"style": {
+				"navigationBarTitleText": "我的竞拍",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "我发起的",
+							"fontSize": "14px",
+							"width": "70px"
+						}]
+					}
+				}
+			}
+		},
+		{ //竞价支付
+			"path": "pages/my/auction-pay/auction-pay",
+			"style": {
+				"navigationBarTitleText": "竞拍支付",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //选择国际区号
+			"path": "pages/login/country/country",
+			"style": {
+				"navigationBarTitleText": "区号选择",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{ //微信绑定
+			"path": "pages/my/bind-weChat/bind-weChat",
+			"style": {
+				"navigationBarTitleText": "绑定微信",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //绑定银行卡
+			"path": "pages/my/bind-weChat/bind-bank",
+			"style": {
+				"navigationBarTitleText": "绑定银行卡-弃用",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //绑定银行卡
+			"path": "pages/my/bind-bank/bind-bank",
+			"style": {
+				"navigationBarTitleText": "绑定银行卡",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ // 修改艺术家背景
+			"path": "pages/my/change-artist-bg/change-artist-bg",
+			"style": {
+				"navigationBarTitleText": "设置艺术家背景",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/invite/invite",
+			"style": {
+				"navigationBarTitleText": "邀请分享",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#1E201F",
+				"navigationBarTextStyle": "white",
+				"navigationStyle": "default"
+			}
+		},
+		{
+			"path": "pages/my/invite/inviteNew",
+			"style": {
+				"navigationBarTitleText": "邀请分享",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#1E201F",
+				"navigationBarTextStyle": "white",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/my/invite/inviteNewChild",
+			"style": {
+				"navigationBarTitleText": "查看下级",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#1E201F",
+				"navigationBarTextStyle": "white",
+				"navigationStyle": "default"
+			}
+		},
+		{
+			"path": "pages/my/invite/inviteChildren",
+			"style": {
+				"navigationBarTitleText": "下级信息",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#1E201F",
+				"navigationBarTextStyle": "white",
+				"navigationStyle": "default"
+			}
+		},
+		{
+			"path": "pages/my/invite/buyCode",
+			"style": {
+				"navigationBarTitleText": "购买邀请码",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/market/casting-buy/casting-buy-one",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/go-up/go-up-one",
+			"style": {
+				"navigationBarTitleText": "上架",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/contact/contact",
+			"style": {
+				"navigationBarTitleText": "联系我们",
+				"navigationStyle": "default"
+			}
+		},
+		{
+			"path": "pages/my/calendar/calendar",
+			"style": {
+				"navigationBarTitleText": "发售日历",
+				"navigationStyle": "default"
+			}
+		},
+		{
+			"path": "pages/my/rank/rank",
+			"style": {
+				"navigationBarTitleText": "排行榜",
+				"navigationStyle": "default"
+			}
+		},
+		{
+			"path": "pages/payh5",
+			"style": {
+				"navigationBarTitleText": "H5支付",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/market/compound/compound",
+			"style": {
+				"navigationBarTitleText": "合成",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "我参与的",
+							"fontSize": "14px",
+							"width": "70px"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/market/compound/compound-detail",
+			"style": {
+				"navigationBarTitleText": "集碎片",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/market/compound/compound-launch",
+			"style": {
+				"navigationBarTitleText": "合成(我参与的)",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/market/compound/compound-launch-detail",
+			"style": {
+				"navigationBarTitleText": "合成详情",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/market/compound/compound-get",
+			"style": {
+				"navigationBarTitleText": "领取藏品",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"animationType": "zoom-fade-out"
+				}
+			}
+		},
+
+
+
+
+
+
+
+
+		{
+			"path": "pages/market/nirvana/nirvana",
+			"style": {
+				"navigationBarTitleText": "涅槃池",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "我参与的",
+							"fontSize": "14px",
+							"width": "70px"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/market/nirvana/nirvana-detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/market/nirvana/nirvana-launch",
+			"style": {
+				"navigationBarTitleText": "涅槃(我参与的)",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/market/nirvana/nirvana-get",
+			"style": {
+				"navigationBarTitleText": "领取藏品",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"animationType": "zoom-fade-out"
+				}
+			}
+		},
+		{ //余额转账
+			"path": "pages/my/withdraw/transfer",
+			"style": {
+				"navigationBarTitleText": "转帐",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "转账记录",
+							"fontSize": "14px",
+							"width": "65px"
+						}]
+					}
+				}
+			}
+		},
+		{ //转账记录
+			"path": "pages/my/withdraw-record/transfer-record",
+			"style": {
+				"navigationBarTitleText": "转账记录",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //转账记录
+			"path": "pages/account/account",
+			"style": {
+				"navigationBarTitleText": "切换账户",
+				"enablePullDownRefresh": false
+			}
+		},
+		{ //转账记录
+			"path": "pages/my/my-auction/my-auction-launch",
+			"style": {
+				"navigationBarTitleText": "竞拍(我发起的)",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/community/community/community",
+			"style": {
+				"navigationBarTitleText": "群聊动态",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/community/community/community-rule",
+			"style": {
+				"navigationBarTitleText": "进驻指南",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/community/community/community-add",
+			"style": {
+				"navigationBarTitleText": "申请社区"
+			}
+		},
+		{
+			"path": "pages/community/community/communtiy-detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/community/community/community-home",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/community/chat/chat",
+			"style": {
+				"navigationBarTitleText": "群聊",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/community/chat/member",
+			"style": {
+				// "navigationBarTitleText": "全部成员",
+				// "app-plus": {
+				// 	"titleNView": {
+				// 		"buttons": [
+				// 			{
+				// 				"text": "设置",
+				// 				"fontSize": "14px",
+				// 				"width": "auto"
+				// 			}
+				// 		]
+				// 	}
+				// }
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/community/chat/chat-info",
+			"style": {
+				"navigationBarTitleText": "群聊资料"
+			}
+		},
+		{
+			"path": "pages/my/calendar/calendar-detail",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/my/lucky-draw/lucky-draw",
+			"style": {
+				"navigationBarTitleText": "大转盘抽奖",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "抽奖记录",
+							"fontSize": "14px",
+							"width": "auto"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/my/address/address",
+			"style": {
+				"navigationBarTitleText": "收货地址",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "添加收货地址",
+							"fontSize": "14px",
+							"width": "auto"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/my/address/address-add",
+			"style": {
+				"navigationBarTitleText": "添加收货地址"
+			}
+		},
+		{
+			"path": "pages/my/address/address-detail",
+			"style": {
+				"navigationBarTitleText": "编辑收货地址",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "删除",
+							"fontSize": "14px",
+							"width": "auto"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/my/point/point-detail",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/my/point/point-createorder",
+			"style": {
+				"navigationBarTitleText": "创建订单"
+			}
+		},
+		{
+			"path": "pages/my/airdrop-award/invite-log",
+			"style": {
+				"navigationBarTitleText": "邀请记录"
+			}
+		},
+		{
+			"path": "pages/my/logistics-order/logistics-order",
+			"style": {
+				"navigationBarTitleText": "物流订单"
+			}
+		},
+		{
+			"path": "pages/my/lucky-draw/lucky-log",
+			"style": {
+				"navigationBarTitleText": "抽奖记录"
+			}
+		},
+		{
+			"path": "pages/market/goods-def/goods-poster",
+			"style": {
+				"navigationBarTitleText": "下载证书",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/community/community/community-dynamic",
+			"style": {
+				"navigationBarTitleText": "",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/community/community/community-issue",
+			"style": {
+				"navigationBarTitleText": "上架动态"
+			}
+		},
+		{
+			"path": "pages/my/logistics-order/logistics-detail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/my/recharge/success",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/my/calendar/calendar",
+			"style": {
+				"navigationBarTitleText": "发售日历"
+			}
+		},
+		{
+			"path": "pages/battle/battle",
+			"style": {
+				"navigationBarTitleText": "对战专区"
+			}
+		},
+		{
+			"path": "pages/battle/vs",
+			"style": {
+				"navigationBarTitleText": "对战专区"
+			}
+		},
+		{
+			"path": "pages/battle/result",
+			"style": {
+				"navigationBarTitleText": "对战完成"
+			}
+		},
+		{
+			"path": "pages/battle/rank",
+			"style": {
+				"navigationBarTitleText": "对战排行榜",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "排行榜奖励",
+							"fontSize": "14px",
+							"width": "auto"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/battle/log",
+			"style": {
+				"navigationBarTitleText": "对战明细"
+			}
+		},
+		{
+			"path": "pages/battle/rule",
+			"style": {
+				"navigationBarTitleText": "玩法规则"
+			}
+		},
+		{
+			"path": "pages/battle/award",
+			"style": {
+				"navigationBarTitleText": "排行榜奖励"
+			}
+		},
+		{
+			"path": "pages/battle/buylog",
+			"style": {
+				"navigationBarTitleText": "购票明细"
+			}
+		},
+		{
+			"path": "pages/battle/goodslist",
+			"style": {
+				"navigationBarTitleText": "抵押藏品"
+			}
+		},
+		{
+			"path": "pages/battle/createOrder",
+			"style": {
+				"navigationBarTitleText": "购买",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/battle/goods-def-one",
+			"style": {
+				"navigationBarTitleText": "藏品详情"
+			}
+		},
+		{
+			"path": "pages/battle/casting-buy-one",
+			"style": {
+				"navigationBarTitleText": "创建订单"
+			}
+		}, {
+			"path": "pages/market/goods-def/goods-record",
+			"style": {
+				"navigationBarTitleText": "交易记录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/Special/Special",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+
+		}, {
+			"path": "pages/Special/SpecialDetails",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+
+		},  {
+			"path": "pages/Special/SpecialDetailsNew",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/Special/SpecialDetailsNeworder",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/Special/SpecialDetailsNewOrderlog",
+			"style": {
+				"navigationBarTitleText": "认购记录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/Special/SpecialDetailsNewOrderlogLog",
+			"style": {
+				"navigationBarTitleText": "返现记录",
+				"enablePullDownRefresh": false
+			}
+
+		},{
+			"path": "pages/Special/Special-buy",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/Special/SpecialOrder",
+			"style": {
+				"navigationBarTitleText": "专区订单",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/Special/Special-my_vip",
+			"style": {
+				"navigationBarTitleText": "我的VIP",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/exchange/exchange",
+			"style": {
+				"navigationBarTitleText": "交易所",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "申请商户",
+							"fontSize": "14px",
+							"width": "auto"
+						}]
+					}
+				}
+			}
+
+		},
+		{
+			"path": "pages/exchange/exchangeBuy",
+			"style": {
+				"navigationBarTitleText": "去购买",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/exchange/appliChant",
+			"style": {
+				"navigationBarTitleText": "申请商户",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/exchange/exchangeOrder",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/my/mySignIn/mySignIn",
+			"style": {
+				"navigationBarTitleText": "签到信息",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/my/mySignIn/mySignInNew",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/my/mySignIn/mySignInNew20240206",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/my/mySignIn/mySignInNewLog",
+			"style": {
+				"navigationBarTitleText": "签到记录",
+				"navigationStyle": "default",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/my/myTeam/myTeam",
+			"style": {
+				"navigationBarTitleText": "我的团队",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/my/myTeam/myTeamNew",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/my/myTeam/rankRule",
+			"style": {
+				"navigationBarTitleText": "活动规则",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/myTeam/myTeamDetails",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/AIcreation/AIcreation/AIcreation",
+			"style": {
+				"navigationBarTitleText": "AI创作",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/AIcreation/myGallery/myGallery",
+			"style": {
+				"navigationBarTitleText": "我的画廊",
+				"enablePullDownRefresh": true
+			}
+
+		}, {
+			"path": "pages/AIcreation/myGallery/galleryDetails",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+
+		}, {
+			"path": "pages/AIcreation/zhanlanDetails/zhanlanDetails",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/community/star/star",
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			},
+			"app-plus": {
+				"titleView": false
+			}
+		},
+		{
+			"path": "pages/community/star/cursor",
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			},
+			"app-plus": {
+				"titleView": false
+			}
+		},
+
+		{
+			"path": "pages/community/star/floor",
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			},
+			"app-plus": {
+				"titleView": false
+			}
+		},
+		{
+			"path": "pages/community/star/booth",
+			"style": {
+				"navigationBarTitleText": "展台",
+				"enablePullDownRefresh": true
+			}
+		},
+		{ //签到
+			"path": "pages/qiandao",
+			"style": {
+				"navigationBarTitleText": "签到",
+				"enablePullDownRefresh": true
+			}
+
+		},
+		{ //积分商城
+			"path": "pages/jfshangcheng",
+			"style": {
+				"navigationBarTitleText": "积分商城",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/community/star/my_booth",
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			},
+			"app-plus": {
+				"titleView": false
+			}
+		}, {
+			"path": "pages/tabbar/chatAi/chatAi",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+
+		},
+		{
+			"path": "pages/whotalk/index",
+			"style": {
+				"navigationBarTitleText": "聊天",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/whotalk/auth/index",
+			"style":{
+				"navigationBarTitleText":"登录"
+			}
+		},
+		{
+			"path":"pages/friend/news",
+			"style":{
+				"navigationBarTitleText":"添加好友"
+			}
+		},{
+			"path":"pages/search/index",
+			"style":{
+				"navigationBarTitleText":"搜索"
+			}
+		},{
+			"path":"pages/member/index",
+			"style":{
+				"navigationBarTitleText":"个人名片",
+				"navigationBarTextStyle":"black"
+			}
+		},{
+			"path":"pages/dialog/index",
+			"style":{
+				"navigationBarTitleText":"会话",
+				"navigationStyle":"default",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#F8F8F8",
+				"disableScroll": true,
+				"app-plus":{
+					"softinputmode": "adjustResize",
+					"titleNView":{
+						"buttons":[
+							{
+								"type":"menu"
+							}
+						]
+					}
+				},
+				"h5":{
+					"titleNView":{
+						"buttons":[
+							{
+								"type":"menu"
+							}
+						]
+					}
+				}
+			}
+		},{
+			"path":"pages/member/vip",
+			"style":{
+				"navigationBarTitleText":"购买会员",
+				"navigationBarTextStyle":"white",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path":"pages/group/index",
+			"style":{
+				"navigationBarTitleText":"全部群组",
+				"enablePullDownRefresh":true
+			}
+		},{
+			"path":"pages/group/detail",
+			"style":{
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#fffff",
+				"navigationBarTitleText":"群资料"
+			}
+		},{
+			"path":"pages/group/create",
+			"style":{
+				"navigationBarTitleText":"创建群组"
+			}
+		},{
+			"path":"pages/group/join",
+			"style":{
+				"navigationBarTitleText":"申请进群"
+			}
+		},{
+			"path":"pages/group/members",
+			"style":{
+				"navigationBarTitleText":"群成员",
+				"enablePullDownRefresh":true
+			}
+		},{
+			"path":"pages/group/profile",
+			"style":{
+				"navigationBarTitleText":"群资料"
+			}
+		},{
+			"path":"pages/group/mine",
+			"style":{
+				"navigationBarTitleText":"群组"
+			}
+		},{
+			"path":"pages/friend/recommend",
+			"style":{
+				"navigationBarTitleText":"好友邀请"
+			}
+		},
+		{
+			"path":"pages/redpacket/post",
+			"style":{
+				"navigationBarTitleText":"加载中...",
+				"navigationBarTextStyle":"white"
+			}
+		},{
+			"path":"pages/redpacket/detail",
+			"style":{
+				"navigationBarTitleText":"红包详情",
+				"navigationBarTextStyle":"white"
+			}
+		},{
+			"path":"pages/redpacket/record",
+			"style":{
+				"navigationBarTitleText":"红包记录",
+				"navigationBarTextStyle":"white",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path":"pages/credit/pay",
+			"style":{
+				"navigationBarTitleText":"收银台",
+				"navigationStyle":"default",
+				"enablePullDownRefresh":true
+			}
+		},{
+			"path":"pages/credit/transfer",
+			"style":{
+				"navigationBarTitleText":"转账",
+				"navigationBarTextStyle":"white"
+			}
+		},{
+			"path":"pages/member/collection",
+			"style":{
+				"navigationBarTitleText":"我的收藏",
+				"enablePullDownRefresh":true
+			}
+		},{
+			"path":"pages/player/index",
+			"style":{
+				"navigationBarTitleText":"浏览",
+				"navigationBarTextStyle":"white"
+			}
+		},{
+			"path":"pages/player/storage",
+			"style":{
+				"navigationBarTitleText":"文件管理"
+			}
+		},{
+			"path":"pages/web/index",
+			"style":{
+				"navigationBarTitleText":"",
+				"navigationStyle":"default",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor":"#F0F0F0",
+				"app-plus":{
+					"titleNView":{
+						"buttons":[
+							{
+								"type":"share"
+							}
+						]
+					}
+				},
+				"h5":{
+					"titleNView":{
+						"buttons":[
+							{
+								"type":"share"
+							}
+						]
+					}
+				}
+			}
+		},{
+			"path":"pages/dialog/share",
+			"style":{
+				"navigationBarTitleText":"转发消息"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTitleText": "GPTAPP",
+		"navigationBarBackgroundColor": "rgba(0, 0, 0, 0)",
+		"navigationBarTextStyle": "black",
+		// "navigationStyle": "custom",
+		"app-plus": {
+			"background": "#000000",
+			"pullToRefresh": {
+				"color": "#007BFF"
+			}
+		}
+	},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#2D3746",
+		"backgroundColor": "#000000",
+		"borderStyle": "black",
+		"list": [{
+				"pagePath": "pages/tabbar/home/home",
+				"iconPath": "static/images/tab/light/index.png",
+				"selectedIconPath": "static/images/tab/light/index_active.png",
+				"text": "首页"
+			},
+//			{
+//				"pagePath": "pages/tabbar/blogs/blogs",
+//				"iconPath": "static/images/tab/light/gonggao.png",
+//				"selectedIconPath": "static/images/tab/light/gonggao_active.png",
+//				"text": "资讯"
+//			},
+			// {
+			// 	"pagePath": "pages/tabbar/bazaar/bazaar-second",
+			// 	"iconPath": "static/images/tab/light/market.png",
+			// 	"selectedIconPath": "static/images/tab/light/market_active.png",
+			// 	"text": "市场"
+			// },
+			// {
+			// 	"pagePath": "pages/tabbar/chatAi/chatAi",//pages/tabbar/blogs/blogs
+			// 	"iconPath": "static/images/tab/light/chat.png",
+			// 	"selectedIconPath": "static/images/tab/light/chat_active.png",
+			// 	"text": "OpenAI"
+			// },
+			// {
+			// 	"pagePath": "pages/Special/Special",
+			// 	"iconPath": "static/images/tab/light/zhuanqu.png",
+			// 	"selectedIconPath": "static/images/tab/light/zhuanqu_active.png",
+			// 	"text": "专区"
+			// },
+			 {
+			 	"pagePath": "pages/whotalk/index",
+			 	"iconPath": "static/images/tab/light/zhuanqu.png",
+			 	"selectedIconPath": "static/images/tab/light/zhuanqu_active.png",
+			 	"text": "聊天"
+			 },
+			// {
+			// 	"pagePath": "pages/tabbar/chatAi/chatAi",//pages/tabbar/blogs/blogs
+			// 	"iconPath": "static/images/tab/light/chat.png",
+			// 	"selectedIconPath": "static/images/tab/light/chat_active.png",
+			// 	"text": "OpenAI"
+			// },
+			{
+				"pagePath": "pages/tabbar/mine/mine",
+				"iconPath": "static/images/tab/light/user.png",
+				"selectedIconPath": "static/images/tab/light/user_active.png",
+				"text": "我的"
+			}
+		]
+	}
+}

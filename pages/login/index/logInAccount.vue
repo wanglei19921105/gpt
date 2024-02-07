@@ -1,5 +1,8 @@
 <template>
 	<view class="page" :style="{backgroundColor:getBgColor}" :class="getThemeClass">
+    <view class="InfoBox Width100">
+
+    </view>
     <view class="top Width100 MarginT_30rpx" @click="returnPage">
       <u-icon name="arrow-left" style="margin-left: 30rpx;" color="#ffffff" size="36"></u-icon>
     </view>
@@ -87,10 +90,10 @@
         $:this.$,
         isShowPsw:false,
 				params: {
-					login_account: '',
-					password: ''
-          // login_account: '18837925625',
-          // password: 'Qq5158'
+					login_account: '18837925625',
+					password: 'Qq5158'
+          // login_account: '',
+          // password: ''
 				},
 				checked: false,
 				navHeight: 0,

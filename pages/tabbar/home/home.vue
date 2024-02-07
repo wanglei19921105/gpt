@@ -199,6 +199,100 @@
 					:inactive-color="getNavInactiveColor" :bg-color="getBgColor"></u-tabs>
 			</view>
       <view class="ListBox WidthGlobal1 MarginAuto">
+        <view class="GoodsList Width100">
+          <view class="Unit Width100 BG_171717 BorderR_20rpx" v-for="(item,index) in goodsList" :key="index" @click="godetail(item.id)">
+            <view class="ImgBox Width100">
+              <image :src="item.cover_image" mode="aspectFill" class="Width100 Height100"></image>
+            </view>
+            <view class="Width100 PaddingT_1rpx BottomBox MarginT_40rpx">
+              <view class="WidthGlobal5 MarginAuto">
+                <view class="FloatL">
+                  <text class="Block FontS_40rpx Color_FFFFFF">{{item.title}}</text>
+                  <view class="ProgressBox MarginT_20rpx">
+                    <view class="ProgressMain BG_FFFFFF FloatL BorderR_20rpx OverH MarginT_8rpx">
+                      <view class="Progress Height100 BorderR_20rpx" :style="'width:' + 30 +'%;'"></view>
+                    </view>
+                    <text class="Block FloatL Color_D1D1D1 MarginL_16rpx FontS_24rpx">
+                      44%
+                    </text>
+                    <view class="ClearB"></view>
+                  </view>
+                </view>
+                <text class="Block FloatR FontS_36rpx Color_FFC393 FontBold">￥{{(item.maxmum_investment)}}</text>
+                <view class="ClearB"></view>
+                <view class="TagList MarginT_40rpx">
+                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                    <view class="TagL TextCenter FloatL">
+                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">项目数量</text>
+                    </view>
+                    <view class="FloatL TagR">
+                      <text class="Block Color_FFFFFF FontS_20rpx">
+                        10000
+                      </text>
+                    </view>
+                    <view class="ClearB"></view>
+                  </view>
+                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                    <view class="TagL TextCenter FloatL">
+                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">日化利率</text>
+                    </view>
+                    <view class="FloatL TagR">
+                      <text class="Block Color_FFFFFF FontS_20rpx">
+                        10
+                      </text>
+                    </view>
+                    <view class="ClearB"></view>
+                  </view>
+                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                    <view class="TagL TextCenter FloatL">
+                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">投资周期</text>
+                    </view>
+                    <view class="FloatL TagR">
+                      <text class="Block Color_FFFFFF FontS_20rpx">
+                        10000
+                      </text>
+                    </view>
+                    <view class="ClearB"></view>
+                  </view>
+                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                    <view class="TagL TextCenter FloatL">
+                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">起购份数</text>
+                    </view>
+                    <view class="FloatL TagR">
+                      <text class="Block Color_FFFFFF FontS_20rpx">
+                        10000
+                      </text>
+                    </view>
+                    <view class="ClearB"></view>
+                  </view>
+                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                    <view class="TagL TextCenter FloatL">
+                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">限购份数</text>
+                    </view>
+                    <view class="FloatL TagR">
+                      <text class="Block Color_FFFFFF FontS_20rpx">
+                        {{item.limit}}
+                      </text>
+                    </view>
+                    <view class="ClearB"></view>
+                  </view>
+                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                    <view class="TagL TextCenter FloatL">
+                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">可购等级</text>
+                    </view>
+                    <view class="FloatL TagR">
+                      <text class="Block Color_FFFFFF FontS_20rpx">
+                        10000
+                      </text>
+                    </view>
+                    <view class="ClearB"></view>
+                  </view>
+                  <view class="ClearB"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
         <view class="Unit MarginT_32rpx BorderR_20rpx" v-for="(item,index) in goodsList"  @click="godetail(item.id)" :key="index" :class="(index+1)%2 != 0 ? 'FloatL':'FloatR'">
           <view class="ImgBox OverH PositionR">
             <view class="BottomText Width100 PositionA">
@@ -612,6 +706,45 @@
 </script>
 
 <style lang="scss" scoped>
+
+.GoodsList{
+  .Unit{
+    padding-bottom: 36rpx;
+    .ImgBox{
+      width: 100%;
+      height: 574rpx!important;
+    }
+    .TagList{
+      .Tag{
+        padding-right: 20rpx;
+        background-color: #2E2D2D;
+        border-radius: 6rpx;
+        .TagL{
+          width: 112rpx;
+          height: 40rpx;
+          border-radius: 6rpx;
+          background: linear-gradient(90deg, #E97FFF 0%, #64F2FF 100%);
+          line-height: 40rpx;
+        }
+        .TagR{
+          padding-left:20rpx;
+          text{
+            line-height: 40rpx;
+          }
+        }
+      }
+    }
+    .ProgressBox{
+      .ProgressMain{
+        width: 218rpx;
+        height: 8rpx;
+        .Progress{
+          background: linear-gradient(90deg, #2360EB 0%, #5FC5FF 100%);
+        }
+      }
+    }
+  }
+}
 .SwiperBox{
   width: 100%;
   height: 154px!important;

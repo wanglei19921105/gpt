@@ -1408,8 +1408,16 @@
 				}
 			}
 
-		},  {
+		},
+		{
 			"path": "pages/Special/SpecialDetailsNew",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/login/index/SpecialDetailsNew20240208",
 			"style": {
 				"navigationBarTitleText": "详情",
 				"enablePullDownRefresh": false

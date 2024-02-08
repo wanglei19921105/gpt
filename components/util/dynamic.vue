@@ -59,7 +59,7 @@
 					</view>
 					<view class="text-empty" v-else>
 						<text v-if="userinfo.uid>0">{{moments.data.albums.list.length>0?'没有更多了~':'暂无数据'}}</text>
-						<text v-else @click="naviTo('login/index/logInAccount')" class="text-blue">请先登录</text>
+						<text v-else @click="naviTo('login/index/logInMain')" class="text-blue">请先登录</text>
 					</view>
 				</block>
 				<block v-else-if="moments.cur=='nears'">

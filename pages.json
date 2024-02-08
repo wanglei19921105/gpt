@@ -507,6 +507,13 @@
 				"enablePullDownRefresh": false
 			}
 		},
+		{ //空投奖励-新
+			"path": "pages/my/airdrop-award/airdrop-award-new-info-20240209",
+			"style": {
+				"navigationBarTitleText": "积分商城",
+				"enablePullDownRefresh": false
+			}
+		},
 		{ //积分订单确认-新
 			"path": "pages/my/airdrop-award/airdrop-award-new-info-order",
 			"style": {

@@ -79,7 +79,7 @@
 					})
 					setTimeout(() => {
 						uni.reLaunch({
-							url: '/pages/login/index/logInAccount'
+							url: '/pages/login/index/logInMain'
 						})
 					}, 2000)
 					return false

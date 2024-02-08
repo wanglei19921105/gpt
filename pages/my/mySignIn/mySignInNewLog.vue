@@ -1,7 +1,7 @@
 <template>
 	<view class="page" :class="getThemeClass">
     <view class="SignInLog WidthGlobal1 MarginAuto">
-      <view class="Unit Width100 PaddingT_32rpx PaddingB_32rpx BorderR_20rpx MarginT_32rpx" v-for="(item,index) in signInLog">
+      <view class="Unit Width100 PaddingT_32rpx BG_171717 PaddingB_32rpx BorderR_20rpx MarginT_32rpx" v-for="(item,index) in signInLog">
         <view class="WidthGlobal1 MarginAuto">
           <view class="FloatL">
             <text class="Block FontS_36rpx Color_FFFFFF">签到获得 商城 购物{{ item.type == 1 ? '积分':'红包' }}</text>
@@ -83,7 +83,7 @@
 <style lang="scss" scoped>
 .SignInLog{
   .Unit{
-    border: 2rpx solid rgba(255,255,255,0.7);
+    //border: 2rpx solid rgba(255,255,255,0.7);
     .Icon{
       width: 48rpx;
       height: 48rpx;

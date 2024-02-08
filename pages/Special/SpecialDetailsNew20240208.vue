@@ -15,10 +15,10 @@
     <view class="Content PositionA WidthGlobal1" v-if="info != null">
       <view class="Top Width100 BorderR_20rpx">
         <view class="Money WidthGlobal1 MarginAuto">
-          <text class="Block FontBold Color_FFFFFF FontS_48rpx">{{info.maxmum_investment}}金币</text>
+          <text class="Block FontBold Color_FFC393 FontS_48rpx">{{info.maxmum_investment}}金币</text>
         </view>
         <view class="TopBottom Width100 PaddingT_32rpx PaddingB_32rpx BG_171717 BorderR_20rpx MarginT_16rpx">
-          <view class="WidthGlobal5 MarginAuto">
+          <view class="WidthGlobal1 MarginAuto">
             <text class="Block Color_FFFFFF FontBold FontS_40rpx">{{info.name}}</text>
             <view class="ProgressBox MarginT_20rpx">
               <view class="ProgressMain BG_FFFFFF FloatL BorderR_20rpx OverH MarginT_8rpx">
@@ -29,215 +29,343 @@
               </text>
               <view class="ClearB"></view>
             </view>
-            <view class="TagList MarginT_30rpx">
-              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                <view class="TagL TextCenter FloatL">
-                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">项目数量</text>
-                </view>
-                <view class="FloatL TagR">
-                  <text class="Block Color_FFFFFF FontS_20rpx">
-                    {{ info.stock + info.sales }}
-                  </text>
-                </view>
-                <view class="ClearB"></view>
-              </view>
-              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                <view class="TagL TextCenter FloatL">
-                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">日化利率</text>
-                </view>
-                <view class="FloatL TagR">
-                  <text class="Block Color_FFFFFF FontS_20rpx">
-                    {{ returnDayRate(info) + '%' }}
-                  </text>
-                </view>
-                <view class="ClearB"></view>
-              </view>
-              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                <view class="TagL TextCenter FloatL">
-                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">投资周期</text>
-                </view>
-                <view class="FloatL TagR">
-                  <text class="Block Color_FFFFFF FontS_20rpx">
-                    {{ info.keep_days }}天
-                  </text>
-                </view>
-                <view class="ClearB"></view>
-              </view>
-              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                <view class="TagL TextCenter FloatL">
-                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">起购份数</text>
-                </view>
-                <view class="FloatL TagR">
-                  <text class="Block Color_FFFFFF FontS_20rpx">
-                    {{info.min_buy }}
-                  </text>
-                </view>
-                <view class="ClearB"></view>
-              </view>
-              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                <view class="TagL TextCenter FloatL">
-                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">限购份数</text>
-                </view>
-                <view class="FloatL TagR">
-                  <text class="Block Color_FFFFFF FontS_20rpx">
-                    {{info.limit }}
-                  </text>
-                </view>
-                <view class="ClearB"></view>
-              </view>
-              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                <view class="TagL TextCenter FloatL">
-                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">可购等级</text>
-                </view>
-                <view class="FloatL TagR">
-                  <text class="Block Color_FFFFFF FontS_20rpx">
-                    {{ (info.level || {}).name }}
-                  </text>
-                </view>
-                <view class="ClearB"></view>
-              </view>
-              <view class="ClearB"></view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="UnitBox Width100 PaddingT_26rpx PaddingB_32rpx MarginT_30rpx BorderR_20rpx">
-        <view class="WidthGlobal1 MarginAuto">
-          <view class="FloatL">
-            <view>
-              <view>
-                <view class="LineShu FloatL MarginT_4rpx"></view>
-                <text class="Block FloatL FontS_28rpx Color_FFFFFF MarginL_10rpx FontBold">项目上限</text>
-                <view class="ClearB"></view>
-              </view>
-              <view class="MarginT_20rpx">
-                <text class="Block FloatL FontS_32rpx Color_FFFFFF FontBold">
-                  {{ info.stock + info.sales }}
-                </text>
-                <text class="Block FloatL Color_CCCCCC FontS_24rpx MarginL_4rpx">份</text>
-                <view class="ClearB"></view>
-              </view>
-            </view>
-            <view class="MarginT_28rpx">
-              <view>
-                <view class="LineShu FloatL MarginT_4rpx"></view>
-                <text class="Block FloatL FontS_28rpx Color_FFFFFF MarginL_10rpx FontBold">当前订单</text>
-                <view class="ClearB"></view>
-              </view>
-              <view class="MarginT_20rpx">
-                <text class="Block FloatL FontS_32rpx Color_FFFFFF FontBold">
-                  {{ infoMain.total_orders }}
-                </text>
-                <text class="Block FloatL Color_CCCCCC FontS_24rpx MarginL_4rpx">单</text>
-                <view class="ClearB"></view>
-              </view>
-            </view>
-          </view>
-          <view class="FloatR MarginR_60rpx" v-if="info != null">
-<!--            进度条-->
-            <piaoyiProgressBar :canvas-id="'progressCanvas4'" :progress="returnRate(info)" :background-color="'#E2ECFF'" :progress-background-color="'#E97FFF'"
-                               :show-text="true"
-                               text-color="#FFFFFF" :text-size="48"
-                               :text-size1="24"
-                               :height="12"
-                               :is-circular="true"
+<!--            <view class="TagList MarginT_30rpx">-->
+<!--              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                <view class="TagL TextCenter FloatL">-->
+<!--                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">项目数量</text>-->
+<!--                </view>-->
+<!--                <view class="FloatL TagR">-->
+<!--                  <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                    {{ info.stock + info.sales }}-->
+<!--                  </text>-->
+<!--                </view>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                <view class="TagL TextCenter FloatL">-->
+<!--                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">日化利率</text>-->
+<!--                </view>-->
+<!--                <view class="FloatL TagR">-->
+<!--                  <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                    {{ returnDayRate(info) + '%' }}-->
+<!--                  </text>-->
+<!--                </view>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                <view class="TagL TextCenter FloatL">-->
+<!--                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">投资周期</text>-->
+<!--                </view>-->
+<!--                <view class="FloatL TagR">-->
+<!--                  <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                    {{ info.keep_days }}天-->
+<!--                  </text>-->
+<!--                </view>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                <view class="TagL TextCenter FloatL">-->
+<!--                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">起购份数</text>-->
+<!--                </view>-->
+<!--                <view class="FloatL TagR">-->
+<!--                  <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                    {{info.min_buy }}-->
+<!--                  </text>-->
+<!--                </view>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                <view class="TagL TextCenter FloatL">-->
+<!--                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">限购份数</text>-->
+<!--                </view>-->
+<!--                <view class="FloatL TagR">-->
+<!--                  <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                    {{info.limit }}-->
+<!--                  </text>-->
+<!--                </view>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--              <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                <view class="TagL TextCenter FloatL">-->
+<!--                  <text class="Block FontS_20rpx Color_1C2B2F FontBold">可购等级</text>-->
+<!--                </view>-->
+<!--                <view class="FloatL TagR">-->
+<!--                  <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                    {{ (info.level || {}).name }}-->
+<!--                  </text>-->
+<!--                </view>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--              <view class="ClearB"></view>-->
+<!--            </view>-->
 
- :show-text-value="returnRate(info) + '%'"
-                               :show-text-value1="'进度'"                           :diameter="200"></piaoyiProgressBar>
-          </view>
-          <view class="ClearB"></view>
-          <view class="Line Width100 MarginT_42rpx"></view>
-          <view class="DataList Width100 Flex Flex_C_S-B MarginT_16rpx">
-            <view class="Data">
-              <image :src="$.imgSrc + '/images/user_icon1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>
-              <view class="FloatL MarginL_20rpx">
-                <text class="Block Color_FFFFFF FontS_32rpx FontBold">{{ infoMain.total_people }}</text>
-                <text class="Block Color_B4B4B6 FontS_24rpx MarginT_8rpx">参加人数</text>
+            <view class="TagList MarginT_40rpx">
+              <view class="Tag2 FloatL MarginR_32rpx TextCenter" :style="bgUrl4">
+                <text class="Block FontS_20rpx FontBold Color_000000" >{{ (info.level || {}).name }}</text>
+              </view>
+              <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
+                <text class="Block FontS_20rpx FontBold FloatL Color_000000">限购份数</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{info.limit}}</text>
+                <view class="ClearL"></view>
+              </view>
+              <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
+                <text class="Block FontS_20rpx FontBold FloatL Color_000000">日化利率</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ returnDayRate(info) + '%' }}</text>
+                <view class="ClearL"></view>
               </view>
               <view class="ClearL"></view>
+              <!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+              <!--                  <view class="TagL TextCenter FloatL">-->
+              <!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">项目数量</text>-->
+              <!--                  </view>-->
+              <!--                  <view class="FloatL TagR">-->
+              <!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+              <!--                      {{ item.stock + item.sales }}-->
+              <!--                    </text>-->
+              <!--                  </view>-->
+              <!--                  <view class="ClearB"></view>-->
+              <!--                </view>-->
+              <!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+              <!--                  <view class="TagL TextCenter FloatL">-->
+              <!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">日化利率</text>-->
+              <!--                  </view>-->
+              <!--                  <view class="FloatL TagR">-->
+              <!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+              <!--                      {{ returnDayRate(item) + '%' }}-->
+              <!--                    </text>-->
+              <!--                  </view>-->
+              <!--                  <view class="ClearB"></view>-->
+              <!--                </view>-->
+              <!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+              <!--                  <view class="TagL TextCenter FloatL">-->
+              <!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">投资周期</text>-->
+              <!--                  </view>-->
+              <!--                  <view class="FloatL TagR">-->
+              <!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+              <!--                      {{ item.keep_days }}天-->
+              <!--                    </text>-->
+              <!--                  </view>-->
+              <!--                  <view class="ClearB"></view>-->
+              <!--                </view>-->
+              <!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+              <!--                  <view class="TagL TextCenter FloatL">-->
+              <!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">起购份数</text>-->
+              <!--                  </view>-->
+              <!--                  <view class="FloatL TagR">-->
+              <!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+              <!--                      {{item.min_buy }}-->
+              <!--                    </text>-->
+              <!--                  </view>-->
+              <!--                  <view class="ClearB"></view>-->
+              <!--                </view>-->
+              <!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+              <!--                  <view class="TagL TextCenter FloatL">-->
+              <!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">限购份数</text>-->
+              <!--                  </view>-->
+              <!--                  <view class="FloatL TagR">-->
+              <!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+              <!--                      {{item.limit}}-->
+              <!--                    </text>-->
+              <!--                  </view>-->
+              <!--                  <view class="ClearB"></view>-->
+              <!--                </view>-->
+              <!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+              <!--                  <view class="TagL TextCenter FloatL">-->
+              <!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">可购等级</text>-->
+              <!--                  </view>-->
+              <!--                  <view class="FloatL TagR">-->
+              <!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+              <!--                      {{ (item.level || {}).name }}-->
+              <!--                    </text>-->
+              <!--                  </view>-->
+              <!--                  <view class="ClearB"></view>-->
+              <!--                </view>-->
+              <view class="ClearB"></view>
             </view>
-            <view class="Data TextCenter">
-              <view class="InlineBlock">
-                <image :src="$.imgSrc + '/images/history_icon1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>
-                <view class="FloatL MarginL_20rpx">
-                  <text class="Block Color_FFFFFF FontS_32rpx FontBold">{{ info.visit_count }}</text>
-                  <text class="Block Color_B4B4B6 FontS_24rpx MarginT_8rpx">浏览</text>
-                </view>
-                <view class="ClearL"></view>
+            <view class="Width100 Flex Flex_C_S-B MarginT_32rpx">
+              <view class="DataUnit1 TextCenter">
+                <text class="Color_B4B4B6 Block FontS_24rpx">项目数量</text>
+                <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx"> {{ info.stock + info.sales }}</text>
               </view>
-            </view>
-            <view class="Data TextRight">
-              <view class="InlineBlock">
-                <image :src="$.imgSrc + '/images/share_icon1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>
-                <view class="FloatL MarginL_20rpx">
-                  <text class="Block Color_FFFFFF FontS_32rpx FontBold">{{ info.share_number }}</text>
-                  <text class="Block Color_B4B4B6 FontS_24rpx MarginT_8rpx">分享</text>
-                </view>
-                <view class="ClearL"></view>
+              <view class="DataUnit1 TextCenter">
+                <text class="Color_B4B4B6 Block FontS_24rpx">起购份数</text>
+                <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{info.min_buy }}</text>
+              </view>
+              <view class="DataUnit1 TextCenter">
+                <text class="Color_B4B4B6 Block FontS_24rpx">投资周期</text>
+                <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ info.keep_days }}天</text>
+              </view>
+              <view class="DataUnit1 TextCenter">
+                <text class="Color_FFFFFF Block FontS_24rpx">可购等级</text>
+                <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ (info.level || {}).name }}</text>
               </view>
             </view>
           </view>
         </view>
       </view>
-      <view class="UnitBox UnitBox1 Width100 PaddingT_16rpx PaddingB_32rpx MarginT_30rpx BorderR_20rpx OverF_Y_A">
-        <view class="WidthGlobal1 Height100 MarginAuto">
-          <view class="UserList Width100 Height100">
-            <swiper class="Swiper Width100 Height100" circular :indicator-dots="false" @change="changeUser1" :autoplay="true" :interval="2500" :vertical="true"
-                    :duration="1000">
-              <swiper-item class="Width100 Height100 Flex Flex_C_S-B Flex_Warp" v-for="item in 10">
-                <view class="UserUnit TextCenter MarginT_16rpx"  v-for="(item,index) in showList1">
-                  <view class="ImgBox InlineBlock BorderR_50 OverH">
-                    <image :src="item.avatar" mode="aspectFill" class="Width100 Height100"></image>
-                  </view>
-                  <text class="Block Text MarginT_8rpx TextHidden FontS_24rpx MarginAuto Color_FFFFFF">{{ item.nickname }}</text>
-                </view>
-              </swiper-item>
-            </swiper>
-<!--            <view class="UserUnit TextCenter MarginT_16rpx">-->
-<!--              <view class="ImgBox InlineBlock BorderR_50 OverH">-->
-<!--                <image :src="$.imgSrc + '/logo1.png'" mode="aspectFill" class="Width100 Height100"></image>-->
+      <view class="BuyLog Width100 BorderR_20rpx BG_171717 PaddingT_16rpx PaddingB_48rpx MarginT_32rpx">
+        <view class="BuyTitle TextCenter">
+          <view class="InlineBlock">
+            <view class="TopLine1 FloatL"></view>
+            <text class="Block FontS_32rpx Color_FFFFFF FontBold FloatL MarginL_35rpx">购买记录</text>
+            <view class="TopLine2 FloatL MarginL_35rpx"></view>
+            <view class="ClearL"></view>
+          </view>
+        </view>
+        <view class="WidthGlobal1 MarginAuto MarginT_20rpx">
+          <view class="ShowUnit" v-for="(item,index) in list" :key="index" :class="index !== 0 ? 'MarginT_32rpx':''">
+            <view class="ImgBox BorderR_50 OverH FloatL">
+              <image :src="item.avatar" mode="aspectFill" class="Width100 Height100 BorderR_50"></image>
+            </view>
+            <view class="TextBox FloatR">
+              <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginT_4rpx">{{ item.nickname }}</text>
+              <text class="Block FloatR FontS_24rpx Color_FFFFFF MarginT_4rpx">{{item.level}}</text>
+              <view class="ClearL"></view>
+              <text class="Block FloatL FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.mobile }}</text>
+              <text class="Block FloatR FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.created_at }}</text>
+              <view class="ClearL"></view>
+            </view>
+            <view class="ClearL"></view>
+          </view>
+        </view>
+      </view>
+<!--      <view class="UnitBox Width100 PaddingT_26rpx PaddingB_32rpx MarginT_30rpx BorderR_20rpx">-->
+<!--        <view class="WidthGlobal1 MarginAuto">-->
+<!--          <view class="FloatL">-->
+<!--            <view>-->
+<!--              <view>-->
+<!--                <view class="LineShu FloatL MarginT_4rpx"></view>-->
+<!--                <text class="Block FloatL FontS_28rpx Color_FFFFFF MarginL_10rpx FontBold">项目上限</text>-->
+<!--                <view class="ClearB"></view>-->
 <!--              </view>-->
-<!--              <text class="Block Text MarginT_8rpx TextHidden FontS_24rpx MarginAuto Color_FFFFFF">更多</text>-->
+<!--              <view class="MarginT_20rpx">-->
+<!--                <text class="Block FloatL FontS_32rpx Color_FFFFFF FontBold">-->
+<!--                  {{ info.stock + info.sales }}-->
+<!--                </text>-->
+<!--                <text class="Block FloatL Color_CCCCCC FontS_24rpx MarginL_4rpx">份</text>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
 <!--            </view>-->
-          </view>
-        </view>
-      </view>
-      <view class="Title Width100 MarginT_32rpx">
-        <view class="LineShu FloatL MarginT_8rpx"></view>
-        <text class="Block FloatL FontS_32rpx Color_FFFFFF MarginL_12rpx">热销中</text>
-        <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginL_8rpx MarginT_16rpx">Be on hot sale</text>
-        <view class="ClearL"></view>
-      </view>
+<!--            <view class="MarginT_28rpx">-->
+<!--              <view>-->
+<!--                <view class="LineShu FloatL MarginT_4rpx"></view>-->
+<!--                <text class="Block FloatL FontS_28rpx Color_FFFFFF MarginL_10rpx FontBold">当前订单</text>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--              <view class="MarginT_20rpx">-->
+<!--                <text class="Block FloatL FontS_32rpx Color_FFFFFF FontBold">-->
+<!--                  {{ infoMain.total_orders }}-->
+<!--                </text>-->
+<!--                <text class="Block FloatL Color_CCCCCC FontS_24rpx MarginL_4rpx">单</text>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--          </view>-->
+<!--          <view class="FloatR MarginR_60rpx" v-if="info != null">-->
+<!--&lt;!&ndash;            进度条&ndash;&gt;-->
+<!--            <piaoyiProgressBar :canvas-id="'progressCanvas4'" :progress="returnRate(info)" :background-color="'#E2ECFF'" :progress-background-color="'#E97FFF'"-->
+<!--                               :show-text="true"-->
+<!--                               text-color="#FFFFFF" :text-size="48"-->
+<!--                               :text-size1="24"-->
+<!--                               :height="12"-->
+<!--                               :is-circular="true"-->
 
-      <view class="SignInLog Width100">
-        <swiper class="Swiper Width100 Height100" circular :indicator-dots="false" @change="changeUser2" :autoplay="true" :interval="2500" :vertical="true"
-                :duration="1000">
-          <swiper-item class="Width100 Height100" v-for="item in 10">
-            <view class="Unit Width100 PaddingT_32rpx PaddingB_32rpx BorderR_20rpx MarginT_32rpx" v-for="(item,index) in showList2">
-              <view class="WidthGlobal1 MarginAuto">
-                <view class="FloatL">
-                  <view class="ImgBox FloatL BorderR_50 OverH">
-                    <image :src="item.avatar" mode="aspectFill" class="Width100 Height100"></image>
-                  </view>
-                  <view class="FloatR TextContent">
-                    <text class="Block FontS_24rpx Color_FFFFFF">{{item.nickname}} {{item.level}} 认购成功{{item.number}}份 收益{{item.amount}}元</text>
-                    <text class="Block FontS_24rpx Color_B4B4B6 MarginT_8rpx">{{ item.created_at }}</text>
-                  </view>
-                  <view class="ClearL"></view>
-                </view>
-                <view class="FloatR MarginT_20rpx">
-                  <text class="Block FloatL FontS_36rpx FontBold Color_FFFFFF">{{item.amount}} 金币</text>
-                  <view class="ClearB"></view>
-                </view>
-                <view class="ClearB"></view>
-              </view>
-            </view>
-          </swiper-item>
-        </swiper>
-        <view class="Width100 TextCenter PaddingT_40rpx PaddingB_40rpx MarginT_40rpx" v-if="list.length == 0">
-          <text class="Block FontS_30rpx Color_FFFFFF">暂无记录</text>
-        </view>
-      </view>
+<!-- :show-text-value="returnRate(info) + '%'"-->
+<!--                               :show-text-value1="'进度'"                           :diameter="200"></piaoyiProgressBar>-->
+<!--          </view>-->
+<!--          <view class="ClearB"></view>-->
+<!--          <view class="Line Width100 MarginT_42rpx"></view>-->
+<!--          <view class="DataList Width100 Flex Flex_C_S-B MarginT_16rpx">-->
+<!--            <view class="Data">-->
+<!--              <image :src="$.imgSrc + '/images/user_icon1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>-->
+<!--              <view class="FloatL MarginL_20rpx">-->
+<!--                <text class="Block Color_FFFFFF FontS_32rpx FontBold">{{ infoMain.total_people }}</text>-->
+<!--                <text class="Block Color_B4B4B6 FontS_24rpx MarginT_8rpx">参加人数</text>-->
+<!--              </view>-->
+<!--              <view class="ClearL"></view>-->
+<!--            </view>-->
+<!--            <view class="Data TextCenter">-->
+<!--              <view class="InlineBlock">-->
+<!--                <image :src="$.imgSrc + '/images/history_icon1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>-->
+<!--                <view class="FloatL MarginL_20rpx">-->
+<!--                  <text class="Block Color_FFFFFF FontS_32rpx FontBold">{{ info.visit_count }}</text>-->
+<!--                  <text class="Block Color_B4B4B6 FontS_24rpx MarginT_8rpx">浏览</text>-->
+<!--                </view>-->
+<!--                <view class="ClearL"></view>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--            <view class="Data TextRight">-->
+<!--              <view class="InlineBlock">-->
+<!--                <image :src="$.imgSrc + '/images/share_icon1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>-->
+<!--                <view class="FloatL MarginL_20rpx">-->
+<!--                  <text class="Block Color_FFFFFF FontS_32rpx FontBold">{{ info.share_number }}</text>-->
+<!--                  <text class="Block Color_B4B4B6 FontS_24rpx MarginT_8rpx">分享</text>-->
+<!--                </view>-->
+<!--                <view class="ClearL"></view>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="UnitBox UnitBox1 Width100 PaddingT_16rpx PaddingB_32rpx MarginT_30rpx BorderR_20rpx OverF_Y_A">-->
+<!--        <view class="WidthGlobal1 Height100 MarginAuto">-->
+<!--          <view class="UserList Width100 Height100">-->
+<!--            <swiper class="Swiper Width100 Height100" circular :indicator-dots="false" @change="changeUser1" :autoplay="true" :interval="2500" :vertical="true"-->
+<!--                    :duration="1000">-->
+<!--              <swiper-item class="Width100 Height100 Flex Flex_C_S-B Flex_Warp" v-for="item in 10">-->
+<!--                <view class="UserUnit TextCenter MarginT_16rpx"  v-for="(item,index) in showList1">-->
+<!--                  <view class="ImgBox InlineBlock BorderR_50 OverH">-->
+<!--                    <image :src="item.avatar" mode="aspectFill" class="Width100 Height100"></image>-->
+<!--                  </view>-->
+<!--                  <text class="Block Text MarginT_8rpx TextHidden FontS_24rpx MarginAuto Color_FFFFFF">{{ item.nickname }}</text>-->
+<!--                </view>-->
+<!--              </swiper-item>-->
+<!--            </swiper>-->
+<!--&lt;!&ndash;            <view class="UserUnit TextCenter MarginT_16rpx">&ndash;&gt;-->
+<!--&lt;!&ndash;              <view class="ImgBox InlineBlock BorderR_50 OverH">&ndash;&gt;-->
+<!--&lt;!&ndash;                <image :src="$.imgSrc + '/logo1.png'" mode="aspectFill" class="Width100 Height100"></image>&ndash;&gt;-->
+<!--&lt;!&ndash;              </view>&ndash;&gt;-->
+<!--&lt;!&ndash;              <text class="Block Text MarginT_8rpx TextHidden FontS_24rpx MarginAuto Color_FFFFFF">更多</text>&ndash;&gt;-->
+<!--&lt;!&ndash;            </view>&ndash;&gt;-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="Title Width100 MarginT_32rpx">-->
+<!--        <view class="LineShu FloatL MarginT_8rpx"></view>-->
+<!--        <text class="Block FloatL FontS_32rpx Color_FFFFFF MarginL_12rpx">热销中</text>-->
+<!--        <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginL_8rpx MarginT_16rpx">Be on hot sale</text>-->
+<!--        <view class="ClearL"></view>-->
+<!--      </view>-->
+
+<!--      <view class="SignInLog Width100">-->
+<!--        <swiper class="Swiper Width100 Height100" circular :indicator-dots="false" @change="changeUser2" :autoplay="true" :interval="2500" :vertical="true"-->
+<!--                :duration="1000">-->
+<!--          <swiper-item class="Width100 Height100" v-for="items in 10">-->
+<!--            <view class="Unit Width100 PaddingT_32rpx PaddingB_32rpx BorderR_20rpx MarginT_32rpx" v-for="(item,index) in showList2">-->
+<!--              <view class="WidthGlobal1 MarginAuto">-->
+<!--                <view class="FloatL">-->
+<!--                  <view class="ImgBox FloatL BorderR_50 OverH">-->
+<!--                    <image :src="item.avatar" mode="aspectFill" class="Width100 Height100"></image>-->
+<!--                  </view>-->
+<!--                  <view class="FloatR TextContent">-->
+<!--                    <text class="Block FontS_24rpx Color_FFFFFF">{{item.nickname}} {{item.level}} 认购成功{{item.number}}份 收益{{item.amount}}元</text>-->
+<!--                    <text class="Block FontS_24rpx Color_B4B4B6 MarginT_8rpx">{{ item.created_at }}</text>-->
+<!--                  </view>-->
+<!--                  <view class="ClearL"></view>-->
+<!--                </view>-->
+<!--                <view class="FloatR MarginT_20rpx">-->
+<!--                  <text class="Block FloatL FontS_36rpx FontBold Color_FFFFFF">{{item.amount}} 金币</text>-->
+<!--                  <view class="ClearB"></view>-->
+<!--                </view>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--          </swiper-item>-->
+<!--        </swiper>-->
+<!--        <view class="Width100 TextCenter PaddingT_40rpx PaddingB_40rpx MarginT_40rpx" v-if="list.length == 0">-->
+<!--          <text class="Block FontS_30rpx Color_FFFFFF">暂无记录</text>-->
+<!--        </view>-->
+<!--      </view>-->
       <view class="ContentBox Width100">
         <view class="WidthGlobal1 MarginAuto PaddingB_48rpx PaddingT_32rpx">
           <text class="Block Title Color_FFFFFF FontS_32rpx">详情</text>
@@ -263,7 +391,7 @@
           <view class="ClearL"></view>
         </view>
         <view class="ClearB"></view>
-        <view class="Btn TextCenter Width100 MarginT_32rpx" @click="info.stock != 0 ? confirmBuy():''">
+        <view class="Btn TextCenter BG_0FDBBE Width100 MarginT_32rpx" @click="info.stock != 0 ? confirmBuy():''">
           <text class="Block Color_0A1136 FontS_32rpx FontBold">{{info.stock == 0 ? '已售罄' :'立即购买'}}</text>
         </view>
       </view>
@@ -326,6 +454,7 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
 				QRcode: '',
 				backImg: '',
 				posturl: '',
+        bgUrl4: '',
         info: null,
         infoMain:{},
         list:[],
@@ -345,6 +474,7 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
       this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/info_bg1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
       this.bgUrl2 = "background-image:url('"+ this.$.imgUrl +"/btn1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
       this.bgUrl3 = "background-image:url('"+ this.$.imgUrl +"/btn2.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
+      this.bgUrl4 = "background-image:url('"+ this.$.imgUrl +"/name_bg1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			// this.produictDet(this.id)
 		},
     computed:{
@@ -510,11 +640,51 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
   top: 748rpx;
   left: 32rpx;
   z-index: 99;
+  .ShowUnit{
+    .ImgBox{
+      width: 80rpx;
+      height: 80rpx;
+    }
+    .TextBox{
+      width: calc(100% - 96rpx);
+    }
+  }
+  .BuyLog{
+    .TopLine1{
+      width: 190rpx;
+      height: 2rpx;
+      background: linear-gradient(to right, rgba(#9f9f9f,1),rgba(#9f9f9f,1), rgba(#9f9f9f,0));
+      margin-top: 24rpx;
+    }
+    .TopLine2{
+      width: 190rpx;
+      height: 2rpx;
+      background: linear-gradient(to right, rgba(#9f9f9f,1),rgba(#9f9f9f,1), rgba(#9f9f9f,0));
+      margin-top: 24rpx;
+    }
+  }
   .Top{
     padding-top: 16rpx;
     background: linear-gradient(270deg, #0C0C0F 0%, #282C37 100%);
     .TopBottom{
       .TagList{
+        .Tag1{
+          height: 40rpx;
+          padding: 0rpx 16rpx;
+          text{
+            line-height: 40rpx;
+          }
+        }
+        .Tag2{
+          width: 92rpx;
+          height: 40rpx;
+          text{
+            line-height: 40rpx;
+            background-image:-webkit-linear-gradient(bottom,#3A4461,#9A9EC3);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+          }
+        }
         .Tag{
           padding-right: 20rpx;
           background-color: #2E2D2D;
@@ -651,7 +821,6 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
   .Btn{
     height: 92rpx;
     border-radius: 92rpx;
-    background: linear-gradient(90deg, #EC7CFF 0%, #5FF6FF 100%);
     text{
       line-height: 92rpx;
     }

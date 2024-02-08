@@ -1,45 +1,81 @@
 <template>
 	<view class="page" :class="getThemeClass">
-    <view class="TopBox Width100 PaddingT_1rpx PositionR" :style="bgUrl1">
-      <view class="Width100 TextCenter MarginT_160rpx PaddingT_80rpx">
-<!--        <zmxy-number-roller v-if="wallet && wallet.air_drop > 0" :number="getairDrop" size="96"-->
-<!--                            unit="rpx" :color="'#FFC393'" :is-bold="true"/>-->
-        <text class="Block FontS_96rpx Color_FFC393 FontBold">{{ getairDrop }}</text>
-        <text class="Block MarginT_16rpx FontS_32rpx Color_FFC393">积分余额</text>
+    <view class="TopBox Width100 PaddingT_1rpx PositionR">
+      <view class="Width100 TextCenter BG1">
+        <image class="Width100" :src="$.imgSrc + '/images/jfsc_img1.png'" mode="widthFix"></image>
       </view>
-      <view class="NavBox WidthGlobal1 PositionA MarginAuto Flex Flex_C_S-A" :style="bgUrl2">
-        <view class="Unit" @click="goUrl('/pages/my/airdrop-bill/airdrop-bill')">
-          <image class=" FloatL" :src="$.imgSrc + '/images/jfsc_jfye_icon.png'" mode="aspectFit"></image>
-          <text class="Block FontS_32rpx FontBold Color_FFC393 FloatL MarginL_8rpx">积分余额</text>
-          <view class="ClearB"></view>
+      <view class="WidthGlobal1 MarginAuto">
+        <view class="JFBG WidthGlobal1 MarginAuto" :style="bgUrl1" >
+          <view class="WidthGlobal1 MarginAuto Height100 Flex Flex_C_S-B">
+            <text class="Block FontS_36rpx Color_FFFFFF">积分余额</text>
+            <text class="Block FontS_50rpx Color_FFFFFF FontBold">{{ getairDrop }}</text>
+          </view>
         </view>
-        <text class="Block Color_FFC393 FontS_26rpx">|</text>
-<!--        <view class="Unit" @click="goUrl('/pages/my/address/address')" v-if="wallet&&wallet.is_address == 0">-->
+        <view class="BtnMain Width100 MarginT_98rpx">
+          <image :src="$.imgSrc + '/images/l_btn1.png'" mode="aspectFit" class="FloatL" @click="goUrl('/pages/my/airdrop-bill/airdrop-bill')"></image>
+          <image :src="$.imgSrc + '/images/r_btn1.png'" mode="aspectFit" class="FloatR" @click="goUrl('/pages/my/airdrop-award/airdrop-award-new-info-change-log')"></image>
+          <view class="ClearL"></view>
+        </view>
+        <view class="BuyLog Width100 BorderR_20rpx BG_171717 PaddingT_16rpx PaddingB_48rpx MarginT_32rpx">
+          <view class="BuyTitle TextCenter">
+            <view class="InlineBlock">
+              <view class="TopLine1 FloatL"></view>
+              <text class="Block FontS_32rpx Color_FFFFFF FontBold FloatL MarginL_35rpx">兑换记录</text>
+              <view class="TopLine2 FloatL MarginL_35rpx"></view>
+              <view class="ClearL"></view>
+            </view>
+          </view>
+          <view class="WidthGlobal1 LogBox OverF_Y_A MarginAuto MarginT_20rpx">
+            <view class="ShowUnit" v-for="(item,index) in logList" :key="index" :class="index !== 0 ? 'MarginT_32rpx':''">
+              <view class="ImgBox BorderR_50 OverH FloatL">
+                <image :src="item.avatar" mode="aspectFill" class="Width100 Height100 BorderR_50"></image>
+              </view>
+              <view class="TextBox FloatR">
+                <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginT_4rpx">{{ item.name }}</text>
+                <view class="ClearL"></view>
+                <text class="Block FloatL FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.mobile }}</text>
+                <text class="Block FloatR FontS_24rpx Color_B4B4B6">{{ item.created_at }}</text>
+                <view class="ClearL"></view>
+              </view>
+              <view class="ClearL"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+<!--      <view class="NavBox WidthGlobal1 PositionA MarginAuto Flex Flex_C_S-A" :style="bgUrl2">-->
+<!--        <text class="Block Color_FFC393 FontS_26rpx">|</text>-->
+<!--&lt;!&ndash;        <view class="Unit" @click="goUrl('/pages/my/address/address')" v-if="wallet&&wallet.is_address == 0">&ndash;&gt;-->
+<!--&lt;!&ndash;          <image class=" FloatL" :src="$.imgSrc + '/images/jfsc_dhjl_icon.png'" mode="aspectFit"></image>&ndash;&gt;-->
+<!--&lt;!&ndash;          <text class="Block FontS_32rpx FontBold Color_FFC393 FloatL MarginL_8rpx">收货地址</text>&ndash;&gt;-->
+<!--&lt;!&ndash;          <view class="ClearB"></view>&ndash;&gt;-->
+<!--&lt;!&ndash;        </view>&ndash;&gt;-->
+<!--&lt;!&ndash;        v-else&ndash;&gt;-->
+<!--        <view class="Unit" @click="goUrl('/pages/my/airdrop-award/airdrop-award-new-info-change-log')">-->
 <!--          <image class=" FloatL" :src="$.imgSrc + '/images/jfsc_dhjl_icon.png'" mode="aspectFit"></image>-->
-<!--          <text class="Block FontS_32rpx FontBold Color_FFC393 FloatL MarginL_8rpx">收货地址</text>-->
+<!--          <text class="Block FontS_32rpx FontBold Color_FFC393 FloatL MarginL_8rpx">兑换记录</text>-->
 <!--          <view class="ClearB"></view>-->
 <!--        </view>-->
-<!--        v-else-->
-        <view class="Unit" @click="goUrl('/pages/my/airdrop-award/airdrop-award-new-info-change-log')">
-          <image class=" FloatL" :src="$.imgSrc + '/images/jfsc_dhjl_icon.png'" mode="aspectFit"></image>
-          <text class="Block FontS_32rpx FontBold Color_FFC393 FloatL MarginL_8rpx">兑换记录</text>
-          <view class="ClearB"></view>
-        </view>
-      </view>
-      <view class="Width100 IconBox IconBox1">
-        <view class="Width100 TextCenter">
-          <image class="Icon InlineBlock" :src="$.imgSrc + '/images/jfsc_dhgz.png'" mode="widthFix"></image>
-        </view>
-        <view @click="openWin(`/pages/my/airdrop-award/regulation`)" class="WidthGlobal1 MarginAuto PaddingT_32rpx PaddingB_32rpx Color_DEBAA7 ">
-          <text class="Block Width100 TextHidden">
-            为更好服务平台的各位用户，特此公告数字藏品的二次交易细则。鉴于不同属性的数字艺术的二次交易细则各有不同，请各位用户务必审慎阅读并同意相关规则后进行相应操作，以免造成不必要损失。
-          </text>
-        </view>
+<!--      </view>-->
+<!--      <view class="Width100 IconBox IconBox1">-->
+<!--        <view class="Width100 TextCenter">-->
+<!--          <image class="Icon InlineBlock" :src="$.imgSrc + '/images/jfsc_dhgz.png'" mode="widthFix"></image>-->
+<!--        </view>-->
+<!--        <view @click="openWin(`/pages/my/airdrop-award/regulation`)" class="WidthGlobal1 MarginAuto PaddingT_32rpx PaddingB_32rpx Color_DEBAA7 ">-->
+<!--          <text class="Block Width100 TextHidden">-->
+<!--            为更好服务平台的各位用户，特此公告数字藏品的二次交易细则。鉴于不同属性的数字艺术的二次交易细则各有不同，请各位用户务必审慎阅读并同意相关规则后进行相应操作，以免造成不必要损失。-->
+<!--          </text>-->
+<!--        </view>-->
+<!--      </view>-->
+      <view class="Title WidthGlobal1 MarginAuto MarginT_32rpx">
+        <view class="LineShu FloatL MarginT_8rpx"></view>
+        <text class="Block FloatL FontS_32rpx Color_FFFFFF MarginL_12rpx">积分礼品</text>
+        <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginL_8rpx MarginT_16rpx">Bonus gift</text>
+        <view class="ClearL"></view>
       </view>
       <view class="Width100 IconBox">
-        <view class="Width100 TextCenter">
-          <image class="Icon InlineBlock" :src="$.imgSrc + '/images/jfsc_jfsc.png'" mode="widthFix"></image>
-        </view>
+<!--        <view class="Width100 TextCenter">-->
+<!--          <image class="Icon InlineBlock" :src="$.imgSrc + '/images/jfsc_jfsc.png'" mode="widthFix"></image>-->
+<!--        </view>-->
         <view class="ListBox WidthGlobal1 MarginAuto">
           <view class="Unit MarginT_32rpx BorderR_20rpx" v-for="(item,index) in list" @click="skipInfo(item)" :key="index" :class="(index+1)%2 != 0 ? 'FloatL':'FloatR'">
             <view class="ImgBox OverH PositionR">
@@ -76,16 +112,19 @@
 				page: 1,
 				limit: 10,
 				list: [],
+        logList: [],
 				baseUrl:"",
         bgUrl1:"",
-        bgUrl2:""
+        bgUrl2:"",
+        log:[]
 			};
 		},
 		onShow() {
-      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/jfsc_bg1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
+      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/jfye_bg1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
       this.bgUrl2 = "background-image:url('"+ this.$.imgUrl +"/jfsc_bg2.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			this.baseUrl = this.$myAppConfig.baseUrl + '/';
 			this.getAirdrop()
+      this.loadData()
 			this.getList(true)
 		},
 		onReachBottom() {
@@ -103,9 +142,18 @@
 			}
 		},
 		methods: {
+      loadData(){
+        this.$u.api.jfBuyLog({
+          page: 1
+        }).then(res => {
+          if (res.code == 200) {
+            this.log = res.data.data;
+          }
+        })
+      },
       skipInfo(item){
         uni.navigateTo({
-          url: `/pages/my/airdrop-award/airdrop-award-new-info?id=${item.id}`
+          url: `/pages/my/airdrop-award/airdrop-award-new-info-20240209?id=${item.id}`
         })
       },
 			goUrl(url) {
@@ -152,6 +200,7 @@
 					limit: this.limit
 				}).then(res => {
 					if (res.code == 200) {
+            this.logList = res.data.point_exchange_records
 						this.list = flag ? res.data.data : this.list.concat(res.data.data);
 						this.loadStatus = res.data.last_page != res.data.current_page ? 'more' : 'noMore'
 					}
@@ -162,6 +211,12 @@
 </script>
 
 <style lang="scss" scoped>
+.LineShu{
+  width: 4rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #E97FFF 0%, #64F2FF 100%);
+  border-radius: 4rpx;
+}
 .IconBox1{
   margin-top: 260rpx;
 }
@@ -190,8 +245,47 @@
   }
 }
 .TopBox{
-  height: 562rpx;
-  margin-top: -88rpx;
+  .BG1{
+    margin-top: -120rpx;
+  }
+  .JFBG{
+    position: absolute;
+    left: 32rpx;
+    top: 380rpx;
+    height: 140rpx;
+  }
+  .BtnMain{
+    image{
+      width: 328rpx;
+      height: 134rpx;
+    }
+  }
+  .BuyLog{
+    .LogBox{
+      height: 300rpx;
+    }
+    .ShowUnit{
+      .ImgBox{
+        width: 80rpx;
+        height: 80rpx;
+      }
+      .TextBox{
+        width: calc(100% - 96rpx);
+      }
+    }
+    .TopLine1{
+      width: 190rpx;
+      height: 2rpx;
+      background: linear-gradient(to right, rgba(#9f9f9f,1),rgba(#9f9f9f,1), rgba(#9f9f9f,0));
+      margin-top: 24rpx;
+    }
+    .TopLine2{
+      width: 190rpx;
+      height: 2rpx;
+      background: linear-gradient(to right, rgba(#9f9f9f,1),rgba(#9f9f9f,1), rgba(#9f9f9f,0));
+      margin-top: 24rpx;
+    }
+  }
   .NavBox{
     height: 140rpx;
     bottom: -70rpx;

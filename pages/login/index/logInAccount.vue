@@ -90,10 +90,10 @@
         $:this.$,
         isShowPsw:false,
 				params: {
-					login_account: '',
-					password: ''
-          // login_account: '18837925625',
-          // password: 'Qq5158'
+					login_account: '18837925625',
+					password: 'Qq5158'
+          // login_account: '',
+          // password: ''
 				},
 				checked: false,
 				navHeight: 0,
@@ -107,7 +107,7 @@
 			};
 		},
 		onShow() {
-      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/btn_bg4.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
+      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/btn_bg7.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
       this.bgUrl2 = "background-image:url('"+ this.$.imgUrl +"/denglu_bg2.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			this.navHeight = uni.getSystemInfoSync().windowTop
 		},

@@ -20,7 +20,7 @@
 		<view class="padding-lr-xl about-bottom" v-if="showBtn">
 			<view class="flex flex-direction padding-lr-xl">
 				<button @click="naviTo(runshow.button.url)" :class="runshow.button.style" class="cu-btn lg padding-sm margin-tb margin-lr-xl">{{runshow.button.text}}</button>
-				<view class="text-center margin-top-sm" v-if="auditmode.status && !haslogin && auditmode.login!=''" @click="naviTo('login/index/logInAccount')">
+				<view class="text-center margin-top-sm" v-if="auditmode.status && !haslogin && auditmode.login!=''" @click="naviTo('login/index/logInMain')">
 					<text class="text-lg" :class="'text-'+btnstyle">{{auditmode.login}}</text>
 				</view>
 			</view>
@@ -42,7 +42,7 @@
 				</view>
 				<view class="cu-bar">
 					<view class="action margin-0 flex-sub text-gray" @tap="showLogin=false">稍后登录</view>
-					<view class="action margin-0 flex-sub solid-left text-red" @tap="naviTo('login/index/logInAccount')">去登录</view>
+					<view class="action margin-0 flex-sub solid-left text-red" @tap="naviTo('login/index/logInMain')">去登录</view>
 				</view>
 			</view>
 		</view>
@@ -157,7 +157,7 @@
 						tabbar:[],
 						button:{
 							text:'立即体验',
-							url:'login/index/logInAccount',
+							url:'login/index/logInMain',
 							style:'round bg-' + core.style.actcolor
 						}
 					};

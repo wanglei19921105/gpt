@@ -56,44 +56,72 @@
           <view class="ClearB"></view>
         </view>
       </view>
-      <view class="UnitBox BG_000000 WidthGlobal1 MarginAuto BorderR_20rpx MarginT_30rpx PaddingT_1rpx">
+      <view class="UnitBox BG_171717 WidthGlobal1 MarginAuto BorderR_20rpx MarginT_30rpx PaddingT_1rpx">
         <view class="TodayBox WidthGlobal5 MarginAuto MarginT_16rpx">
           <view class="Top Width100   PaddingT_1rpx" :style="bgUrl5">
             <text class="Block TextC FontS_96rpx Color_FFFFFF FontBold Font1 MarginT_32rpx">{{ info.sign_total }}</text>
             <text class="Block TextC FontS_28rpx Color_FFFFFF MarginT_28rpx">今日签到会员</text>
           </view>
-          <view class="DanMu Width100 MarginT_28rpx">
-            <l-barrage :data="infoLB" :trackHeight="50" :speed="10" :defer="0.5">
-              <!-- 自定义每条弹幕样式 content 为你传入的数据-->
-              <template #default="{content}">
-                <view class="UnitDM">
-                  <view class="Head FloatL">
-                    <image :src="(content.user || {}).avatar" mode="aspectFill" class="Width100 Height100 BorderR_50"></image>
+          <view class="BuyLog Width100 BorderR_20rpx BG_171717 PaddingT_16rpx PaddingB_48rpx MarginT_32rpx">
+            <view class="BuyTitle TextCenter">
+              <view class="InlineBlock">
+                <view class="TopLine1 FloatL"></view>
+                <text class="Block FontS_32rpx Color_FFFFFF FontBold FloatL MarginL_35rpx">签到记录</text>
+                <view class="TopLine2 FloatL MarginL_35rpx"></view>
+                <view class="ClearL"></view>
+              </view>
+            </view>
+            <view class="DanMu Width100 OverF_Y_A">
+              <view class="WidthGlobal1 MarginAuto MarginT_20rpx">
+                <view class="ShowUnit" v-for="(item,index) in infoLB" :key="index" :class="index !== 0 ? 'MarginT_32rpx':''">
+                  <view class="ImgBox BorderR_50 OverH FloatL">
+                    <image :src="(item.user || {}).avatar" mode="aspectFill" class="Width100 Height100 BorderR_50"></image>
                   </view>
-                  <view class="Text FloatL MarginL_6rpx">
-                    <view class="MarginT_4rpx">
-                      <text class="Block FontS_20rpx Color_FFFFFF FloatL">获得</text>
-                      <image :src="$.imgSrc + '/images/hongbao2.png'" mode="aspectFit" class="DMIcon FloatL MarginT_2rpx MarginL_2rpx"></image>
-                      <text class="Block FontS_20rpx Color_FFFFFF FloatL MarginL_2rpx">{{ content.red_packet }}元</text>
-                      <image :src="$.imgSrc + '/images/jinbi2.png'" mode="aspectFit" class="DMIcon FloatL MarginT_2rpx MarginL_6rpx"></image>
-                      <text class="Block FontS_20rpx Color_FFFFFF FloatL MarginL_6rpx">{{ content.points }}积分</text>
-                      <view class="ClearB"></view>
-                    </view>
-                    <view class="MarginT_4rpx">
-                      <text class="Block FontS_20rpx Color_FFFFFF FloatL">{{ (content.user || {}).nickname }} {{
-                          content.created_at
-                        }}签到成功</text>
-                      <view class="ClearB"></view>
-                    </view>
+                  <view class="TextBox FloatR">
+                    <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginT_4rpx">{{ (item.user || {}).nickname }}</text>
+                    <text class="Block FloatR FontS_24rpx Color_FFFFFF MarginT_4rpx">{{item.level}}</text>
+                    <view class="ClearL"></view>
+                    <text class="Block FloatL FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.mobile }}</text>
+                    <text class="Block FloatR FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.created_at }}</text>
+                    <view class="ClearL"></view>
                   </view>
-                  <view class="ClearB"></view>
+                  <view class="ClearL"></view>
                 </view>
-              </template>
-            </l-barrage>
+              </view>
+            </view>
           </view>
+<!--          <view class="DanMu Width100 MarginT_28rpx">-->
+<!--            <l-barrage :data="infoLB" :trackHeight="50" :speed="10" :defer="0.5">-->
+<!--              &lt;!&ndash; 自定义每条弹幕样式 content 为你传入的数据&ndash;&gt;-->
+<!--              <template #default="{content}">-->
+<!--                <view class="UnitDM">-->
+<!--                  <view class="Head FloatL">-->
+<!--                    <image :src="(content.user || {}).avatar" mode="aspectFill" class="Width100 Height100 BorderR_50"></image>-->
+<!--                  </view>-->
+<!--                  <view class="Text FloatL MarginL_6rpx">-->
+<!--                    <view class="MarginT_4rpx">-->
+<!--                      <text class="Block FontS_20rpx Color_FFFFFF FloatL">获得</text>-->
+<!--                      <image :src="$.imgSrc + '/images/hongbao2.png'" mode="aspectFit" class="DMIcon FloatL MarginT_2rpx MarginL_2rpx"></image>-->
+<!--                      <text class="Block FontS_20rpx Color_FFFFFF FloatL MarginL_2rpx">{{ content.red_packet }}元</text>-->
+<!--                      <image :src="$.imgSrc + '/images/jinbi2.png'" mode="aspectFit" class="DMIcon FloatL MarginT_2rpx MarginL_6rpx"></image>-->
+<!--                      <text class="Block FontS_20rpx Color_FFFFFF FloatL MarginL_6rpx">{{ content.points }}积分</text>-->
+<!--                      <view class="ClearB"></view>-->
+<!--                    </view>-->
+<!--                    <view class="MarginT_4rpx">-->
+<!--                      <text class="Block FontS_20rpx Color_FFFFFF FloatL">{{ (content.user || {}).nickname }} {{-->
+<!--                          content.created_at-->
+<!--                        }}签到成功</text>-->
+<!--                      <view class="ClearB"></view>-->
+<!--                    </view>-->
+<!--                  </view>-->
+<!--                  <view class="ClearB"></view>-->
+<!--                </view>-->
+<!--              </template>-->
+<!--            </l-barrage>-->
+<!--          </view>-->
         </view>
       </view>
-      <view class="UnitBox BG_000000 WidthGlobal1 MarginAuto BorderR_20rpx MarginT_30rpx PaddingT_1rpx">
+      <view class="UnitBox BG_171717 WidthGlobal1 MarginAuto BorderR_20rpx MarginT_30rpx PaddingT_1rpx">
         <view class="ListBox Width100 MarginT_34rpx PaddingB_40rpx">
           <view class="Width100 TitleBox">
             <view class="WidthGlobal1 MarginAuto Flex Flex_C_S-B">
@@ -325,9 +353,10 @@
 				this.$u.api.my_sign_in({}).then(res => {
 					if (res.code == 200) {
 						if (typeof(res.data.faker_signs) != 'undefined') {
-              this.times = setInterval(() => {
-                this.infoLB.push(...res.data.faker_signs)
-              },8000)
+              this.infoLB = res.data.faker_signs
+              // this.times = setInterval(() => {
+              //   this.infoLB.push(...res.data.faker_signs)
+              // },8000)
 							// this.infoLB = res.data.faker_signs
 						}
 					}
@@ -417,7 +446,7 @@
 
 <style lang="scss" scoped>
 .ListBg1{
-  background: linear-gradient(90deg, rgba(0,0,64,0.69) 0%, rgba(0,0,56,0) 100%);
+  background: linear-gradient(90deg, #282D37 0%, rgba(3,3,3,0) 100%);
 }
 .Width_10{
   width: 10%;
@@ -485,7 +514,7 @@
       .BtnBox{
         width: 208rpx;
         height: 80rpx;
-        background: linear-gradient(90deg, #EC7CFF 0%, #5FF6FF 100%);
+        background: linear-gradient(90deg, #3FE0AA 0%, #02DAC3 100%);
         border-radius: 38rpx;
         text{
           line-height: 80rpx;
@@ -508,7 +537,7 @@
 		top: 0rpx;
 		z-index: 999;
     .UnitBox{
-      border: 2rpx solid #B4B4B6;
+      //border: 2rpx solid #B4B4B6;
       .ListBox{
         .RankIcon{
           width: 64rpx;
@@ -540,7 +569,30 @@
         height: 24rpx;
       }
     }
+    .ShowUnit{
+      .ImgBox{
+        width: 80rpx;
+        height: 80rpx;
+      }
+      .TextBox{
+        width: calc(100% - 96rpx);
+      }
+    }
     .TodayBox{
+      .BuyLog{
+        .TopLine1{
+          width: 190rpx;
+          height: 2rpx;
+          background: linear-gradient(to right, rgba(#9f9f9f,1),rgba(#9f9f9f,1), rgba(#9f9f9f,0));
+          margin-top: 24rpx;
+        }
+        .TopLine2{
+          width: 190rpx;
+          height: 2rpx;
+          background: linear-gradient(to right, rgba(#9f9f9f,1),rgba(#9f9f9f,1), rgba(#9f9f9f,0));
+          margin-top: 24rpx;
+        }
+      }
       .Top{
         width: calc(100% - 32rpx);
         height: 230rpx;
@@ -548,7 +600,7 @@
       }
     }
     .DanMu{
-      height: 292rpx;
+      height: 320rpx;
     }
 
 		.UserInfo {

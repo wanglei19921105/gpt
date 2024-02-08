@@ -171,7 +171,9 @@
 	@import "@/common/ifont.css";
 	@import '@/style/theme.scss';
 	@import "@/static/im/iconfont.css";
-
+  rich-text img{
+    width: 100%;
+  }
 	// 去除原生按钮边框
 	uni-button:after {
 		border: none;

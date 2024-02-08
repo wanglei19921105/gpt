@@ -1,40 +1,64 @@
 <template>
 	<view class="page" :class="getThemeClass">
-    <view class="address">
-      <view v-if="addressInfo != null && info.goods.type == 2" class="main-card u-m-b-30" @click="choose('1')">
-        <view class="flex justify-between align-center">
-          <view class="flex align-center">
-            <u-tag class="u-m-r-20" text="默认" mode="dark" type="primary" size="mini"
-                   v-if="addressInfo.isDefault" />
-            <text class="u-font-30">{{addressInfo.name}}</text>
-            <text class="u-m-l-20 u-font-30 MarginT_8rpx">{{addressInfo.mobile}}</text>
+    <view class="BannerBox Width100 PositionR PaddingT_1rpx" :style="bgUrl1" v-if="info != null">
+<!--      传奇-->
+<!--      <image :src="$.imgSrc + '/images/chuanqi1.png'" mode="aspectFill" class="ChuanQi PositionA"></image>-->
+      <view class="ImgBox BorderR_20rpx OverH">
+        <swiper class="swiper Width100 Height100" circular :indicator-dots="false" :autoplay="true" :interval="2000"
+                :duration="500">
+          <swiper-item v-for="(item,index) in info.goods.carousel_images">
+            <image :src="item" mode="aspectFill" class="Width100 Height100"></image>
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+    <view class="Content PositionA WidthGlobal1" v-if="info != null">
+      <view class="Top Width100 BorderR_20rpx">
+        <view class="Money WidthGlobal1 MarginAuto">
+          <text class="Block FontBold Color_FFC393 FontS_48rpx">{{info.goods.points}} 积分</text>
+        </view>
+        <view class="TopBottom Width100 PaddingT_32rpx PaddingB_32rpx BG_171717 BorderR_20rpx MarginT_16rpx">
+          <view class="WidthGlobal1 MarginAuto">
+            <text class="Block Color_FFFFFF FontBold FontS_40rpx">{{info.goods.name}}</text>
+            <view class="TagList MarginT_40rpx">
+              <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
+                <text class="Block FontS_20rpx FontBold FloatL Color_000000">库存</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{info.limit}}</text>
+                <view class="ClearL"></view>
+              </view>
+              <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
+                <text class="Block FontS_20rpx FontBold FloatL Color_000000">类型</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ returnDayRate(info) + '%' }}</text>
+                <view class="ClearL"></view>
+              </view>
+              <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
+                <text class="Block FontS_20rpx FontBold FloatL Color_000000">已兑</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ returnDayRate(info) + '%' }}</text>
+                <view class="ClearL"></view>
+              </view>
+              <view class="ClearL"></view>
+              <view class="ClearB"></view>
+            </view>
           </view>
         </view>
-        <view class="u-font-28 text-content u-m-t-30">{{addressInfo.region}}{{addressInfo.regionCode}}</view>
       </view>
-      <view v-if="addressInfo == null && info.goods.type == 2" class="main-card u-m-b-30" @click="choose('1')">
-        <view class=" align-center">
-          <text class="u-font-30 Color_999999 FloatL">请选择地址</text>
-          <image :src="$.imgSrc + '/images/right_icon1.png'" mode="aspectFit" class="FloatR RightIcon"></image>
-          <view class="ClearB"></view>
+      <view class="MainTitle Width100">
+        <view class="Title Width100 MarginT_32rpx">
+          <view class="LineShu FloatL MarginT_8rpx"></view>
+          <text class="Block FloatL FontS_32rpx Color_FFFFFF MarginL_12rpx">产品详情</text>
+          <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginL_8rpx MarginT_16rpx">Details of works</text>
+          <view class="ClearL"></view>
         </view>
       </view>
-    </view>
-    <view v-if="info != null" class="GoodsInfo WidthGlobal1 MarginAuto BorderR_20rpx">
-      <view class="WidthGlobal MarginAuto">
-        <view class="ImgBox FloatL BorderR_10rpx OverH">
-          <image :src="info.goods.main_image" mode="aspectFill" class="Width100 Height100"></image>
-        </view>
-        <view class="TextBox FloatR">
-          <text class="Block FontS_30rpx Color_FFFFFF MarginT_10rpx">{{ info.goods.name }}</text>
-          <text class="Block FontS_30rpx FontBold Color_FFC393 MarginT_20rpx">{{ returnPrice }}积分</text>
-        </view>
-        <view class="ClearB"></view>
-      </view>
-    </view>
-    <view style="padding-bottom: 222rpx;"></view>
+      <view class="ContentBox Width100 MarginT_16rpx">
+        <view class="Width100 MarginAuto PaddingB_48rpx PaddingT_32rpx BG_171717 BorderR_20rpx">
+          <view class="WidthGlobal1 MarginAuto PaddingT_40rpx PaddingB_40rpx" v-html="info.goods.description">
 
-
+          </view>
+        </view>
+      </view>
+      <view style="padding-bottom: 440rpx;"></view>
+    </view>
     <view class="BottomContentBox Width100"  v-if="info != null">
       <view class="WidthGlobal1 MarginAuto">
         <view class="FloatL">
@@ -59,27 +83,25 @@
 </template>
 
 <script>
+import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-bar.vue';
+	// import explain from '../../components/explain.vue'
 	export default {
 		components: {
+			// explain
+      piaoyiProgressBar
 		},
-    computed:{
-      returnPrice(){
-        return (Number(this.info.goods.points) * Number(this.num)).toFixed(2)
-      },
-    },
 		data() {
 			return {
-        $:this.$,
         num:1,
-        addressInfo:{
-          name:'小明',
-          mobile:'13012341234',
-          isDefault:true,
-          id:'1',
-          region:'山东青岛',
-          region_code:'李沧'
+        $:this.$,
+        dataShow:{
+          '0':'天',
+          '1':'周',
+          '2':'月',
+          '3':'天',
+          '4':'小时',
+          '5':'天',
         },
-        info:null,
         bgUrl1:'',
         bgUrl2:'',
         bgUrl3:'',
@@ -115,28 +137,63 @@
 				QRcode: '',
 				backImg: '',
 				posturl: '',
-        isDisabled:false,
+        bgUrl4: '',
+        info: null,
+        infoMain:{},
+        list:[],
+        showList1:[],
+        showList2:[],
         vip:0
 			};
 		},
 		onLoad(option) {
 			if (option.id) {
 				this.id = option.id
-        this.num = option.num
-        // this.vip = Number(option.vip)+1
-        this.getGoodsInfo()
+				// this.vip = Number(option.vip)+1
+				this.getGoodsInfo()
 			}
 		},
 		onShow() {
-      if(this.$.getData('addressInfo')){
-        this.addressInfo = this.$.getData('addressInfo')
-      }
       this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/info_bg1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
       this.bgUrl2 = "background-image:url('"+ this.$.imgUrl +"/btn1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
       this.bgUrl3 = "background-image:url('"+ this.$.imgUrl +"/btn2.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
+      this.bgUrl4 = "background-image:url('"+ this.$.imgUrl +"/name_bg1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			// this.produictDet(this.id)
 		},
+    computed:{
+      returnPrice(){
+        return (Number(this.info.goods.points) * Number(this.num)).toFixed(2)
+      },
+    },
 		methods: {
+      confirmSub(){
+        uni.navigateTo({
+          url:`/pages/my/airdrop-award/airdrop-award-new-info-order?id=${this.id}&num=${this.num}`
+        })
+      },
+      addS(type = 1){
+        if(type == 1){
+          if(this.num > 1){
+            this.num --
+          }
+        }else {
+          if(this.info.goods.stock == this.num){
+            return
+          }
+          this.num ++
+        }
+      },
+      returnDayRate(item){
+        return Number(Number(item.maxmum_investment) * Number(item.profit_rate) / item.keep_days).toFixed(2)
+      },
+      returnRate(item){
+        return Number(Number(item.sales / (item.stock + item.sales)).toFixed(1))
+      },
+      confirmBuy(){
+        uni.navigateTo({
+          url:`/pages/Special/SpecialDetailsNeworder?id=${this.id}&num=${this.num}&price=${this.returnPrice}`
+        })
+      },
       getGoodsInfo(id) {
         this.$u.api.getJFGoodsInfo({
           'id': this.id
@@ -148,44 +205,15 @@
 
         })
       },
-      choose(){
-        uni.navigateTo({
-          url:`/pages/my/address/address?type=1`
-        })
+      changeUser1(e){
+        let index = e.detail.current
+        let arr = this.list.slice(index, index + 10)
+        this.showList1 = arr
       },
-      confirmSub(){
-        if(this.isDisabled){
-          return
-        }
-        if(this.info.goods.type == 2){
-          if(!this.$.isEmpty(this.addressInfo) || !this.addressInfo){
-            this.$.toast('请选择地址')
-            return
-          }
-        }
-        let datas = {
-          goods_id:this.id,
-          total:this.num
-        }
-        if(this.info.goods.type == 2){
-          datas['address_id'] = this.addressInfo.id
-        }
-        this.isDisabled = true
-        this.$u.api.jfBuy(datas).then(res => {
-          if (res.code == 200) {
-            this.$.toast(res.message)
-            setTimeout(() => {
-              this.isDisabled = false
-              this.$.back()
-            },1500)
-          }else{
-            this.$.toast(res.message)
-            this.isDisabled = false
-          }
-        }).catch(err => {
-
-        })
-
+      changeUser2(e){
+        let index = e.detail.current
+        let arr = this.list.slice(index, index + 10)
+        this.showList2 = arr
       },
 			share(){
 				if (this.posturl) {
@@ -208,6 +236,22 @@
 				this.userId = uni.getStorageSync("id");
 			},
 			produictDet(id) {
+				this.$u.api.vip_product_detail({
+					'cast_id': id
+				}).then(res => {
+					if (res.code == 200) {
+						this.user_lucky_status = res.data.user_lucky_status
+						this.new_type = res.data.product_cast.new_type
+						this.first_diff = res.data.first_diff
+						this.user_is_first = res.data.user_is_first
+						this.goodsData = res.data
+						this.product_cast = res.data.product_cast
+						this.authors = res.data.authors
+						this.note = res.data.note
+					}
+				}).catch(err => {
+
+				})
 			},
 			// 分享
 			shareCli() {
@@ -274,28 +318,165 @@
 </script>
 
 <style lang="scss" scoped>
-.address {
-  padding: 30rpx;
-  .RightIcon{
-    width: 40rpx;
-    height: 40rpx;
+.LineShu{
+  width: 4rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #E97FFF 0%, #64F2FF 100%);
+  border-radius: 4rpx;
+}
+.Content{
+  top: 748rpx;
+  left: 32rpx;
+  z-index: 99;
+  .ShowUnit{
+    .ImgBox{
+      width: 80rpx;
+      height: 80rpx;
+    }
+    .TextBox{
+      width: calc(100% - 96rpx);
+    }
+  }
+  .BuyLog{
+    .TopLine1{
+      width: 190rpx;
+      height: 2rpx;
+      background: linear-gradient(to right, rgba(#9f9f9f,1),rgba(#9f9f9f,1), rgba(#9f9f9f,0));
+      margin-top: 24rpx;
+    }
+    .TopLine2{
+      width: 190rpx;
+      height: 2rpx;
+      background: linear-gradient(to right, rgba(#9f9f9f,1),rgba(#9f9f9f,1), rgba(#9f9f9f,0));
+      margin-top: 24rpx;
+    }
+  }
+  .Top{
+    padding-top: 16rpx;
+    background: linear-gradient(270deg, #0C0C0F 0%, #282C37 100%);
+    .TopBottom{
+      .TagList{
+        .Tag1{
+          height: 40rpx;
+          padding: 0rpx 16rpx;
+          text{
+            line-height: 40rpx;
+          }
+        }
+        .Tag2{
+          width: 92rpx;
+          height: 40rpx;
+          text{
+            line-height: 40rpx;
+            background-image:-webkit-linear-gradient(bottom,#3A4461,#9A9EC3);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+          }
+        }
+        .Tag{
+          padding-right: 20rpx;
+          background-color: #2E2D2D;
+          border-radius: 6rpx;
+          .TagL{
+            width: 112rpx;
+            height: 40rpx;
+            border-radius: 6rpx;
+            background: linear-gradient(90deg, #E97FFF 0%, #64F2FF 100%);
+            line-height: 40rpx;
+          }
+          .TagR{
+            padding-left:20rpx;
+            text{
+              line-height: 40rpx;
+            }
+          }
+        }
+      }
+      .ProgressBox{
+        .ProgressMain{
+          width: 218rpx;
+          height: 8rpx;
+          .Progress{
+            background: linear-gradient(90deg, #2360EB 0%, #5FC5FF 100%);
+          }
+        }
+      }
+    }
+  }
+
+  .SignInLog{
+    height: 2000rpx;
+    .Unit{
+      border: 2rpx solid rgba(255,255,255,0.7);
+      .ImgBox{
+        width: 80rpx;
+        height: 80rpx;
+      }
+      .TextContent{
+        width: calc(100% - 96rpx);
+      }
+      .Icon{
+        width: 48rpx;
+        height: 48rpx;
+      }
+    }
+  }
+  .UnitBox1{
+    height: 340rpx;
+  }
+  .UnitBox{
+    border: 2rpx solid #FFFFFF;
+    .UserList{
+      .UserUnit{
+        width: 20%;
+        .ImgBox{
+          width: 80rpx;
+          height: 80rpx;
+        }
+        .Text{
+          width: 80rpx;
+        }
+      }
+    }
+    .UserList::after{
+      content:'';
+      flex: 1;
+    }
+    .Line{
+      height: 2rpx;
+      background:linear-gradient(to right, rgba(159,159,159,0.25), rgba(159,159,159,0.50), rgba(159,159,159,1), rgba(159,159,159,0.25), rgba(159,159,159,0.25));
+    }
+    .DataList{
+      .Data{
+        width: 33.33%;
+        image{
+          width: 48rpx;
+          height: 48rpx;
+        }
+      }
+    }
   }
 }
-.DHXZ{
-  image{
-    width: 28rpx;
-    height: 28rpx;
-  }
+.LineShu{
+  width: 4rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #E97FFF 0%, #64F2FF 100%);
+  border-radius: 4rpx;
 }
-.GoodsInfo{
-  background-color: #17191F;
-  padding:50rpx 0rpx;
+.BannerBox{
+  height: 770rpx;
+  margin-top: -88rpx;
+  .ChuanQi{
+    width: 96rpx;
+    height: 96rpx;
+    right: 48rpx;
+    top: 136rpx;
+  }
   .ImgBox{
-    width: 100rpx;
-    height: 100rpx;
-  }
-  .TextBox{
-    width: calc(100% - 140rpx);
+    width: 402rpx;
+    height: 518rpx;
+    margin: 0 auto;
+    margin-top: 132rpx;
   }
 }
 .BottomContentBox{
@@ -339,16 +520,16 @@
     height: 40rpx;
   }
 }
-.TagList{
-  .Tag{
-    height: 42rpx;
-    padding: 0rpx 16rpx;
-    background: linear-gradient(270deg, #EBD0A4 0%, #F9E9CE 100%);
-  }
-  text{
-    line-height: 42rpx;
-  }
-}
+//.TagList{
+//  .Tag{
+//    height: 42rpx;
+//    padding: 0rpx 16rpx;
+//    background: linear-gradient(270deg, #EBD0A4 0%, #F9E9CE 100%);
+//  }
+//  text{
+//    line-height: 42rpx;
+//  }
+//}
 .ClassList{
   .Unit{
     .Line{
@@ -378,22 +559,6 @@
     border: 2rpx solid #FFFFFF;
     border-radius: 30rpx;
     //border-image: linear-gradient(127deg, rgba(178, 186, 190, 1), rgba(61, 61, 61, 1), rgba(230, 237, 239, 1)) 1 1;
-  }
-}
-.BannerBox{
-  height: 874rpx;
-  margin-top: -88rpx;
-  .ChuanQi{
-    width: 96rpx;
-    height: 96rpx;
-    right: 48rpx;
-    top: 136rpx;
-  }
-  .ImgBox{
-    width: 402rpx;
-    height: 518rpx;
-    margin: 0 auto;
-    margin-top: 132rpx;
   }
 }
 	.xiangou{

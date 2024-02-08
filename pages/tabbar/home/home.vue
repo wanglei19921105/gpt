@@ -252,73 +252,105 @@
               <text class="Block FloatR FontS_36rpx Color_FFC393 FontBold">{{(item.maxmum_investment)}} 金币</text>
               <view class="ClearB"></view>
               <view class="TagList MarginT_40rpx">
-                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                  <view class="TagL TextCenter FloatL">
-                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">项目数量</text>
-                  </view>
-                  <view class="FloatL TagR">
-                    <text class="Block Color_FFFFFF FontS_20rpx">
-                      {{ item.stock + item.sales }}
-                    </text>
-                  </view>
-                  <view class="ClearB"></view>
+                <view class="Tag2 FloatL MarginR_32rpx TextCenter" :style="bgUrl1">
+                  <text class="Block FontS_20rpx FontBold Color_000000" >{{ (item.level || {}).name }}</text>
                 </view>
-                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                  <view class="TagL TextCenter FloatL">
-                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">日化利率</text>
-                  </view>
-                  <view class="FloatL TagR">
-                    <text class="Block Color_FFFFFF FontS_20rpx">
-                      {{ returnDayRate(item) + '%' }}
-                    </text>
-                  </view>
-                  <view class="ClearB"></view>
+                <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
+                  <text class="Block FontS_20rpx FontBold FloatL Color_000000">限购份数</text>
+                  <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{item.limit}}</text>
+                  <view class="ClearL"></view>
                 </view>
-                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                  <view class="TagL TextCenter FloatL">
-                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">投资周期</text>
-                  </view>
-                  <view class="FloatL TagR">
-                    <text class="Block Color_FFFFFF FontS_20rpx">
-                      {{ item.keep_days }}天
-                    </text>
-                  </view>
-                  <view class="ClearB"></view>
+                <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
+                  <text class="Block FontS_20rpx FontBold FloatL Color_000000">日化利率</text>
+                  <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ returnDayRate(item) + '%' }}</text>
+                  <view class="ClearL"></view>
                 </view>
-                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                  <view class="TagL TextCenter FloatL">
-                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">起购份数</text>
-                  </view>
-                  <view class="FloatL TagR">
-                    <text class="Block Color_FFFFFF FontS_20rpx">
-                      {{item.min_buy }}
-                    </text>
-                  </view>
-                  <view class="ClearB"></view>
-                </view>
-                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                  <view class="TagL TextCenter FloatL">
-                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">限购份数</text>
-                  </view>
-                  <view class="FloatL TagR">
-                    <text class="Block Color_FFFFFF FontS_20rpx">
-                      {{item.limit}}
-                    </text>
-                  </view>
-                  <view class="ClearB"></view>
-                </view>
-                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                  <view class="TagL TextCenter FloatL">
-                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">可购等级</text>
-                  </view>
-                  <view class="FloatL TagR">
-                    <text class="Block Color_FFFFFF FontS_20rpx">
-                      {{ (item.level || {}).name }}
-                    </text>
-                  </view>
-                  <view class="ClearB"></view>
-                </view>
+                <view class="ClearL"></view>
+<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                  <view class="TagL TextCenter FloatL">-->
+<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">项目数量</text>-->
+<!--                  </view>-->
+<!--                  <view class="FloatL TagR">-->
+<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                      {{ item.stock + item.sales }}-->
+<!--                    </text>-->
+<!--                  </view>-->
+<!--                  <view class="ClearB"></view>-->
+<!--                </view>-->
+<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                  <view class="TagL TextCenter FloatL">-->
+<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">日化利率</text>-->
+<!--                  </view>-->
+<!--                  <view class="FloatL TagR">-->
+<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                      {{ returnDayRate(item) + '%' }}-->
+<!--                    </text>-->
+<!--                  </view>-->
+<!--                  <view class="ClearB"></view>-->
+<!--                </view>-->
+<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                  <view class="TagL TextCenter FloatL">-->
+<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">投资周期</text>-->
+<!--                  </view>-->
+<!--                  <view class="FloatL TagR">-->
+<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                      {{ item.keep_days }}天-->
+<!--                    </text>-->
+<!--                  </view>-->
+<!--                  <view class="ClearB"></view>-->
+<!--                </view>-->
+<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                  <view class="TagL TextCenter FloatL">-->
+<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">起购份数</text>-->
+<!--                  </view>-->
+<!--                  <view class="FloatL TagR">-->
+<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                      {{item.min_buy }}-->
+<!--                    </text>-->
+<!--                  </view>-->
+<!--                  <view class="ClearB"></view>-->
+<!--                </view>-->
+<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                  <view class="TagL TextCenter FloatL">-->
+<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">限购份数</text>-->
+<!--                  </view>-->
+<!--                  <view class="FloatL TagR">-->
+<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                      {{item.limit}}-->
+<!--                    </text>-->
+<!--                  </view>-->
+<!--                  <view class="ClearB"></view>-->
+<!--                </view>-->
+<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
+<!--                  <view class="TagL TextCenter FloatL">-->
+<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">可购等级</text>-->
+<!--                  </view>-->
+<!--                  <view class="FloatL TagR">-->
+<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
+<!--                      {{ (item.level || {}).name }}-->
+<!--                    </text>-->
+<!--                  </view>-->
+<!--                  <view class="ClearB"></view>-->
+<!--                </view>-->
                 <view class="ClearB"></view>
+              </view>
+              <view class="Width100 Flex Flex_C_S-B MarginT_32rpx">
+                <view class="DataUnit1 TextCenter">
+                  <text class="Color_B4B4B6 Block FontS_24rpx">项目数量</text>
+                  <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx"> {{ item.stock + item.sales }}</text>
+                </view>
+                <view class="DataUnit1 TextCenter">
+                  <text class="Color_B4B4B6 Block FontS_24rpx">起购份数</text>
+                  <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{item.min_buy }}</text>
+                </view>
+                <view class="DataUnit1 TextCenter">
+                  <text class="Color_B4B4B6 Block FontS_24rpx">投资周期</text>
+                  <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ item.keep_days }}天</text>
+                </view>
+                <view class="DataUnit1 TextCenter">
+                  <text class="Color_FFFFFF Block FontS_24rpx">可购等级</text>
+                  <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ (item.level || {}).name }}</text>
+                </view>
               </view>
             </view>
           </view>
@@ -348,6 +380,7 @@
 				show: false,
 				showSignIn: false,
 				keyword: '', //搜索框搜索关键字
+        bgUrl1: '', //
 				list: [], //banner图
 				seriesList: [{
 						name: ''
@@ -429,6 +462,7 @@
 			}
 		},
 		onShow() {
+      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/name_bg1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			// this.setTabBar()
 			this.getTabs()
       this.getHomedata()
@@ -705,6 +739,23 @@
       height: 574rpx!important;
     }
     .TagList{
+      .Tag1{
+        height: 40rpx;
+        padding: 0rpx 16rpx;
+        text{
+          line-height: 40rpx;
+        }
+      }
+      .Tag2{
+        width: 92rpx;
+        height: 40rpx;
+        text{
+          line-height: 40rpx;
+          background-image:-webkit-linear-gradient(bottom,#3A4461,#9A9EC3);
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+        }
+      }
       .Tag{
         padding-right: 20rpx;
         background-color: #2E2D2D;

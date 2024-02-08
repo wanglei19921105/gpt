@@ -351,7 +351,7 @@ openIM.on(CbEvents.ONUSERTOKENEXPIRED, (data) => {
 		showCancel: false,
 		success(res) {
 			uni.reLaunch({
-				url: "/pages/login/index/logInAccount"
+				url: "/pages/login/index/logInMain"
 			})
 		}
 	})

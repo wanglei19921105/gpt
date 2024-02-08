@@ -34,9 +34,13 @@
         </view>
       </view>
     <view class="ContentBox Width100 BorderB">
-      <view class="WidthGlobal1 MarginAuto PaddingB_48rpx PaddingT_32rpx">
+      <view class="WidthGlobal1  MarginAuto PaddingB_48rpx PaddingT_32rpx">
         <text class="Block Title Color_FFFFFF FontS_32rpx">作品详情</text>
-        <view class="Width100 PaddingT_40rpx PaddingB_40rpx Warp_E Warp_E_N" v-html="info.goods.description"></view>
+        <view class="Width100 MarginT_32rpx">
+          <rich-text :nodes="info.goods.description"></rich-text>
+        </view>
+<!--        <view class="Width100 PaddingT_40rpx PaddingB_40rpx Warp_E Warp_E_N InfoImg" id="InfoImg">-->
+<!--          <view class="Width100"  v-html="info.goods.description"></view>-->
       </view>
     </view>
     <view class="ContentBox Width100 BorderB">
@@ -76,10 +80,11 @@
     </view>
 	</view>
 </template>
-
 <script>
+import {richText} from '@/components/util/advs.vue'
 	export default {
 		components: {
+      richText
 		},
 		data() {
 			return {
@@ -249,7 +254,14 @@
 		}
 	}
 </script>
+<style lang="scss">
 
+.InfoImg img{
+  display: block;
+  width: 100%!important;
+}
+
+</style>
 <style lang="scss" scoped>
 .NoteBox{
   position: fixed;

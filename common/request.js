@@ -60,7 +60,7 @@ const install = (Vue, vm) => {
 						uni.removeStorageSync('lang')
 						uni.removeStorageSync('id')
 						uni.reLaunch({
-							url:"/pages/login/index/logInAccount"
+							url:"/pages/login/index/logInMain"
 						})
 					} else if (res.cancel) {
 						console.log('用户点击取消');

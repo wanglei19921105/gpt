@@ -50,7 +50,7 @@
 			};
 		},
 		onShow() {
-      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/btn_bg4.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
+      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/btn_bg7.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
       this.bgUrl2 = "background-image:url('"+ this.$.imgUrl +"/btn_bg5.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			this.navHeight = uni.getSystemInfoSync().windowTop
 		},
@@ -74,14 +74,14 @@
         this.$.open(url)
       },
 			WXlogin(){
-				if (!this.checked) {
-					this.$refs.uToast.show({
-						// 请勾选已阅读用户协议及隐私政策
-						title: this.i18n.login18,
-						type: 'error'
-					});
-					return false;
-				}
+				// if (!this.checked) {
+				// 	this.$refs.uToast.show({
+				// 		// 请勾选已阅读用户协议及隐私政策
+				// 		title: this.i18n.login18,
+				// 		type: 'error'
+				// 	});
+				// 	return false;
+				// }
 				let thit = this;
 				uni.showLoading({
 					title: '请稍后...'
@@ -128,14 +128,14 @@
 				}
 			},
 			h5login(){
-				if (!this.checked) {
-					this.$refs.uToast.show({
-						// 请勾选已阅读用户协议及隐私政策
-						title: this.i18n.login18,
-						type: 'error'
-					});
-					return false;
-				}
+				// if (!this.checked) {
+				// 	this.$refs.uToast.show({
+				// 		// 请勾选已阅读用户协议及隐私政策
+				// 		title: this.i18n.login18,
+				// 		type: 'error'
+				// 	});
+				// 	return false;
+				// }
 				let redirect = this.$myAppConfig.baseUrl + '/quick';
 				let invite_code = uni.getStorageSync('invite_code');
 				if(invite_code){
@@ -192,14 +192,14 @@
 					});
 					return false;
 				}
-				if (!this.checked) {
-					this.$refs.uToast.show({
-						// 请勾选已阅读用户协议及隐私政策
-						title: this.i18n.login18,
-						type: 'error'
-					});
-					return false;
-				}
+				// if (!this.checked) {
+				// 	this.$refs.uToast.show({
+				// 		// 请勾选已阅读用户协议及隐私政策
+				// 		title: this.i18n.login18,
+				// 		type: 'error'
+				// 	});
+				// 	return false;
+				// }
 
 				// 设置语言 1.中文 2.英文
 				this.$store.commit('SetLang', '1');

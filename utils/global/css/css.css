@@ -401,11 +401,20 @@ input,textarea,button{
 .Btn_BG2{
     background: linear-gradient(90deg, #EC7CFF 0%, #5FF6FF 100%);
 }
+.Btn_BG3{
+    background: linear-gradient(83deg, #9A9EC3 0%, #282C37 100%);
+}
+.Btn_BG4{
+    background: linear-gradient(90deg, #3FE0AA 0%, #02DAC3 100%);
+}
 .BG_FFFFFF{
     background-color: #FFFFFF;
 }
 .BG_171717{
     background-color: #171717;
+}
+.BG_0FDBBE{
+    background-color: #0FDBBE;
 }
 .BG_CFCAA0{
     background-color: #CFCAA0;

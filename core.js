@@ -51,7 +51,7 @@ var core = {
 			tabbar:[],
 			button:{
 				text:"立即体验",
-				url:"login/index/logInAccount",
+				url:"login/index/logInMain",
 				style:"round bg-limegreen"
 			}
 		},
@@ -1160,7 +1160,7 @@ var core = {
 						_options.rd = that.page(curpage.route.replace('pages/',''),curpage.options);
 						_options.rd = encodeURIComponent(_options.rd);
 					}
-					that.navito('login/index/logInAccount', _options, 1);
+					that.navito('login/index/logInMain', _options, 1);
 				}else{
 					that.navito(u,{},d);
 				}

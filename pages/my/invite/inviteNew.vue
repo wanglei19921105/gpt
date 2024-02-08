@@ -9,11 +9,11 @@
 
 <!--    内容开始-->
     <view class="WidthGlobal4 MarginAuto ContentBox">
-      <view class="Box Width100 BorderR_20rpx OverH BG_000000">
-        <view class="TitleBox Width100 Btn_BG1">
+      <view class="Box Width100 BorderR_20rpx OverH BG_171717">
+        <view class="TitleBox Width100 Btn_BG3">
           <view class="WidthGlobal6 MarginAuto PaddingT_1rpx">
-            <text class="Block FontS_32rpx FontBold FloatL MarginT_20rpx">我的团队</text>
-            <text class="Block FontS_64rpx FontBold FloatR Font2 Text1 MarginT_18rpx">My Team</text>
+            <text class="Block FontS_32rpx FontBold FloatL MarginT_20rpx Color_FFFFFF">我的团队</text>
+            <text class="Block FontS_64rpx FontBold FloatR Font2 Text1 MarginT_18rpx Color_FFFFFF">My Team</text>
             <view class="ClearB"></view>
           </view>
         </view>
@@ -31,7 +31,7 @@
                 <image :src="(item.user || {}).avatar" mode="aspectFill" class="Width100 Height100 BorderR_50"></image>
               </view>
             </view>
-            <view class="Check FloatR Btn_BG2 MarginT_6rpx" @click="checkChildList">
+            <view class="Check FloatR Btn_BG4 MarginT_6rpx" @click="checkChildList">
               <text class="Block FontS_24rpx Color_FFFFFF">查看下级</text>
             </view>
             <view class="ClearB"></view>
@@ -59,11 +59,11 @@
         </view>
       </view>
 
-      <view class="Box Width100 BorderR_20rpx OverH BG_000000 MarginT_34rpx">
-        <view class="TitleBox Width100 Btn_BG1">
+      <view class="Box Width100 BorderR_20rpx OverH BG_171717 MarginT_34rpx">
+        <view class="TitleBox Width100 Btn_BG3">
           <view class="WidthGlobal6 MarginAuto PaddingT_1rpx">
-            <text class="Block FontS_32rpx FontBold FloatL MarginT_20rpx">邀请链接</text>
-            <text class="Block FontS_64rpx FontBold FloatR Font2 Text1 MarginT_18rpx">Invite link</text>
+            <text class="Block FontS_32rpx FontBold FloatL MarginT_20rpx Color_FFFFFF">邀请链接</text>
+            <text class="Block FontS_64rpx FontBold FloatR Font2 Text1 MarginT_18rpx Color_FFFFFF">Invite link</text>
             <view class="ClearB"></view>
           </view>
         </view>
@@ -73,7 +73,7 @@
             <view class="Width100">
               <text class="Block Url MarginT_20rpx FontS_28rpx Color_B2B2B2 FloatL TextHidden">
                 {{ QRcode }}</text>
-              <view class="Check1 FloatR Btn_BG2 MarginT_6rpx" @click="copyValue(QRcode)">
+              <view class="Check1 FloatR Btn_BG4 MarginT_6rpx" @click="copyValue(QRcode)">
                 <text class="Block FontS_24rpx Color_FFFFFF">复制链接</text>
               </view>
               <view class="ClearB"></view>
@@ -83,7 +83,7 @@
               <image :src="$.imgSrc + '/images/djan.png'" mode="widthFix" class="Width100"></image>
             </view>
             <view class="Width100 MarginT_10rpx PaddingB_44rpx">
-              <view class="InviteBtn MarginAuto TextCenter" @click="make">
+              <view class="InviteBtn MarginAuto TextCenter Btn_BG4" @click="make">
                 <text class="Block Color_FFFFFF FontS_28rpx">长按保存海报邀请好友</text>
               </view>
             </view>
@@ -91,11 +91,11 @@
         </view>
       </view>
 
-      <view class="Box Width100 BorderR_20rpx OverH BG_000000 MarginT_34rpx">
-        <view class="TitleBox Width100 Btn_BG1">
+      <view class="Box Width100 BorderR_20rpx OverH BG_171717 MarginT_34rpx">
+        <view class="TitleBox Width100 Btn_BG3">
           <view class="WidthGlobal6 MarginAuto PaddingT_1rpx">
-            <text class="Block FontS_32rpx FontBold FloatL MarginT_20rpx">邀请排行榜</text>
-            <text class="Block FontS_64rpx FontBold FloatR Font2 Text1 MarginT_18rpx">Invitation list</text>
+            <text class="Block FontS_32rpx FontBold FloatL MarginT_20rpx Color_FFFFFF">邀请排行榜</text>
+            <text class="Block FontS_64rpx FontBold FloatR Font2 Text1 MarginT_18rpx Color_FFFFFF">Invitation list</text>
             <view class="ClearB"></view>
           </view>
         </view>
@@ -375,7 +375,6 @@ export default {
         text{
           line-height: 76rpx;
         }
-        background: linear-gradient(90deg, #EC7CFF 0%, #5FF6FF 100%);
       }
       .Line{
         background: linear-gradient(to right, rgba(#9f9f9f,1),rgba(#9f9f9f,1), rgba(#9f9f9f,0));

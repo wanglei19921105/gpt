@@ -238,6 +238,14 @@
           <text class="Block FontS_30rpx Color_FFFFFF">暂无记录</text>
         </view>
       </view>
+      <view class="ContentBox Width100">
+        <view class="WidthGlobal1 MarginAuto PaddingB_48rpx PaddingT_32rpx">
+          <text class="Block Title Color_FFFFFF FontS_32rpx">作品详情</text>
+          <view class="Width100 PaddingT_40rpx PaddingB_40rpx" v-html="info.details">
+
+          </view>
+        </view>
+      </view>
       <view style="padding-bottom: 440rpx;"></view>
     </view>
     <view class="BottomContentBox Width100"  v-if="info != null">

@@ -52,8 +52,8 @@
       </view>
       <view class="ContentBox Width100 MarginT_16rpx">
         <view class="Width100 MarginAuto PaddingB_48rpx PaddingT_32rpx BG_171717 BorderR_20rpx">
-          <view class="WidthGlobal1 MarginAuto PaddingT_40rpx PaddingB_40rpx" v-html="info.goods.description">
-
+          <view class="WidthGlobal1 MarginAuto PaddingT_40rpx PaddingB_40rpx">
+            <rich-text :nodes="info.goods.description"></rich-text>
           </view>
         </view>
       </view>

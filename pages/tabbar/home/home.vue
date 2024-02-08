@@ -198,156 +198,133 @@
 				<u-tabs :list="tabs" :is-scroll="true" :current="current" @change="change" :active-color="getMainColor"
 					:inactive-color="getNavInactiveColor" :bg-color="getBgColor"></u-tabs>
 			</view>
-      <view class="ListBox WidthGlobal1 MarginAuto">
-        <view class="GoodsList Width100">
-          <view class="Unit Width100 BG_171717 BorderR_20rpx" v-for="(item,index) in goodsList" :key="index" @click="godetail(item.id)">
-            <view class="ImgBox Width100">
-              <image :src="item.cover_image" mode="aspectFill" class="Width100 Height100"></image>
-            </view>
-            <view class="Width100 PaddingT_1rpx BottomBox MarginT_40rpx">
-              <view class="WidthGlobal5 MarginAuto">
-                <view class="FloatL">
-                  <text class="Block FontS_40rpx Color_FFFFFF">{{item.title}}</text>
-                  <view class="ProgressBox MarginT_20rpx">
-                    <view class="ProgressMain BG_FFFFFF FloatL BorderR_20rpx OverH MarginT_8rpx">
-                      <view class="Progress Height100 BorderR_20rpx" :style="'width:' + 30 +'%;'"></view>
-                    </view>
-                    <text class="Block FloatL Color_D1D1D1 MarginL_16rpx FontS_24rpx">
-                      44%
-                    </text>
-                    <view class="ClearB"></view>
+<!--      <view class="ListBox WidthGlobal1 MarginAuto">-->
+<!--        <view class="Unit MarginT_32rpx BorderR_20rpx" v-for="(item,index) in goodsList"  @click="godetail(item.id)" :key="index" :class="(index+1)%2 != 0 ? 'FloatL':'FloatR'">-->
+<!--          <view class="ImgBox OverH PositionR">-->
+<!--            <view class="BottomText Width100 PositionA">-->
+<!--              <view class="MarginAuto WidthGlobal5 MarginAuto">-->
+<!--                <text class="Block Color_FFFFFF FloatL FontS_20rpx">-->
+<!--                  回报率: {{item.profit_rate }}%-->
+<!--                </text>-->
+<!--                <text class="Block Color_FFFFFF FloatR FontS_20rpx">-->
+<!--                  限购{{item.limit}}份-->
+<!--                </text>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--            <image :src="item.cover_image" mode="aspectFill" class="Width100 Height100"></image>-->
+<!--          </view>-->
+<!--          <view class="Bottom PaddingT_1rpx Width100">-->
+<!--            <view class="WidthGlobal5 MarginAuto ">-->
+<!--              <text class="Block Color_FFFFFF FontBold FontS_32rpx MarginT_16rpx Warp_E MarginT_20rpx">{{item.title}}</text>-->
+<!--              <text class="Block Color_FFFFFF FontS_24rpx">冻结期: {{item.keep_days + dataShow[item.return_type]}}</text>-->
+<!--              <view class="MarginT_16rpx">-->
+<!--                &lt;!&ndash;                <text class="Block FontS_28rpx Color_FFC393 FontBold FloatL MarginT_4rpx">{{item.price}}</text>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <text class="Block FontS_24rpx Color_FFC393 FloatL MarginL_10rpx MarginT_6rpx">USDT</text>&ndash;&gt;-->
+<!--                <image :src="$.imgSrc + '/images/signIn/rank1.jpg'" mode="aspectFit" class="FloatL Icon"></image>-->
+<!--                <text class="Block FontS_24rpx Color_FFC393 FloatL MarginL_16rpx Warp_E MarginT_2rpx">金币：{{(item.maxmum_investment)}}</text>-->
+<!--                <view class="ClearB"></view>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--        <view class="ClearB"></view>-->
+<!--      </view>-->
+      <view class="GoodsList WidthGlobal1 MarginAuto">
+        <view class="Unit Width100 BG_171717 BorderR_20rpx MarginT_32rpx" v-for="(item,index) in goodsList" :key="index" @click="godetail(item.id)">
+          <view class="ImgBox Width100">
+            <image :src="item.cover_image" mode="aspectFill" class="Width100 Height100"></image>
+          </view>
+          <view class="Width100 PaddingT_1rpx BottomBox MarginT_40rpx">
+            <view class="WidthGlobal5 MarginAuto">
+              <view class="FloatL">
+                <text class="Block FontS_40rpx Color_FFFFFF">{{item.name}}</text>
+                <view class="ProgressBox MarginT_20rpx">
+                  <view class="ProgressMain BG_FFFFFF FloatL BorderR_20rpx OverH MarginT_8rpx">
+                    <view class="Progress Height100 BorderR_20rpx" :style="'width:' + returnRate(item) +'%;'"></view>
                   </view>
-                </view>
-                <text class="Block FloatR FontS_36rpx Color_FFC393 FontBold">￥{{(item.maxmum_investment)}}</text>
-                <view class="ClearB"></view>
-                <view class="TagList MarginT_40rpx">
-                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                    <view class="TagL TextCenter FloatL">
-                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">项目数量</text>
-                    </view>
-                    <view class="FloatL TagR">
-                      <text class="Block Color_FFFFFF FontS_20rpx">
-                        10000
-                      </text>
-                    </view>
-                    <view class="ClearB"></view>
-                  </view>
-                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                    <view class="TagL TextCenter FloatL">
-                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">日化利率</text>
-                    </view>
-                    <view class="FloatL TagR">
-                      <text class="Block Color_FFFFFF FontS_20rpx">
-                        10
-                      </text>
-                    </view>
-                    <view class="ClearB"></view>
-                  </view>
-                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                    <view class="TagL TextCenter FloatL">
-                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">投资周期</text>
-                    </view>
-                    <view class="FloatL TagR">
-                      <text class="Block Color_FFFFFF FontS_20rpx">
-                        10000
-                      </text>
-                    </view>
-                    <view class="ClearB"></view>
-                  </view>
-                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                    <view class="TagL TextCenter FloatL">
-                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">起购份数</text>
-                    </view>
-                    <view class="FloatL TagR">
-                      <text class="Block Color_FFFFFF FontS_20rpx">
-                        10000
-                      </text>
-                    </view>
-                    <view class="ClearB"></view>
-                  </view>
-                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                    <view class="TagL TextCenter FloatL">
-                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">限购份数</text>
-                    </view>
-                    <view class="FloatL TagR">
-                      <text class="Block Color_FFFFFF FontS_20rpx">
-                        {{item.limit}}
-                      </text>
-                    </view>
-                    <view class="ClearB"></view>
-                  </view>
-                  <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
-                    <view class="TagL TextCenter FloatL">
-                      <text class="Block FontS_20rpx Color_1C2B2F FontBold">可购等级</text>
-                    </view>
-                    <view class="FloatL TagR">
-                      <text class="Block Color_FFFFFF FontS_20rpx">
-                        10000
-                      </text>
-                    </view>
-                    <view class="ClearB"></view>
-                  </view>
+                  <text class="Block FloatL Color_D1D1D1 MarginL_16rpx FontS_24rpx">
+                    {{returnRate(item)}}%
+                  </text>
                   <view class="ClearB"></view>
                 </view>
               </view>
-            </view>
-          </view>
-        </view>
-        <view class="Unit MarginT_32rpx BorderR_20rpx" v-for="(item,index) in goodsList"  @click="godetail(item.id)" :key="index" :class="(index+1)%2 != 0 ? 'FloatL':'FloatR'">
-          <view class="ImgBox OverH PositionR">
-            <view class="BottomText Width100 PositionA">
-              <view class="MarginAuto WidthGlobal5 MarginAuto">
-                <text class="Block Color_FFFFFF FloatL FontS_20rpx">
-                  回报率: {{item.profit_rate }}%
-                </text>
-                <text class="Block Color_FFFFFF FloatR FontS_20rpx">
-                  限购{{item.limit}}份
-                </text>
+              <text class="Block FloatR FontS_36rpx Color_FFC393 FontBold">{{(item.maxmum_investment)}} 金币</text>
+              <view class="ClearB"></view>
+              <view class="TagList MarginT_40rpx">
+                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                  <view class="TagL TextCenter FloatL">
+                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">项目数量</text>
+                  </view>
+                  <view class="FloatL TagR">
+                    <text class="Block Color_FFFFFF FontS_20rpx">
+                      {{ item.stock + item.sales }}
+                    </text>
+                  </view>
+                  <view class="ClearB"></view>
+                </view>
+                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                  <view class="TagL TextCenter FloatL">
+                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">日化利率</text>
+                  </view>
+                  <view class="FloatL TagR">
+                    <text class="Block Color_FFFFFF FontS_20rpx">
+                      {{ returnDayRate(item) + '%' }}
+                    </text>
+                  </view>
+                  <view class="ClearB"></view>
+                </view>
+                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                  <view class="TagL TextCenter FloatL">
+                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">投资周期</text>
+                  </view>
+                  <view class="FloatL TagR">
+                    <text class="Block Color_FFFFFF FontS_20rpx">
+                      {{ item.keep_days }}天
+                    </text>
+                  </view>
+                  <view class="ClearB"></view>
+                </view>
+                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                  <view class="TagL TextCenter FloatL">
+                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">起购份数</text>
+                  </view>
+                  <view class="FloatL TagR">
+                    <text class="Block Color_FFFFFF FontS_20rpx">
+                      {{item.min_buy }}
+                    </text>
+                  </view>
+                  <view class="ClearB"></view>
+                </view>
+                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                  <view class="TagL TextCenter FloatL">
+                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">限购份数</text>
+                  </view>
+                  <view class="FloatL TagR">
+                    <text class="Block Color_FFFFFF FontS_20rpx">
+                      {{item.limit}}
+                    </text>
+                  </view>
+                  <view class="ClearB"></view>
+                </view>
+                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">
+                  <view class="TagL TextCenter FloatL">
+                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">可购等级</text>
+                  </view>
+                  <view class="FloatL TagR">
+                    <text class="Block Color_FFFFFF FontS_20rpx">
+                      {{ (item.level || {}).name }}
+                    </text>
+                  </view>
+                  <view class="ClearB"></view>
+                </view>
                 <view class="ClearB"></view>
               </view>
             </view>
-            <image :src="item.cover_image" mode="aspectFill" class="Width100 Height100"></image>
-          </view>
-          <view class="Bottom PaddingT_1rpx Width100">
-            <view class="WidthGlobal5 MarginAuto ">
-              <text class="Block Color_FFFFFF FontBold FontS_32rpx MarginT_16rpx Warp_E MarginT_20rpx">{{item.title}}</text>
-              <text class="Block Color_FFFFFF FontS_24rpx">冻结期: {{item.keep_days + dataShow[item.return_type]}}</text>
-              <view class="MarginT_16rpx">
-<!--                <text class="Block FontS_28rpx Color_FFC393 FontBold FloatL MarginT_4rpx">{{item.price}}</text>-->
-<!--                <text class="Block FontS_24rpx Color_FFC393 FloatL MarginL_10rpx MarginT_6rpx">USDT</text>-->
-                <image :src="$.imgSrc + '/images/signIn/rank1.jpg'" mode="aspectFit" class="FloatL Icon"></image>
-                <text class="Block FontS_24rpx Color_FFC393 FloatL MarginL_16rpx Warp_E MarginT_2rpx">金币：{{(item.maxmum_investment)}}</text>
-                <view class="ClearB"></view>
-              </view>
-            </view>
           </view>
         </view>
-        <view class="ClearB"></view>
       </view>
-			<!-- <view class="gap-100"></view> -->
-<!--			<view v-for="(item, index) in specialList" :key="index" class="itemBox" @click="godetail(item.id)">-->
-<!--				<image :src="item.cover" mode="widthFix"></image>-->
-<!--				<view class="u-m-l-20 u-m-r-20">-->
-<!--					<view class="flex u-m-b-16">-->
-<!--						<view class="size-30">{{item.title}}</view>-->
-<!--					</view>-->
-<!--					<view class="flex u-m-b-20">-->
-<!--						<view class="time">冻结期:{{item.sale_expire}}天</view>-->
-<!--						<view class="time u-m-l-20">回报率:{{item.rate_return}}%</view>-->
-<!--					</view>-->
-<!--					<view class="flex u-m-b-20">-->
-<!--						<view class="time u-m-r-20" v-if="item.vip_ids">VIP{{item.vip_ids}}可买</view>-->
-<!--						<view class="time" v-if="item.user_max_num">限购{{item.user_max_num}}份</view>-->
-<!--					</view>-->
-<!--					<view style="color: #E21362;text-align: right;">-->
-<!--						<text class="size-44 text-bold">{{item.price}}</text>-->
-<!--						<text>USDT</text>-->
-<!--						<text class="">≈￥{{(item.price*exchange_rate).toFixed(2)}}</text>-->
-<!--					</view>-->
-<!--				</view>-->
-<!--			</view>-->
-
-			<empty v-if="!specialList.length"></empty>
+			<empty v-if="!goodsList.length"></empty>
 			<uni-load-more :status="loadStatus"></uni-load-more>
 			<u-toast ref="uToast" />
 		</view>
@@ -482,6 +459,12 @@
 			this.getHomedata()
 		},
 		methods: {
+      returnDayRate(item){
+        return Number(Number(item.maxmum_investment) * Number(item.profit_rate) / item.keep_days).toFixed(2)
+      },
+      returnRate(item){
+        return Number(item.sales / (item.stock + item.sales)).toFixed(0)
+      },
       changeBanner(e){
         console.log(e)
         this.currBanner = e.detail.current
@@ -675,6 +658,9 @@
 			change(index) {
 				if (this.current == index) return
 				this.current = index;
+        this.getGoodsList()
+        // this.loadData(true)
+        return
 				console.log(this.vip_level, this.current);
 				if (this.vip_level + 1 < this.current) {
 					this.$refs.uToast.show({
@@ -683,11 +669,15 @@
 					});
 					return
 				} else {
-					this.loadData(true)
+          this.loadData(true)
 				}
 
 			},
 			godetail(id) {
+        uni.navigateTo({
+          url: `/pages/Special/SpecialDetailsNew20240208?id=${id}`
+        })
+        return
         uni.navigateTo({
           url: `/pages/Special/SpecialDetailsNew?id=${id}`
         })

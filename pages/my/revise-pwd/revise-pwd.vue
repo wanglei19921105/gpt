@@ -143,7 +143,7 @@
 							// 	url: '../../login/index/index'
 							// })
 							uni.reLaunch({
-								url: '/pages/login/index/logInAccount'
+								url: '/pages/login/index/logInMain'
 							})
 						}, 1000)
 					}

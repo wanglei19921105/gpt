@@ -1417,7 +1417,7 @@
 			}
 		},
 		{
-			"path": "pages/login/index/SpecialDetailsNew20240208",
+			"path": "pages/Special/SpecialDetailsNew20240208",
 			"style": {
 				"navigationBarTitleText": "详情",
 				"enablePullDownRefresh": false

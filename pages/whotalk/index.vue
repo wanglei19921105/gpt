@@ -331,7 +331,7 @@ export default {
             auditmode:{
                 status:false,
                 text:"立即体验",
-                url:'login/index/logInAccount',
+                url:'login/index/logInMain',
                 login:''
             },
             dialogs:[],
@@ -406,7 +406,7 @@ export default {
     },
     onLoad(options) {
         if(!uni.getStorageSync('token')){
-            this.naviTo('login/index/logInAccount')
+            this.naviTo('login/index/logInMain')
             return;
         }
         // uni.hideTabBar({})

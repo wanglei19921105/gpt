@@ -107,7 +107,7 @@
 			};
 		},
 		onShow() {
-      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/btn_bg2.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
+      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/btn_bg4.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
       this.bgUrl2 = "background-image:url('"+ this.$.imgUrl +"/denglu_bg2.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			this.navHeight = uni.getSystemInfoSync().windowTop
 		},
@@ -170,7 +170,7 @@
 								})
 								uni.navigateTo({
 									// url:'/pages/login/index/logInRegister?unionid=' + res.data.info
-                  url:'/pages/login/index/logInAccount?unionid=' + res.data.info
+                  url:'/pages/login/index/logInMain?unionid=' + res.data.info
 								})
 							}
 						})

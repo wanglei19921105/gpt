@@ -77,7 +77,7 @@
         <text class="Block Color_0A1136 FontS_32rpx FontBold">注册</text>
       </view>
     </view>
-    <view class="InputBox PaddingB_80rpx MarginAuto MarginT_24rpx TextCenter" @click="skipPage('/pages/login/index/logInAccount')">
+    <view class="InputBox PaddingB_80rpx MarginAuto MarginT_24rpx TextCenter" @click="skipPage('/pages/login/index/logInMain')">
       <text class="Block Color_FFFFFF FontS_28rpx">已有账号 快去登录</text>
     </view>
 
@@ -310,7 +310,7 @@
                 })
                 uni.navigateTo({
                   // url:'/pages/login/index/logInRegister?unionid=' + res.data.info
-                  url:'/pages/login/index/logInAccount?unionid=' + res.data.info
+                  url:'/pages/login/index/logInMain?unionid=' + res.data.info
                 })
               }
             })

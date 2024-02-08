@@ -7,7 +7,7 @@
         </view>
         <view class="TextBox FloatR">
           <text class="Block FontS_30rpx Color_FFFFFF MarginT_10rpx">{{ info.name }}</text>
-          <text class="Block FontS_30rpx FontBold Color_FFC393 MarginT_20rpx">{{ info.maxmum_investment }}金币</text>
+          <text class="Block FontS_30rpx FontBold Color_FFC393 MarginT_20rpx">{{ returnPrice }}金币</text>
         </view>
         <view class="ClearB"></view>
       </view>
@@ -15,17 +15,24 @@
     <view style="padding-bottom: 222rpx;"></view>
 
 
-    <view class="BottomContentBox Width100">
+    <view class="BottomContentBox Width100"  v-if="info != null">
       <view class="WidthGlobal1 MarginAuto">
-        <view class="FloatL" v-if="info != null">
-          <text class="Block FontS_48rpx Color_FFC393 FontBold FloatL MarginT_16rpx">{{ info.maxmum_investment }}</text>
-          <text class="Block FontS_24rpx Color_FFC393 FloatL MarginT_32rpx MarginL_8rpx">金币</text>
+        <view class="FloatL">
+          <text class="Block FontS_48rpx Color_FFFFFF FontBold MarginT_16rpx">￥{{ returnPrice }}</text>
           <view class="ClearB"></view>
         </view>
-        <view @click="showBox" class="Btn FloatR TextCenter MarginT_22rpx" :style="bgUrl2">
-          <text class="Block Color_0A1136 FontS_32rpx">确认兑换</text>
+        <view class="NumBox FloatR MarginT_32rpx Flex Flex_C_S-B">
+          <image :src="$.imgSrc + '/images/add1.png'" mode="aspectFit" class="Add FloatL" @click="addS(1)"></image>
+          <view class="Line Height100 MarginL_16rpx"></view>
+          <text class="Block Color_FFFFFF FontS_32rpx FontBold FloatL TextCenter Height100">{{num}}</text>
+          <view class="Line Height100 "></view>
+          <image :src="$.imgSrc + '/images/add2.png'" mode="aspectFit" class="Add FloatL MarginL_16rpx" @click="addS(2)"></image>
+          <view class="ClearL"></view>
         </view>
         <view class="ClearB"></view>
+        <view class="Btn TextCenter Width100 MarginT_32rpx" @click="info.stock != 0 ? showBox():''">
+          <text class="Block Color_0A1136 FontS_32rpx FontBold">{{info.stock == 0 ? '已售罄' :'立即购买'}}</text>
+        </view>
       </view>
     </view>
     <view class="AlertBox Width100 Height100" v-if="isShowPsw" @click="closeBox">
@@ -37,7 +44,7 @@
           </view>
           <view class="Width100 TextCenter">
             <view class="InlineBlock">
-              <view class="Btn TextCenter MarginAuto MarginT_40rpx BorderR_10rpx" @click="confirmSub" :style="bgUrl2">
+              <view class="Btn TextCenter MarginAuto MarginT_40rpx BorderR_10rpx" @click="confirmBuy" >
                 <text class="Block FontS_30rpx FontBold Color_0A1136">确认</text>
               </view>
             </view>
@@ -103,6 +110,8 @@
 				posturl: '',
         orderId: '',
         security_password: '',
+        price: '',
+        num: '',
         isDisabled:false,
         vip:0
 			};
@@ -110,6 +119,7 @@
 		onLoad(option) {
 			if (option.id) {
 				this.id = option.id
+        this.num = option.num
         // this.vip = Number(option.vip)+1
         this.getGoodsInfo()
 			}
@@ -123,12 +133,48 @@
       this.bgUrl3 = "background-image:url('"+ this.$.imgUrl +"/btn2.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			// this.produictDet(this.id)
 		},
+    computed:{
+      returnPrice(){
+        return (Number(this.info.maxmum_investment) * Number(this.num)).toFixed(2)
+      },
+    },
 		methods: {
+      addS(type = 1){
+        if(type == 1){
+          if(this.num > 1){
+            this.num --
+          }
+        }else {
+          this.num ++
+        }
+      },
       closeBox(){
         this.isShowPsw = false
+        this.isDisabled = false
       },
       showBox(){
-        this.isShowPsw = true
+        if(this.orderId){
+          this.isShowPsw = true
+          return;
+        }
+        if(this.isDisabled){
+          return
+        }
+        this.$u.api.getProjectGoodsInfoOrder({
+          project_id:this.id,
+          total:this.num
+        }).then(res => {
+          if (res.code == 200) {
+            this.orderId = res.data.id
+            this.isDisabled = false
+            this.isShowPsw = true
+          }else{
+            this.isDisabled = false
+            this.$.toast(res.message)
+          }
+        }).catch(err => {
+
+        })
       },
       getGoodsInfo() {
         this.$u.api.getProjectGoodsInfo({
@@ -147,6 +193,10 @@
         })
       },
       confirmBuy(){
+        if(this.isDisabled){
+          return
+        }
+        this.isDisabled = true
         this.$u.api.getProjectGoodsInfoOrderBuy({
           id:this.orderId,
           security_password:this.security_password
@@ -158,7 +208,7 @@
             setTimeout(() => {
               this.$.open('/pages/Special/SpecialDetailsNewOrderlog')
               this.isDisabled = false
-              this.$.back()
+              // this.$.back()
             },1500)
           }else{
             this.$.toast(ress.message)
@@ -173,20 +223,6 @@
           return
         }
         this.isDisabled = true
-        this.$u.api.getProjectGoodsInfoOrder({
-          project_id:this.id,
-        }).then(res => {
-          if (res.code == 200) {
-            this.orderId = res.data.id
-            this.confirmBuy()
-          }else{
-            this.$.toast(res.message)
-            this.isDisabled = false
-          }
-        }).catch(err => {
-
-          this.isDisabled = false
-        })
 
       },
 			share(){
@@ -289,7 +325,10 @@
     .Btn{
       width: 200rpx;
       height: 76rpx;
+      border-radius: 76rpx;
       line-height: 76rpx;
+      background: linear-gradient(90deg, #EC7CFF 0%, #5FF6FF 100%);
+
     }
     .InputBox{
       border-bottom: 2rpx solid #FFFFFF;
@@ -327,14 +366,34 @@
   bottom: 0;
   left: 0;
   z-index: 999;
-  height: 202rpx;
+  height: 300rpx;
   background-color: #0C0D0F;
   border-top: 2rpx solid #FFFFFF;
-  .Btn{
-    width: 196rpx;
-    height: 76rpx;
+  .NumBox{
+    padding: 0rpx 16rpx;
+    border: 2rpx solid #FFFFFF;
+    border-radius: 16rpx;
+    width: 218rpx;
+    height: 68rpx;
     text{
-      line-height: 76rpx;
+      line-height: 68rpx;
+      width: 54rpx;
+    }
+    .Line{
+      width: 2rpx;
+      background:linear-gradient(to top, rgba(159,159,159,0), rgba(159,159,159,0.50), rgba(159,159,159,1), rgba(159,159,159,0.25), rgba(159,159,159,0));
+    }
+    image{
+      width: 48rpx;
+      height: 48rpx;
+    }
+  }
+  .Btn{
+    height: 92rpx;
+    border-radius: 92rpx;
+    background: linear-gradient(90deg, #EC7CFF 0%, #5FF6FF 100%);
+    text{
+      line-height: 92rpx;
     }
   }
 }

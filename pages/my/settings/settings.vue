@@ -304,7 +304,7 @@
 				uni.removeStorageSync('id')
 				// 关闭所有页面，跳转登录页
 				uni.reLaunch({
-					url: '../../login/index/logInAccount'
+					url: '../../login/index/logInMain'
 				})
 			},
 			// 切换语言弹窗状态

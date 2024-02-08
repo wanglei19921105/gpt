@@ -158,7 +158,7 @@
 								})
 								uni.navigateTo({
 									// url:'/pages/login/index/logInRegister?unionid=' + res.data.info
-                  url:'/pages/login/index/logInAccount?unionid=' + res.data.info
+                  url:'/pages/login/index/logInMain?unionid=' + res.data.info
 								})
 							}
 						})

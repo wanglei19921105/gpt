@@ -12,7 +12,6 @@
       </view>
       <!-- #endif -->
       <!-- #ifdef H5 -->
-<!--      "-->
       <view v-if="inWechat" class="Btn InlineBlock TextCenter" @click="h5login()" :style="bgUrl1">
         <text class="Block Color_0A1136 FontS_32rpx FontBold">微信一键登录</text>
       </view>
@@ -51,11 +50,14 @@
 			};
 		},
 		onShow() {
-      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/btn_bg2.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
-      this.bgUrl2 = "background-image:url('"+ this.$.imgUrl +"/btn_bg3.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
+      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/btn_bg4.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
+      this.bgUrl2 = "background-image:url('"+ this.$.imgUrl +"/btn_bg5.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			this.navHeight = uni.getSystemInfoSync().windowTop
 		},
-		onLoad() {
+		onLoad(e) {
+      if(typeof(e.id) != 'undefined'){
+        uni.setStorageSync('invite_code', e.id);
+      }
 			// #ifdef APP-PLUS
 			this.system = plus.os.name
 			// #endif
@@ -108,7 +110,7 @@
 								})
 								uni.navigateTo({
 									// url:'/pages/login/index/logInRegister?unionid=' + res.data.info
-                  url:'/pages/login/index/logInAccount?unionid=' + res.data.info
+                  url:'/pages/login/index/logInMain?unionid=' + res.data.info
 								})
 							}
 						})

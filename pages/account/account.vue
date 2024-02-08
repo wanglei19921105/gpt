@@ -174,7 +174,7 @@ export default {
 		},
 		addAccount(){
 			uni.navigateTo({
-				url: `/pages/login/index/logInAccount`
+				url: `/pages/login/index/logInMain`
 			})
 		},
 		desensitization(value) {

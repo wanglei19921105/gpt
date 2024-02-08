@@ -97,7 +97,7 @@
         <view class="ListBox Width100 MarginT_34rpx PaddingB_40rpx">
           <view class="Width100 TitleBox">
             <view class="WidthGlobal1 MarginAuto Flex Flex_C_S-B">
-              <view class="ListUnit Width_10 TextLeft">
+              <view class="ListUnit Width_15 TextLeft">
                 <text class="Block FontS_28rpx Color_FFFFFF">排名</text>
               </view>
               <view class="ListUnit Width_40 TextLeft">
@@ -117,11 +117,11 @@
           <view class="Width100 MarginT_20rpx">
             <view class="Width100 TitleBox PaddingT_20rpx PaddingB_20rpx" v-for="(item,index) in info.ranking_list" :key="index" :class="(index+1) % 2 == 1 ? 'ListBg1':''">
               <view class="WidthGlobal1 MarginAuto Flex Flex_C_S-B">
-                <view class="ListUnit Width_10">
-                  <image v-if="index === 0" :src="$.imgSrc + '/images/rank1.png'" mode="aspectFit" class="RankIcon MarginL_6rpx"></image>
-                  <image v-else-if="index === 1" :src="$.imgSrc + '/images/rank2.png'" mode="aspectFit" class="RankIcon MarginL_6rpx"></image>
-                  <image v-else-if="index === 2" :src="$.imgSrc + '/images/rank3.png'" mode="aspectFit" class="RankIcon MarginL_6rpx"></image>
-                  <text v-else class="Block FontS_28rpx Color_FFFFFF FontBold MarginL_16rpx">{{ index + 1 }}</text>
+                <view class="ListUnit Width_15">
+                  <image v-if="index === 0" :src="$.imgSrc + '/images/rank1.png'" mode="aspectFit" class="RankIcon"></image>
+                  <image v-else-if="index === 1" :src="$.imgSrc + '/images/rank2.png'" mode="aspectFit" class="RankIcon"></image>
+                  <image v-else-if="index === 2" :src="$.imgSrc + '/images/rank3.png'" mode="aspectFit" class="RankIcon"></image>
+                  <text v-else class="Block FontS_28rpx Color_FFFFFF FontBold MarginL_24rpx">{{ index + 1 }}</text>
                 </view>
                 <view class="ListUnit Width_40">
                   <image :src="item.avatar" mode="aspectFit" class="FloatL Avatar BorderR_50 MarginL_8rpx"></image>
@@ -434,6 +434,10 @@
 .Width_40{
   width: 40%;
   min-width: 40%;
+}
+.Width_15{
+  width: 15%;
+  min-width: 15%;
 }
 .Width_20{
   width: 20%;

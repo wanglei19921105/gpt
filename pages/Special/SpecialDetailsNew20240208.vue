@@ -1,10 +1,10 @@
 <template>
 	<view class="page" :class="getThemeClass">
-    <view class="BannerBox Width100 PositionR PaddingT_1rpx" :style="bgUrl1">
+    <view class="BannerBox Width100 PositionR PaddingT_1rpx" :style="bgUrl1" v-if="info != null">
 <!--      传奇-->
 <!--      <image :src="$.imgSrc + '/images/chuanqi1.png'" mode="aspectFill" class="ChuanQi PositionA"></image>-->
       <view class="ImgBox BorderR_20rpx OverH">
-        <swiper class="swiper Width100 Height100" circular :indicator-dots="true" :autoplay="true" :interval="2000"
+        <swiper class="swiper Width100 Height100" circular :indicator-dots="false" :autoplay="true" :interval="2000"
                 :duration="500">
           <swiper-item v-for="(item,index) in info.images">
             <image :src="item" mode="aspectFill" class="Width100 Height100"></image>
@@ -12,20 +12,20 @@
         </swiper>
       </view>
     </view>
-    <view class="Content PositionA WidthGlobal1">
+    <view class="Content PositionA WidthGlobal1" v-if="info != null">
       <view class="Top Width100 BorderR_20rpx">
         <view class="Money WidthGlobal1 MarginAuto">
-          <text class="Block FontBold Color_FFFFFF FontS_48rpx">￥1521.00</text>
+          <text class="Block FontBold Color_FFFFFF FontS_48rpx">{{info.maxmum_investment}}金币</text>
         </view>
         <view class="TopBottom Width100 PaddingT_32rpx PaddingB_32rpx BG_171717 BorderR_20rpx MarginT_16rpx">
           <view class="WidthGlobal5 MarginAuto">
-            <text class="Block Color_FFFFFF FontBold FontS_40rpx">mingzi</text>
+            <text class="Block Color_FFFFFF FontBold FontS_40rpx">{{info.name}}</text>
             <view class="ProgressBox MarginT_20rpx">
               <view class="ProgressMain BG_FFFFFF FloatL BorderR_20rpx OverH MarginT_8rpx">
-                <view class="Progress Height100 BorderR_20rpx" :style="'width:' + 30 +'%;'"></view>
+                <view class="Progress Height100 BorderR_20rpx" :style="'width:' + returnRate(info) +'%;'"></view>
               </view>
               <text class="Block FloatL Color_D1D1D1 MarginL_16rpx FontS_24rpx">
-                44%
+                {{returnRate(info)}}%
               </text>
               <view class="ClearB"></view>
             </view>
@@ -36,7 +36,7 @@
                 </view>
                 <view class="FloatL TagR">
                   <text class="Block Color_FFFFFF FontS_20rpx">
-                    10000
+                    {{ info.stock + info.sales }}
                   </text>
                 </view>
                 <view class="ClearB"></view>
@@ -47,7 +47,7 @@
                 </view>
                 <view class="FloatL TagR">
                   <text class="Block Color_FFFFFF FontS_20rpx">
-                    10
+                    {{ returnDayRate(info) + '%' }}
                   </text>
                 </view>
                 <view class="ClearB"></view>
@@ -58,7 +58,7 @@
                 </view>
                 <view class="FloatL TagR">
                   <text class="Block Color_FFFFFF FontS_20rpx">
-                    10000
+                    {{ info.keep_days }}天
                   </text>
                 </view>
                 <view class="ClearB"></view>
@@ -69,7 +69,7 @@
                 </view>
                 <view class="FloatL TagR">
                   <text class="Block Color_FFFFFF FontS_20rpx">
-                    10000
+                    {{info.min_buy }}
                   </text>
                 </view>
                 <view class="ClearB"></view>
@@ -80,7 +80,7 @@
                 </view>
                 <view class="FloatL TagR">
                   <text class="Block Color_FFFFFF FontS_20rpx">
-                    45
+                    {{info.limit }}
                   </text>
                 </view>
                 <view class="ClearB"></view>
@@ -91,7 +91,7 @@
                 </view>
                 <view class="FloatL TagR">
                   <text class="Block Color_FFFFFF FontS_20rpx">
-                    10000
+                    {{ (info.level || {}).name }}
                   </text>
                 </view>
                 <view class="ClearB"></view>
@@ -112,7 +112,7 @@
               </view>
               <view class="MarginT_20rpx">
                 <text class="Block FloatL FontS_32rpx Color_FFFFFF FontBold">
-                  10000
+                  {{ info.stock + info.sales }}
                 </text>
                 <text class="Block FloatL Color_CCCCCC FontS_24rpx MarginL_4rpx">份</text>
                 <view class="ClearB"></view>
@@ -126,61 +126,79 @@
               </view>
               <view class="MarginT_20rpx">
                 <text class="Block FloatL FontS_32rpx Color_FFFFFF FontBold">
-                  4
+                  {{ infoMain.total_orders }}
                 </text>
                 <text class="Block FloatL Color_CCCCCC FontS_24rpx MarginL_4rpx">单</text>
                 <view class="ClearB"></view>
               </view>
             </view>
           </view>
-          <view class="FloatR">
+          <view class="FloatR MarginR_60rpx" v-if="info != null">
 <!--            进度条-->
+            <piaoyiProgressBar :canvas-id="'progressCanvas4'" :progress="returnRate(info)" :background-color="'#E2ECFF'" :progress-background-color="'#E97FFF'"
+                               :show-text="true"
+                               text-color="#FFFFFF" :text-size="48"
+                               :text-size1="24"
+                               :height="12"
+                               :is-circular="true"
+
+ :show-text-value="returnRate(info) + '%'"
+                               :show-text-value1="'进度'"                           :diameter="200"></piaoyiProgressBar>
           </view>
           <view class="ClearB"></view>
           <view class="Line Width100 MarginT_42rpx"></view>
           <view class="DataList Width100 Flex Flex_C_S-B MarginT_16rpx">
             <view class="Data">
-              <image :src="$.imgSrc + '/logo1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>
+              <image :src="$.imgSrc + '/images/user_icon1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>
               <view class="FloatL MarginL_20rpx">
-                <text class="Block Color_FFFFFF FontS_32rpx FontBold">1291</text>
-                <text class="Block Color_606060 FontS_24rpx MarginT_8rpx">参加人数</text>
+                <text class="Block Color_FFFFFF FontS_32rpx FontBold">{{ infoMain.total_people }}</text>
+                <text class="Block Color_B4B4B6 FontS_24rpx MarginT_8rpx">参加人数</text>
               </view>
               <view class="ClearL"></view>
             </view>
-            <view class="Data">
-              <image :src="$.imgSrc + '/logo1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>
-              <view class="FloatL MarginL_20rpx">
-                <text class="Block Color_FFFFFF FontS_32rpx FontBold">1291</text>
-                <text class="Block Color_606060 FontS_24rpx MarginT_8rpx">浏览</text>
+            <view class="Data TextCenter">
+              <view class="InlineBlock">
+                <image :src="$.imgSrc + '/images/history_icon1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>
+                <view class="FloatL MarginL_20rpx">
+                  <text class="Block Color_FFFFFF FontS_32rpx FontBold">{{ info.visit_count }}</text>
+                  <text class="Block Color_B4B4B6 FontS_24rpx MarginT_8rpx">浏览</text>
+                </view>
+                <view class="ClearL"></view>
               </view>
-              <view class="ClearL"></view>
             </view>
-            <view class="Data">
-              <image :src="$.imgSrc + '/logo1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>
-              <view class="FloatL MarginL_20rpx">
-                <text class="Block Color_FFFFFF FontS_32rpx FontBold">1291</text>
-                <text class="Block Color_606060 FontS_24rpx MarginT_8rpx">分享</text>
+            <view class="Data TextRight">
+              <view class="InlineBlock">
+                <image :src="$.imgSrc + '/images/share_icon1.png'" mode="aspectFit" class="FloatL MarginT_16rpx"></image>
+                <view class="FloatL MarginL_20rpx">
+                  <text class="Block Color_FFFFFF FontS_32rpx FontBold">{{ info.share_number }}</text>
+                  <text class="Block Color_B4B4B6 FontS_24rpx MarginT_8rpx">分享</text>
+                </view>
+                <view class="ClearL"></view>
               </view>
-              <view class="ClearL"></view>
             </view>
           </view>
         </view>
       </view>
-      <view class="UnitBox Width100 PaddingT_16rpx PaddingB_32rpx MarginT_30rpx BorderR_20rpx">
-        <view class="WidthGlobal1 MarginAuto">
-          <view class="UserList Width100 Flex Flex_C_S-B Flex_Warp">
-            <view class="UserUnit TextCenter MarginT_16rpx"  v-for="(item,index) in 7">
-              <view class="ImgBox InlineBlock BorderR_50 OverH">
-                <image :src="$.imgSrc + '/logo1.png'" mode="aspectFill" class="Width100 Height100"></image>
-              </view>
-              <text class="Block Text MarginT_8rpx TextHidden FontS_24rpx MarginAuto Color_FFFFFF">用户谁那是你电脑上</text>
-            </view>
-            <view class="UserUnit TextCenter MarginT_16rpx">
-              <view class="ImgBox InlineBlock BorderR_50 OverH">
-                <image :src="$.imgSrc + '/logo1.png'" mode="aspectFill" class="Width100 Height100"></image>
-              </view>
-              <text class="Block Text MarginT_8rpx TextHidden FontS_24rpx MarginAuto Color_FFFFFF">更多</text>
-            </view>
+      <view class="UnitBox UnitBox1 Width100 PaddingT_16rpx PaddingB_32rpx MarginT_30rpx BorderR_20rpx OverF_Y_A">
+        <view class="WidthGlobal1 Height100 MarginAuto">
+          <view class="UserList Width100 Height100">
+            <swiper class="Swiper Width100 Height100" circular :indicator-dots="false" @change="changeUser1" :autoplay="true" :interval="2500" :vertical="true"
+                    :duration="1000">
+              <swiper-item class="Width100 Height100 Flex Flex_C_S-B Flex_Warp" v-for="item in 10">
+                <view class="UserUnit TextCenter MarginT_16rpx"  v-for="(item,index) in showList1">
+                  <view class="ImgBox InlineBlock BorderR_50 OverH">
+                    <image :src="item.avatar" mode="aspectFill" class="Width100 Height100"></image>
+                  </view>
+                  <text class="Block Text MarginT_8rpx TextHidden FontS_24rpx MarginAuto Color_FFFFFF">{{ item.nickname }}</text>
+                </view>
+              </swiper-item>
+            </swiper>
+<!--            <view class="UserUnit TextCenter MarginT_16rpx">-->
+<!--              <view class="ImgBox InlineBlock BorderR_50 OverH">-->
+<!--                <image :src="$.imgSrc + '/logo1.png'" mode="aspectFill" class="Width100 Height100"></image>-->
+<!--              </view>-->
+<!--              <text class="Block Text MarginT_8rpx TextHidden FontS_24rpx MarginAuto Color_FFFFFF">更多</text>-->
+<!--            </view>-->
           </view>
         </view>
       </view>
@@ -192,47 +210,52 @@
       </view>
 
       <view class="SignInLog Width100">
-        <view class="Unit Width100 PaddingT_32rpx PaddingB_32rpx BorderR_20rpx MarginT_32rpx" v-for="(item,index) in 2">
-          <view class="WidthGlobal1 MarginAuto">
-            <view class="FloatL">
-              <view class="ImgBox FloatL BorderR_50 OverH">
-                <image :src="$.imgSrc + '/logo1.png'" mode="aspectFill" class="Width100 Height100"></image>
+        <swiper class="Swiper Width100 Height100" circular :indicator-dots="false" @change="changeUser2" :autoplay="true" :interval="2500" :vertical="true"
+                :duration="1000">
+          <swiper-item class="Width100 Height100" v-for="item in 10">
+            <view class="Unit Width100 PaddingT_32rpx PaddingB_32rpx BorderR_20rpx MarginT_32rpx" v-for="(item,index) in showList2">
+              <view class="WidthGlobal1 MarginAuto">
+                <view class="FloatL">
+                  <view class="ImgBox FloatL BorderR_50 OverH">
+                    <image :src="item.avatar" mode="aspectFill" class="Width100 Height100"></image>
+                  </view>
+                  <view class="FloatR TextContent">
+                    <text class="Block FontS_24rpx Color_FFFFFF">{{item.nickname}} {{item.level}} 认购成功{{item.number}}份 收益{{item.amount}}元</text>
+                    <text class="Block FontS_24rpx Color_B4B4B6 MarginT_8rpx">{{ item.created_at }}</text>
+                  </view>
+                  <view class="ClearL"></view>
+                </view>
+                <view class="FloatR MarginT_20rpx">
+                  <text class="Block FloatL FontS_36rpx FontBold Color_FFFFFF">{{item.amount}} 金币</text>
+                  <view class="ClearB"></view>
+                </view>
+                <view class="ClearB"></view>
               </view>
-              <view class="FloatL MarginL_16rpx">
-                <text class="Block FontS_24rpx Color_FFFFFF">签到获得 商城 购物</text>
-                <text class="Block FontS_24rpx Color_606060 MarginT_8rpx">12121</text>
-              </view>
-              <view class="ClearL"></view>
             </view>
-            <view class="FloatR MarginT_20rpx">
-              <text class="Block FloatL FontS_36rpx FontBold Color_FFFFFF">￥1320</text>
-              <view class="ClearB"></view>
-            </view>
-            <view class="ClearB"></view>
-          </view>
-        </view>
-        <view class="Width100 TextCenter PaddingT_40rpx PaddingB_40rpx MarginT_40rpx">
+          </swiper-item>
+        </swiper>
+        <view class="Width100 TextCenter PaddingT_40rpx PaddingB_40rpx MarginT_40rpx" v-if="list.length == 0">
           <text class="Block FontS_30rpx Color_FFFFFF">暂无记录</text>
         </view>
       </view>
       <view style="padding-bottom: 440rpx;"></view>
     </view>
-    <view class="BottomContentBox Width100">
+    <view class="BottomContentBox Width100"  v-if="info != null">
       <view class="WidthGlobal1 MarginAuto">
         <view class="FloatL">
-          <text class="Block FontS_48rpx Color_FFFFFF FontBold MarginT_16rpx">￥21515</text>
+          <text class="Block FontS_48rpx Color_FFFFFF FontBold MarginT_16rpx">￥{{ returnPrice }}</text>
           <view class="ClearB"></view>
         </view>
         <view class="NumBox FloatR MarginT_32rpx Flex Flex_C_S-B">
-          <image :src="$.imgSrc + '/logo1.png'" mode="aspectFit" class="Add FloatL"></image>
+          <image :src="$.imgSrc + '/images/add1.png'" mode="aspectFit" class="Add FloatL" @click="addS(1)"></image>
           <view class="Line Height100 MarginL_16rpx"></view>
-          <text class="Block Color_FFFFFF FontS_32rpx FontBold FloatL TextCenter Height100">1</text>
+          <text class="Block Color_FFFFFF FontS_32rpx FontBold FloatL TextCenter Height100">{{num}}</text>
           <view class="Line Height100 "></view>
-          <image :src="$.imgSrc + '/logo1.png'" mode="aspectFit" class="Add FloatL MarginL_16rpx"></image>
+          <image :src="$.imgSrc + '/images/add2.png'" mode="aspectFit" class="Add FloatL MarginL_16rpx" @click="addS(2)"></image>
           <view class="ClearL"></view>
         </view>
         <view class="ClearB"></view>
-        <view class="Btn TextCenter Width100 MarginT_22rpx" @click="info.stock != 0 ? confirmBuy():''">
+        <view class="Btn TextCenter Width100 MarginT_32rpx" @click="info.stock != 0 ? confirmBuy():''">
           <text class="Block Color_0A1136 FontS_32rpx FontBold">{{info.stock == 0 ? '已售罄' :'立即购买'}}</text>
         </view>
       </view>
@@ -241,13 +264,16 @@
 </template>
 
 <script>
+import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-bar.vue';
 	// import explain from '../../components/explain.vue'
 	export default {
 		components: {
 			// explain
+      piaoyiProgressBar
 		},
 		data() {
 			return {
+        num:1,
         $:this.$,
         dataShow:{
           '0':'天',
@@ -292,16 +318,11 @@
 				QRcode: '',
 				backImg: '',
 				posturl: '',
-        info: {
-          maxmum_investment:20,
-          name:'XIAOMIASD',
-          stock:'0',
-          details:'0',
-          images:[],
-          profit_rate:'20',
-          limit:20,
-          project_category:{name:''}
-        },
+        info: null,
+        infoMain:{},
+        list:[],
+        showList1:[],
+        showList2:[],
         vip:0
 			};
 		},
@@ -309,7 +330,7 @@
 			if (option.id) {
 				this.id = option.id
 				// this.vip = Number(option.vip)+1
-				// this.getGoodsInfo()
+				this.getGoodsInfo()
 			}
 		},
 		onShow() {
@@ -318,10 +339,30 @@
       this.bgUrl3 = "background-image:url('"+ this.$.imgUrl +"/btn2.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			// this.produictDet(this.id)
 		},
+    computed:{
+      returnPrice(){
+        return (Number(this.info.maxmum_investment) * Number(this.num)).toFixed(2)
+      },
+    },
 		methods: {
+      addS(type = 1){
+        if(type == 1){
+          if(this.num > 1){
+            this.num --
+          }
+        }else {
+          this.num ++
+        }
+      },
+      returnDayRate(item){
+        return Number(Number(item.maxmum_investment) * Number(item.profit_rate) / item.keep_days).toFixed(2)
+      },
+      returnRate(item){
+        return Number(Number(item.sales / (item.stock + item.sales)).toFixed(1))
+      },
       confirmBuy(){
         uni.navigateTo({
-          url:`/pages/Special/SpecialDetailsNeworder?id=${this.id}`
+          url:`/pages/Special/SpecialDetailsNeworder?id=${this.id}&num=${this.num}&price=${this.returnPrice}`
         })
       },
       getGoodsInfo(id) {
@@ -330,10 +371,26 @@
         }).then(res => {
           if (res.code == 200) {
             this.info = res.data.project
+            this.infoMain = res.data
+            this.list = res.data.users
+            let arr1 = this.list.slice(0, 10)
+            this.showList1 = arr1
+            let arr2 = this.list.slice(0, 10)
+            this.showList2 = arr2
           }
         }).catch(err => {
 
         })
+      },
+      changeUser1(e){
+        let index = e.detail.current
+        let arr = this.list.slice(index, index + 10)
+        this.showList1 = arr
+      },
+      changeUser2(e){
+        let index = e.detail.current
+        let arr = this.list.slice(index, index + 10)
+        this.showList2 = arr
       },
 			share(){
 				if (this.posturl) {
@@ -479,17 +536,24 @@
   }
 
   .SignInLog{
+    height: 2000rpx;
     .Unit{
       border: 2rpx solid rgba(255,255,255,0.7);
       .ImgBox{
         width: 80rpx;
         height: 80rpx;
       }
+      .TextContent{
+        width: calc(100% - 96rpx);
+      }
       .Icon{
         width: 48rpx;
         height: 48rpx;
       }
     }
+  }
+  .UnitBox1{
+    height: 340rpx;
   }
   .UnitBox{
     border: 2rpx solid #FFFFFF;
@@ -515,6 +579,7 @@
     }
     .DataList{
       .Data{
+        width: 33.33%;
         image{
           width: 48rpx;
           height: 48rpx;

@@ -595,7 +595,7 @@
 			doCheckout(){
 				return core.confirm('退出后需要重新登录','切换账号',function(){
 					if(core.logout()){
-						core.navito('login/index/logInAccount',{},2);
+						core.navito('login/index/logInMain',{},2);
 					}
 				});
 			},

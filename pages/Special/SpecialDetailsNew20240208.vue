@@ -240,7 +240,7 @@
       </view>
       <view class="ContentBox Width100">
         <view class="WidthGlobal1 MarginAuto PaddingB_48rpx PaddingT_32rpx">
-          <text class="Block Title Color_FFFFFF FontS_32rpx">作品详情</text>
+          <text class="Block Title Color_FFFFFF FontS_32rpx">详情</text>
           <view class="Width100 PaddingT_40rpx PaddingB_40rpx" v-html="info.details">
 
           </view>

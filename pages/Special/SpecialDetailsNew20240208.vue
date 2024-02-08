@@ -359,6 +359,9 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
             this.num --
           }
         }else {
+          if(this.info.stock == this.num){
+            return
+          }
           this.num ++
         }
       },

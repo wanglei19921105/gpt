@@ -26,10 +26,10 @@
               <view class="ClearB"></view>
               <view class="MarginT_12rpx Width100">
                 <view class="Tag FloatL BorderR_4rpx">
-                  <text class="Block FontBold FontS_24rpx Color_64340B">投资周期: 10天</text>
+                  <text class="Block FontBold FontS_24rpx Color_64340B">投资周期: {{ item.project.keep_days }}天</text>
                 </view>
                 <view class="FloatR">
-                  <text class="Block FontBold FontS_32rpx Color_F52A2B TextRight">0.5%</text>
+                  <text class="Block FontBold FontS_32rpx Color_F52A2B TextRight">{{ item.project.profit_rate}}%</text>
                   <text class="Block FontBold FontS_28rpx Color_868789 MarginT_4rpx">日收益率</text>
                 </view>
                 <view class="ClearB"></view>
@@ -41,32 +41,33 @@
         </view>
         <view class="WidthGlobal1 MarginAuto">
           <view class="Width100 MarginT_30rpx">
-            <text class="Block FontS_28rpx Color_C8C9CB FloatL">每日收益</text>
-            <text class="Block FontS_36rpx FontBold Color_FFC393 FloatR">￥999.00</text>
+            <text class="Block FontS_28rpx Color_C8C9CB FloatL">当日收益</text>
+            <text class="Block FontS_36rpx FontBold Color_FFC393 FloatR">￥{{ item.amount }}</text>
             <view class="ClearB"></view>
           </view>
           <view class="Width100 MarginT_30rpx">
             <text class="Block FontS_28rpx Color_C8C9CB FloatL">共计收益</text>
-            <text class="Block FontS_28rpx Color_FFFFFF FloatR">{{ item.cashback_date }}</text>
+            <text class="Block FontS_36rpx Color_FFC393 FloatR">{{ Math.floor(item.project.maxmum_investment * item.project.profit_rate / 100)  }}</text>
             <view class="ClearB"></view>
           </view>
           <view class="Width100 MarginT_30rpx">
             <text class="Block FontS_28rpx Color_C8C9CB FloatL">投资金额</text>
-            <text class="Block FontS_28rpx Color_FFFFFF FloatR">{{ item.cashback_date }}</text>
+            <text class="Block FontS_28rpx Color_FFC393 FloatR">{{ item.project.maxmum_investment }}</text>
             <view class="ClearB"></view>
           </view>
-          <view class="TextCenter MarginT_32rpx Width100">
-            <view class="InlineBlock">
-              <text class="Block FontS_28rpx Color_C8C9CB FloatL">投资详情</text>
-              <image :src="$.imgSrc + '/images/right_icon1.png'" mode="aspectFit" class="RightIcon MarginT_4rpx MarginL_8rpx"></image>
-              <view class="ClearB"></view>
-            </view>
-          </view>
-<!--          <view class="Width100 MarginT_30rpx">-->
-<!--            <text class="Block FontS_28rpx Color_C8C9CB FloatL">交易时间</text>-->
-<!--            <text class="Block FontS_28rpx Color_FFFFFF FloatR">{{ item.cashback_date }}</text>-->
-<!--            <view class="ClearB"></view>-->
-<!--          </view>-->
+          
+         <view class="Width100 MarginT_30rpx">
+           <text class="Block FontS_28rpx Color_C8C9CB FloatL">返现时间</text>
+           <text class="Block FontS_28rpx Color_FFFFFF FloatR">{{ item.cashback_date }}</text>
+           <view class="ClearB"></view>
+         </view>
+		 <!-- <view class="TextCenter MarginT_32rpx Width100" >
+		   <view class="InlineBlock">
+		     <text class="Block FontS_28rpx Color_C8C9CB FloatL">投资详情</text>
+		     <image :src="$.imgSrc + '/images/right_icon1.png'" mode="aspectFit" class="RightIcon MarginT_4rpx MarginL_8rpx"></image>
+		     <view class="ClearB"></view>
+		   </view>
+		 </view> -->
         </view>
       </view>
     </view>

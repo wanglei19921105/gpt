@@ -20,7 +20,7 @@
           <view class="BuyTitle TextCenter">
             <view class="InlineBlock">
               <view class="TopLine1 FloatL"></view>
-              <text class="Block FontS_32rpx Color_FFFFFF FontBold FloatL MarginL_35rpx">兑换记录</text>
+              <text class="Block FontS_32rpx Color_FFFFFF FontBold FloatL MarginL_35rpx">兑换动态</text>
               <view class="TopLine2 FloatL MarginL_35rpx"></view>
               <view class="ClearL"></view>
             </view>
@@ -32,9 +32,15 @@
               </view>
               <view class="TextBox FloatR">
                 <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginT_4rpx">{{ item.name }}</text>
+				<text class="Block FloatR FontS_24rpx Color_FFFFFF MarginT_4rpx">兑换 {{item.project_name}}</text>
+				
                 <view class="ClearL"></view>
                 <text class="Block FloatL FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.mobile }}</text>
-                <text class="Block FloatR FontS_24rpx Color_B4B4B6">{{ item.created_at }}</text>
+                <!-- <text class="Block FloatR FontS_24rpx Color_B4B4B6">{{ item.project_name }}</text>
+                <text class="Block FloatR FontS_24rpx Color_B4B4B6">{{ item.created_at }}</text> -->
+				
+				<!-- <text class="Block FloatR FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.project_name }}</text> -->
+				<text class="Block FloatR FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.created_at }} 兑换成功</text>
                 <view class="ClearL"></view>
               </view>
               <view class="ClearL"></view>

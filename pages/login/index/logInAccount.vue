@@ -90,8 +90,8 @@
         $:this.$,
         isShowPsw:false,
 				params: {
-					login_account: '18837925625',
-					password: 'Qq5158'
+					login_account: '',
+					password: ''
           // login_account: '',
           // password: ''
 				},

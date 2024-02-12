@@ -4,7 +4,7 @@
       <view class="Unit Width100 PaddingT_32rpx BG_171717 PaddingB_32rpx BorderR_20rpx MarginT_32rpx" v-for="(item,index) in signInLog">
         <view class="WidthGlobal1 MarginAuto">
           <view class="FloatL">
-            <text class="Block FontS_36rpx Color_FFFFFF">签到获得 商城 购物{{ item.type == 1 ? '积分':'红包' }}</text>
+            <text class="Block FontS_36rpx Color_FFFFFF">签到获得{{ item.type == 1 ? '可购物积分':'微信现金红包' }}</text>
             <text class="Block FontS_28rpx Color_FFFFFF MarginT_8rpx">{{ item.created_at }}</text>
           </view>
           <view class="FloatR MarginT_20rpx">

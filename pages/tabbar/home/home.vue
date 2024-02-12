@@ -21,13 +21,13 @@
 		</view> -->
 		<view class="u-p-t-30 u-p-b-20 u-p-l-0 u-p-r-0">
       <view class="SwiperBox PositionR">
-        <swiper class="Swiper" circular :indicator-dots="false" :autoplay="false" :interval="2000"
+        <swiper class="Swiper" circular :indicator-dots="false" :autoplay="true" :interval="2000"
                 :duration="500" @change="changeBanner" previous-margin="20rpx" next-margin="20rpx">
           <swiper-item class="Width100 Transition_100ms" :class="index === currBanner ? 'Height100':'Height_30rpx'" v-for="(item,index) in list" :key="index">
             <view class="PositionR Item MarginAuto BorderR_8rpx OverH Transition_100ms"  :class="index === currBanner ? 'Height100':'Height_30rpx'">
               <image :src="item.pic" mode="aspectFill" class="Width100 Height100"></image>
-              <!--            -->
-              <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 1">
+              <!--    总注册会员        -->
+              <!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 1">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   总注册会员
                 </text>
@@ -37,8 +37,8 @@
                 <!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
                 <!--                  欢迎加入，造福全人类的AGI-->
                 <!--                </text>-->
-              </view>
-              <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 2">
+              <!-- </view> -->
+             <!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 2">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   总签到人数
                 </text>
@@ -48,18 +48,18 @@
 <!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
 <!--                  欢迎加入，造福全人类的AGI-->
 <!--                </text>-->
-              </view>
-              <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 3">
+              <!-- </view> -->
+              <!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 3">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   会员申购总额
                 </text>
                 <text class="Block Color_FFFFFF FontS_62rpx FontBold Font1">
                   {{ totalData.total_user }}
-                </text>
+                </text> -->
                 <!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
                 <!--                  欢迎加入，造福全人类的AGI-->
                 <!--                </text>-->
-              </view>
+              <!-- </view> -->
               <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 4">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   累计赠送福利
@@ -249,12 +249,12 @@
                   <view class="ClearB"></view>
                 </view>
               </view>
-              <text class="Block FloatR FontS_36rpx Color_FFC393 FontBold">{{(item.maxmum_investment)}} 金币</text>
+              <text class="Block FloatR FontS_36rpx Color_FFC393 FontBold">￥{{(item.maxmum_investment)}} </text>
               <view class="ClearB"></view>
               <view class="TagList MarginT_40rpx">
-                <view class="Tag2 FloatL MarginR_32rpx TextCenter" :style="bgUrl1">
+               <!-- <view class="Tag2 FloatL MarginR_32rpx TextCenter" :style="bgUrl1">
                   <text class="Block FontS_20rpx FontBold Color_000000" >{{ (item.level || {}).name }}</text>
-                </view>
+                </view> -->
                 <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
                   <text class="Block FontS_20rpx FontBold FloatL Color_000000">限购份数</text>
                   <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{item.limit}}</text>
@@ -262,7 +262,7 @@
                 </view>
                 <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
                   <text class="Block FontS_20rpx FontBold FloatL Color_000000">日化利率</text>
-                  <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ returnDayRate(item) + '%' }}</text>
+                  <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ item.profit_rate + '%' }}</text>
                   <view class="ClearL"></view>
                 </view>
                 <view class="ClearL"></view>
@@ -343,10 +343,10 @@
                   <text class="Color_B4B4B6 Block FontS_24rpx">起购份数</text>
                   <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{item.min_buy }}</text>
                 </view>
-                <view class="DataUnit1 TextCenter">
+              <!--  <view class="DataUnit1 TextCenter">
                   <text class="Color_B4B4B6 Block FontS_24rpx">投资周期</text>
                   <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ item.keep_days }}天</text>
-                </view>
+                </view> -->
                 <view class="DataUnit1 TextCenter">
                   <text class="Color_FFFFFF Block FontS_24rpx">可购等级</text>
                   <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ (item.level || {}).name }}</text>
@@ -494,10 +494,15 @@
 		},
 		methods: {
       returnDayRate(item){
-        return Number(Number(item.maxmum_investment) * Number(item.profit_rate) / item.keep_days).toFixed(2)
+        return Number(Number(item.maxmum_investment) * Number(item.profit_rate/100) / item.keep_days).toFixed(2)
       },
       returnRate(item){
-        return Number(item.sales / (item.stock + item.sales)).toFixed(0)
+        var rate =  Number(item.sales / (item.stock + item.sales)).toFixed(2)
+		if(rate > item.virtual_progress)
+		{
+			return rate;
+		}
+		return item.virtual_progress
       },
       changeBanner(e){
         console.log(e)
@@ -519,10 +524,10 @@
 			getHomedata() { //首页信息 接口
 				this.$u.api.home_index().then(res => {
           this.list = []
-          this.list.push({id:1111,link:null,pic:this.$.imgUrl + '/banner1.png',show_type:1,bannerType:1})
+          // this.list.push({id:1111,link:null,pic:this.$.imgUrl + '/banner1.png',show_type:1,bannerType:1})
           // this.list.push({id:2222,link:null,pic:this.$.imgUrl + '/banner2.png',show_type:1,bannerType:2})
           // this.list.push({id:3333,link:null,pic:this.$.imgUrl + '/banner3.png',show_type:1,bannerType:3})
-          this.list.push({id:4444,link:null,pic:this.$.imgUrl + '/banner4.png',show_type:1,bannerType:4})
+          // this.list.push({id:4444,link:null,pic:this.$.imgUrl + '/banner4.png',show_type:1,bannerType:4})
 					// this.list = res.data.banners
           for(let a = 0; a < res.data.banners.length; a++){
             res.data.banners[a].bannerType = ''

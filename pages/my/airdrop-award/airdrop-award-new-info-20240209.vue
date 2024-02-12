@@ -3,10 +3,10 @@
     <view class="BannerBox Width100 PositionR PaddingT_1rpx" :style="bgUrl1" v-if="info != null">
 <!--      传奇-->
 <!--      <image :src="$.imgSrc + '/images/chuanqi1.png'" mode="aspectFill" class="ChuanQi PositionA"></image>-->
-      <view class="ImgBox BorderR_20rpx OverH">
+      <view class="ImgBox" style="height: 100%;width: 100%">
         <swiper class="swiper Width100 Height100" circular :indicator-dots="false" :autoplay="true" :interval="2000"
                 :duration="500">
-          <swiper-item v-for="(item,index) in info.goods.carousel_images">
+          <swiper-item v-for="(item,index) in [info.goods.main_image]">
             <image :src="item" mode="aspectFill" class="Width100 Height100"></image>
           </swiper-item>
         </swiper>
@@ -23,17 +23,19 @@
             <view class="TagList MarginT_40rpx">
               <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
                 <text class="Block FontS_20rpx FontBold FloatL Color_000000">库存</text>
-                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{info.limit}}</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{info.goods.limit}}</text>
                 <view class="ClearL"></view>
               </view>
               <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
                 <text class="Block FontS_20rpx FontBold FloatL Color_000000">类型</text>
-                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ returnDayRate(info) + '%' }}</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000" v-if="info.goods.type ==0">金币</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000" v-if="info.goods.type ==1">现金</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000" v-if="info.goods.type ==2">实物</text>
                 <view class="ClearL"></view>
               </view>
               <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
                 <text class="Block FontS_20rpx FontBold FloatL Color_000000">已兑</text>
-                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ returnDayRate(info) + '%' }}</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ info.goods.sold }}</text>
                 <view class="ClearL"></view>
               </view>
               <view class="ClearL"></view>

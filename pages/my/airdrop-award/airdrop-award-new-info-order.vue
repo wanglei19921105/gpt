@@ -71,14 +71,7 @@
 			return {
         $:this.$,
         num:1,
-        addressInfo:{
-          name:'小明',
-          mobile:'13012341234',
-          isDefault:true,
-          id:'1',
-          region:'山东青岛',
-          region_code:'李沧'
-        },
+        addressInfo:null,
         info:null,
         bgUrl1:'',
         bgUrl2:'',

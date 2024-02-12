@@ -3,10 +3,10 @@
     <view class="BannerBox Width100 PositionR PaddingT_1rpx" :style="bgUrl1" v-if="info != null">
 <!--      传奇-->
 <!--      <image :src="$.imgSrc + '/images/chuanqi1.png'" mode="aspectFill" class="ChuanQi PositionA"></image>-->
-      <view class="ImgBox BorderR_20rpx OverH">
+      <view class="ImgBox " style="width: 100%;height: 100%">
         <swiper class="swiper Width100 Height100" circular :indicator-dots="false" :autoplay="true" :interval="2000"
                 :duration="500">
-          <swiper-item v-for="(item,index) in info.images">
+          <swiper-item v-for="(item,index) in [info.cover_image]">
             <image :src="item" mode="aspectFill" class="Width100 Height100"></image>
           </swiper-item>
         </swiper>
@@ -15,7 +15,7 @@
     <view class="Content PositionA WidthGlobal1" v-if="info != null">
       <view class="Top Width100 BorderR_20rpx">
         <view class="Money WidthGlobal1 MarginAuto">
-          <text class="Block FontBold Color_FFC393 FontS_48rpx">{{info.maxmum_investment}}金币</text>
+          <text class="Block FontBold Color_FFC393 FontS_48rpx">￥{{info.maxmum_investment}}</text>
         </view>
         <view class="TopBottom Width100 PaddingT_32rpx PaddingB_32rpx BG_171717 BorderR_20rpx MarginT_16rpx">
           <view class="WidthGlobal1 MarginAuto">
@@ -100,9 +100,9 @@
 <!--            </view>-->
 
             <view class="TagList MarginT_40rpx">
-              <view class="Tag2 FloatL MarginR_32rpx TextCenter" :style="bgUrl4">
+             <!-- <view class="Tag2 FloatL MarginR_32rpx TextCenter" :style="bgUrl4">
                 <text class="Block FontS_20rpx FontBold Color_000000" >{{ (info.level || {}).name }}</text>
-              </view>
+              </view> -->
               <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
                 <text class="Block FontS_20rpx FontBold FloatL Color_000000">限购份数</text>
                 <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{info.limit}}</text>
@@ -110,7 +110,7 @@
               </view>
               <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
                 <text class="Block FontS_20rpx FontBold FloatL Color_000000">日化利率</text>
-                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ returnDayRate(info) + '%' }}</text>
+                <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ info.profit_rate + '%' }}</text>
                 <view class="ClearL"></view>
               </view>
               <view class="ClearL"></view>
@@ -195,10 +195,10 @@
                 <text class="Color_B4B4B6 Block FontS_24rpx">投资周期</text>
                 <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ info.keep_days }}天</text>
               </view>
-              <view class="DataUnit1 TextCenter">
+             <!-- <view class="DataUnit1 TextCenter">
                 <text class="Color_FFFFFF Block FontS_24rpx">可购等级</text>
                 <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ (info.level || {}).name }}</text>
-              </view>
+              </view> -->
             </view>
           </view>
         </view>
@@ -207,7 +207,7 @@
         <view class="BuyTitle TextCenter">
           <view class="InlineBlock">
             <view class="TopLine1 FloatL"></view>
-            <text class="Block FontS_32rpx Color_FFFFFF FontBold FloatL MarginL_35rpx">购买记录</text>
+            <text class="Block FontS_32rpx Color_FFFFFF FontBold FloatL MarginL_35rpx">购买动态</text>
             <view class="TopLine2 FloatL MarginL_35rpx"></view>
             <view class="ClearL"></view>
           </view>
@@ -219,7 +219,7 @@
             </view>
             <view class="TextBox FloatR">
               <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginT_4rpx">{{ item.nickname }}</text>
-              <text class="Block FloatR FontS_24rpx Color_FFFFFF MarginT_4rpx">{{item.level}}</text>
+              <text class="Block FloatR FontS_24rpx Color_FFFFFF MarginT_4rpx">投资 {{item.quantity}} 份 {{item.amount}} 元</text>
               <view class="ClearL"></view>
               <text class="Block FloatL FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.mobile }}</text>
               <text class="Block FloatR FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.created_at }}</text>
@@ -396,6 +396,23 @@
         </view>
       </view>
     </view>
+	<view class="AlertBox Width100 Height100" v-if="isShowPsw" @click="closeBox">
+	  <view class="PositionA Content BorderR_30rpx" style="margin-left: 46%;" @click.stop="">
+	    <view class="WidthGlobal1 MarginAuto">
+	      <text class="Block FontS_36rpx FontBold Color_FFFFFF">交易密码</text>
+	      <view class="InputBox Width100 MarginT_30rpx">
+	        <input v-model="security_password" type="password" placeholder="请输入交易密码" class="Width100 MarginT_10rpx FontS_26rpx Color_FFFFFF">
+	      </view>
+	      <view class="Width100 TextCenter">
+	        <view class="InlineBlock">
+	          <view class="Btn TextCenter MarginAuto MarginT_40rpx BorderR_10rpx" @click="buyConfirm" >
+	            <text class="Block FontS_30rpx FontBold Color_0A1136">确认</text>
+	          </view>
+	        </view>
+	      </view>
+	    </view>
+	  </view>
+	</view>
 	</view>
 </template>
 
@@ -410,6 +427,7 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
 		data() {
 			return {
         num:1,
+		isShowPsw:false,
         $:this.$,
         dataShow:{
           '0':'天',
@@ -455,6 +473,9 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
 				backImg: '',
 				posturl: '',
         bgUrl4: '',
+		security_password: '',
+		orderId:'',
+		isDisabled:false,
         info: null,
         infoMain:{},
         list:[],
@@ -495,17 +516,55 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
           this.num ++
         }
       },
+	  closeBox(){
+	    this.isShowPsw = false
+	    this.isDisabled = false
+	  },
       returnDayRate(item){
-        return Number(Number(item.maxmum_investment) * Number(item.profit_rate) / item.keep_days).toFixed(2)
+        return Number(Number(item.maxmum_investment) * Number(item.profit_rate/100) / item.keep_days).toFixed(2)
       },
       returnRate(item){
-        return Number(Number(item.sales / (item.stock + item.sales)).toFixed(1))
+        const rate =  Number(Number(item.sales / (item.stock + item.sales)).toFixed(2));
+		if(rate > item.virtual_progress)
+		{
+			return rate;
+		}
+		return item.virtual_progress;
       },
       confirmBuy(){
-        uni.navigateTo({
-          url:`/pages/Special/SpecialDetailsNeworder?id=${this.id}&num=${this.num}&price=${this.returnPrice}`
-        })
+        // uni.navigateTo({
+        //   url:`/pages/Special/SpecialDetailsNeworder?id=${this.id}&num=${this.num}&price=${this.returnPrice}`
+        // })
+		console.log(2222)
+		this.isShowPsw = true;
+		this.showBox()
       },
+	  buyConfirm(){
+	    if(this.isDisabled){
+	      return
+	    }
+	    this.isDisabled = true
+	    this.$u.api.getProjectGoodsInfoOrderBuy({
+	      id:this.orderId,
+	      security_password:this.security_password
+	    }).then(ress => {
+	      if (ress.code == 200) {
+	        this.security_password = ''
+	        this.$.toast(ress.message)
+	        this.closeBox()
+	        setTimeout(() => {
+	          this.$.open('/pages/Special/SpecialDetailsNewOrderlog')
+	          this.isDisabled = false
+	          // this.$.back()
+	        },1500)
+	      }else{
+	        this.$.toast(ress.message)
+	        this.isDisabled = false
+	      }
+	    }).catch(err => {
+	      this.isDisabled = false
+	    })
+	  },
       getGoodsInfo(id) {
         this.$u.api.getProjectGoodsInfo({
           'id': this.id
@@ -581,9 +640,11 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
 			},
 			// 立即购买按钮	 this.product_cast.id
 			buy(data) {
-				uni.navigateTo({
-					url:`/pages/Special/Special-buy?id=${this.product_cast.id}`
-				})
+				// uni.navigateTo({
+				// 	url:`/pages/Special/Special-buy?id=${this.product_cast.id}`
+				// })
+				this.isShowPsw = true
+				
 			},
 			// 收藏/数量
 			likeCli(id) {
@@ -630,7 +691,32 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
 						this.goodsData.status = 0
 					}).catch(err => {})
 				}
-			}
+			},
+	
+			showBox(){
+			  if(this.orderId){
+			    this.isShowPsw = true
+			    return;
+			  }
+			  if(this.isDisabled){
+			    return
+			  }
+			  this.$u.api.getProjectGoodsInfoOrder({
+			    project_id:this.id,
+			    total:this.num
+			  }).then(res => {
+			    if (res.code == 200) {
+			      this.orderId = res.data.id
+			      this.isDisabled = false
+			      this.isShowPsw = true
+			    }else{
+			      this.isDisabled = false
+			      this.$.toast(res.message)
+			    }
+			  }).catch(err => {
+			
+			  })
+			},
 		}
 	}
 </script>
@@ -871,6 +957,522 @@ import piaoyiProgressBar from '@/components/piaoyi-progress-bar/piaoyi-progress-
     border: 2rpx solid #FFFFFF;
     border-radius: 30rpx;
     //border-image: linear-gradient(127deg, rgba(178, 186, 190, 1), rgba(61, 61, 61, 1), rgba(230, 237, 239, 1)) 1 1;
+  }
+}
+	.xiangou{
+		padding: 8rpx 10rpx;
+		border-radius: 10rpx;
+		font-size: 22rpx;
+		border: 1rpx solid #EEEEEE;
+		background-color: #EEEEEE;
+		color: #090A0D;
+	}
+	.my-u-tag{
+		// border-radius: 0rpx;
+		transform: skewX(-15deg);
+		/deep/ .u-tag-text {
+			display: inline-block;
+			// transform: skewX(15deg);
+		}
+	}
+	.title_right {
+		display: flex;
+		align-items: center;
+
+		.like_num {
+			// color: #333333;
+			font-size: 26rpx;
+			margin: 0 36rpx 0 12rpx;
+		}
+
+		image {
+			width: 38rpx;
+		}
+	}
+
+	.head {
+		image {
+			width: 100%;
+			height: 750rpx !important;
+			box-sizing: border-box;
+		}
+		.head_main3d{
+			// transform: translateY(-60rpx);
+			border-radius: 20rpx;
+			// background-color: #fff;
+			margin: 30rpx;
+			padding: 40rpx 32rpx;
+		}
+		.head_cent{
+			padding-top: 80rpx;
+			margin: 30rpx;
+			position: relative;
+		}
+		.head_upperpart{
+			width: 100%;
+			height: 150rpx;
+			background: linear-gradient(90deg, #696969 0%, #090A0D 100%);
+			border-radius: 24rpx;
+			position: absolute;
+			top: 0;
+			left: 0;
+			.price_number {
+				font-size: 38rpx;
+				margin-top: 18rpx;
+				margin-left: 18rpx;
+				color: #fff;
+				.symbol {
+					font-size: 24rpx;
+				}
+			}
+		}
+		.head_main {
+			width: 100%;
+			// transform: translateY(-60rpx);
+			border-radius: 20rpx;
+			// background-color: #fff;
+			padding: 40rpx 32rpx 40rpx;
+			position: relative;
+			.main_flex {
+				display: flex;
+				justify-content: space-between;
+
+				.main_name {
+					font-size: 32rpx;
+					font-weight: bold;
+					// color: #111111;
+				}
+
+				.instock {
+					font-size: 24rpx;
+					// color: #999999;
+				}
+			}
+
+			.content {
+				// color: #666666;
+				font-size: 26rpx;
+				margin-top: 42rpx;
+			}
+		}
+	}
+
+	.author {
+		margin: 24rpx 30rpx;
+		border-radius: 20rpx;
+		// background-color: #fff;
+		padding: 34rpx 30rpx 40rpx;
+
+		.author_top {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			.author_top_left {
+				display: flex;
+				align-items: center;
+
+				.avatar {
+					width: 70rpx;
+					height: 70rpx;
+					border-radius: 50%;
+					overflow: hidden;
+
+					image {
+						width: 100%;
+					}
+				}
+
+				.active_info {
+					margin-left: 24rpx;
+
+					.active_name {
+						// color: #111111;
+						font-size: 28rpx;
+						font-weight: bold;
+
+						.arrow {
+							width: 12rpx;
+							margin-left: 14rpx;
+						}
+					}
+
+					.fans {
+						margin-top: 16rpx;
+						font-size: 22rpx;
+						// color: #999999;
+					}
+
+				}
+			}
+
+			.focuson {
+				width: 100rpx;
+				height: 46rpx;
+				border: 1px solid #764E39;
+				color: #764E39;
+				font-size: 22rpx;
+				text-align: center;
+				line-height: 46rpx;
+				border-radius: 24rpx;
+				font-weight: 500;
+				// margin-right: 30rpx;
+			}
+
+			.unsubscribe {
+				width: 120rpx;
+				height: 46rpx;
+				line-height: 46rpx;
+				text-align: center;
+				border-radius: 24rpx;
+				border: 1px solid #A2A2A2;
+				color: #999999;
+				font-size: 22rpx;
+				font-weight: 500;
+				// margin-right: 30rpx;
+			}
+		}
+
+		.active_content {
+			// color: #666666;
+			font-size: 26rpx;
+			margin-top: 38rpx;
+			line-height: 1.6;
+		}
+	}
+
+	.certification {
+		// background-color: #fff;
+		margin: 24rpx 30rpx;
+		border-radius: 20rpx;
+		padding: 32rpx 30rpx 0;
+
+		.info_item {
+			height: 100rpx;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			border-bottom: solid 2rpx;
+			&:last-child {
+				border-bottom: none;
+			}
+
+			.item_name {
+				// color: #999999;
+				font-size: 27rpx;
+				width: 280rpx;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+
+			.item_value {
+				display: flex;
+				align-items: center;
+				// color: #333333;
+				font-size: 29rpx;
+				justify-content: flex-end;
+			}
+
+			.item_valuetext {
+				width: 300rpx;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				text-align: right;
+			}
+
+			.copy_img {
+				width: 22rpx;
+				margin-left: 20rpx;
+			}
+		}
+
+		// .info_item+.info_item {
+		// 	// border-top: 1px solid #F2F2F2;
+		// }
+	}
+
+	.buy {
+		// background-color: #fff;
+		margin-top: 52rpx;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 24rpx 0 32rpx;
+		width: 750rpx;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		z-index: 10;
+		border-top: solid 1rpx;
+		padding: 15rpx 30rpx;
+
+		.buy-countdown{
+			font-size: 30rpx;
+			// color: #764e39;
+		}
+
+		.buy-content{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			margin-top: 15rpx;
+		}
+
+		.price {
+			display: flex;
+			align-items: center;
+
+			.price_text {
+				// color: #333333;
+				font-size: 26rpx;
+			}
+
+			.price_number {
+				font-size: 38rpx;
+				margin-left: 18rpx;
+
+				.symbol {
+					font-size: 24rpx;
+				}
+			}
+		}
+
+		.buy_btn {
+			min-width: 200rpx;
+			padding: 0 30rpx;
+			height: 78rpx;
+			background-color: #764E39;
+			color: #fff;
+			line-height: 78rpx;
+			text-align: center;
+			font-size: 28rpx;
+			border-radius: 10rpx;
+		}
+
+		// 已售罄
+		// .soldout {
+		// 	background-color: #D2D2D2;
+		// }
+	}
+
+	.popup_title {
+		font-size: 30rpx;
+		color: #999999;
+		text-align: center;
+		margin-top: 54rpx;
+	}
+
+	.popup_flex {
+		display: flex;
+		justify-content: space-around;
+		margin-top: 86rpx;
+
+		.popup_item {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+
+			image {
+				width: 90rpx;
+			}
+
+			.popup_text {
+				color: #333333;
+				font-size: 24rpx;
+				margin-top: 20rpx;
+			}
+		}
+	}
+
+	.cancel {
+		margin: 90rpx 30rpx 0;
+		background-color: #764E39;
+		height: 90rpx;
+		text-align: center;
+		line-height: 90rpx;
+		color: #fff;
+		font-size: 32rpx;
+		border-radius: 10rpx;
+	}
+	.AlertBox{
+	  position: fixed;
+	  left: 0;
+	  top: 0;
+	  z-index: 999;
+	  background-color: rgba(0,0,0,0.5);
+	  .Content{
+	    width: calc(100% - 200rpx);
+	    padding: 60rpx 0rpx;
+	    background: linear-gradient(270deg, #0C0C0F 0%, #282C37 100%);
+	    .Btn{
+	      width: 200rpx;
+	      height: 76rpx;
+	      border-radius: 76rpx;
+	      line-height: 76rpx;
+	      background: linear-gradient(90deg, #EC7CFF 0%, #5FF6FF 100%);
+	
+	    }
+	    .InputBox{
+	      border-bottom: 2rpx solid #FFFFFF;
+	      padding-bottom: 20rpx;
+	      //width: calc(100% - 200rpx);
+	    }
+	  }
+	}
+</style>
+
+<style lang="scss" scoped>
+.AlertBox{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background-color: rgba(0,0,0,0.5);
+  .Content{
+    width: calc(100% - 200rpx);
+    padding: 60rpx 0rpx;
+    background: linear-gradient(270deg, #0C0C0F 0%, #282C37 100%);
+    .Btn{
+      width: 200rpx;
+      height: 76rpx;
+      border-radius: 76rpx;
+      line-height: 76rpx;
+      background: linear-gradient(90deg, #EC7CFF 0%, #5FF6FF 100%);
+
+    }
+    .InputBox{
+      border-bottom: 2rpx solid #FFFFFF;
+      padding-bottom: 20rpx;
+      //width: calc(100% - 200rpx);
+    }
+  }
+}
+.address {
+  padding: 30rpx;
+  .RightIcon{
+    width: 40rpx;
+    height: 40rpx;
+  }
+}
+.DHXZ{
+  image{
+    width: 28rpx;
+    height: 28rpx;
+  }
+}
+.GoodsInfo{
+  background-color: #17191F;
+  padding:50rpx 0rpx;
+  .ImgBox{
+    width: 100rpx;
+    height: 100rpx;
+  }
+  .TextBox{
+    width: calc(100% - 140rpx);
+  }
+}
+.BottomContentBox{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  height: 300rpx;
+  background-color: #0C0D0F;
+  border-top: 2rpx solid #FFFFFF;
+  .NumBox{
+    padding: 0rpx 16rpx;
+    border: 2rpx solid #FFFFFF;
+    border-radius: 16rpx;
+    width: 218rpx;
+    height: 68rpx;
+    text{
+      line-height: 68rpx;
+      width: 54rpx;
+    }
+    .Line{
+      width: 2rpx;
+      background:linear-gradient(to top, rgba(159,159,159,0), rgba(159,159,159,0.50), rgba(159,159,159,1), rgba(159,159,159,0.25), rgba(159,159,159,0));
+    }
+    image{
+      width: 48rpx;
+      height: 48rpx;
+    }
+  }
+  .Btn{
+    height: 92rpx;
+    border-radius: 92rpx;
+    background: linear-gradient(90deg, #EC7CFF 0%, #5FF6FF 100%);
+    text{
+      line-height: 92rpx;
+    }
+  }
+}
+.ContentBox{
+  .Copy{
+    width: 40rpx;
+    height: 40rpx;
+  }
+}
+.TagList{
+  .Tag{
+    height: 42rpx;
+    padding: 0rpx 16rpx;
+    background: linear-gradient(270deg, #EBD0A4 0%, #F9E9CE 100%);
+  }
+  text{
+    line-height: 42rpx;
+  }
+}
+.ClassList{
+  .Unit{
+    .Line{
+      width: 4rpx;
+      height: 32rpx;
+      background: linear-gradient(180deg, #6D29FF 0%, #2957FB 33%, #38FFFF 67%, #01B3FF 100%);
+    }
+  }
+}
+.BorderB{
+  border-bottom: 2rpx solid #2F2F2F;
+}
+.SB{
+  .ImgBox{
+    width: 80rpx;
+    height: 80rpx;
+  }
+  .RightIcon{
+    width: 32rpx;
+    height: 32rpx;
+  }
+  .GZBtn{
+    width: 104rpx;
+    height: 48rpx;
+    background: rgba(22,21,26,0.2);
+    opacity: 1;
+    border: 2rpx solid #FFFFFF;
+    border-radius: 30rpx;
+    //border-image: linear-gradient(127deg, rgba(178, 186, 190, 1), rgba(61, 61, 61, 1), rgba(230, 237, 239, 1)) 1 1;
+  }
+}
+.BannerBox{
+  height: 874rpx;
+  margin-top: -88rpx;
+  .ChuanQi{
+    width: 96rpx;
+    height: 96rpx;
+    right: 48rpx;
+    top: 136rpx;
+  }
+  .ImgBox{
+    width: 402rpx;
+    height: 518rpx;
+    margin: 0 auto;
+    margin-top: 132rpx;
   }
 }
 	.xiangou{

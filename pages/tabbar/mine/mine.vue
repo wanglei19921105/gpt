@@ -43,7 +43,7 @@
 					<view class="u-m-l-30">
 						<view class="u-m-t-0">
 							<text class="u-font-38 u-m-r-20">{{userData.nickname}}</text>
-							<u-tag :text="userData.level_name" mode="dark" type="success" />
+							<!-- <u-tag :text="userData.level_name" mode="dark" type="success" /> -->
 						</view>
 						<view class="u-m-t-10 id-tab-no-bg">
 							<!-- <text class="u-font-24 text-content">邀请码：{{userData.invite_code || 0}}</text>

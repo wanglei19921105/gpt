@@ -18,7 +18,7 @@
 				<view class="card_name">{{item.note}}</view>
 				<view class="card_time text-content">{{item.created_at}}</view>
 			</view>
-			<view :class="item.status==1?'color-green':'color-red'">{{item.status==1?'+':'-'}} {{item.num}}</view>
+			<view :class="item.status==1?'color-green':'color-red'">{{item.status==1?'+':'-'}} {{parseInt(item.num)}}</view>
 		</view>
 		<empty v-if="itemData.length < 1"></empty>
 		<u-toast ref="uToast" />

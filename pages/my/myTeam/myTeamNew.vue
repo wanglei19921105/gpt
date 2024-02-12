@@ -81,12 +81,12 @@
 
 
 
-		<view class="tishi">提示：佣金显示为下级所获得的佣金金额，本人获得的佣金金额请在钱包中查看。</view>
+		<!-- <view class="tishi">提示：佣金显示为下级所获得的佣金金额，本人获得的佣金金额请在钱包中查看。</view>
 		<view class="flex rank-rule" @click="activityRule">
 			<view style="color:#747982">注：查看</view>
 			<view>《活动规则与奖励说明》</view>
-		</view>
-    <view class="BottomContentBox Width100">
+		</view> -->
+    <!-- <view class="BottomContentBox Width100">
       <view class="WidthGlobal4 MarginAuto">
         <view class="rankheat-myRank flex justify-between align-center">
           <view>{{users.ranking == null?'暂未上榜':users.ranking}}</view>
@@ -97,7 +97,7 @@
           <view>{{users.total_expenses}} USDT</view>
         </view>
       </view>
-    </view>
+    </view> -->
 	</view>
 </template>
 

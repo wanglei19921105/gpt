@@ -39,7 +39,7 @@
           <view class="Width100 PaddingB_66rpx">
             <view class="ShowUnit Width100 MarginT_66rpx">
               <image :src="$.imgSrc + '/images/cgyqrs.png'" mode="aspectFit" class="FloatL"></image>
-              <text class="Block FloatL FontS_28rpx FontBold Color_FFC393 MarginL_16rpx">成功邀请人数</text>
+              <text class="Block FloatL FontS_28rpx FontBold Color_FFC393 MarginL_16rpx">有效邀请人数</text>
               <text class="Block FloatR FontS_28rpx FontBold Color_FFC393">{{topData.total_invitations}}人</text>
               <view class="ClearB"></view>
             </view>
@@ -116,7 +116,7 @@
                   <text class="Block FontS_28rpx Color_B2B2B2">赚积分</text>
                 </view>
                 <view class="Unit Width_15 TextRight">
-                  <text class="Block FontS_28rpx Color_B2B2B2">邀请人数</text>
+                  <text class="Block FontS_28rpx Color_B2B2B2">有效邀请</text>
                 </view>
               </view>
             </view>

@@ -158,39 +158,39 @@
 			</view> -->
 
 			<!-- @click="$u.route('/')" -->
-			<view class="main-card kong-bottom-box u-flex m-page-content-item justify-around u-m-t-20">
-				<view class="u-flex-col align-center">
-					<u-image :src="`/static/images/index/${defaultThemeName}/Copyright.png`"
-						class="kong-top-item-icon-box" width="60" height="60"></u-image>
-					<text class="u-font-20 u-m-t-10 text-content">AI助手</text>
-				</view>
+			<!-- <view class="main-card kong-bottom-box u-flex m-page-content-item justify-around u-m-t-20"> -->
+				<!-- <view class="u-flex-col align-center"> -->
+					<!-- <u-image :src="`/static/images/index/${defaultThemeName}/Copyright.png`" -->
+						<!-- class="kong-top-item-icon-box" width="60" height="60"></u-image> -->
+					<!-- <text class="u-font-20 u-m-t-10 text-content">AI助手</text> -->
+				<!-- </view> -->
 				<!-- @click="$u.route('/pages/AIcreation/myGallery/myGallery')" -->
-				<view class="u-flex-col align-center">
-					<u-image :src="`/static/images/index/${defaultThemeName}/Blindbox.png`"
-						class="kong-top-item-icon-box" width="60" height="60"></u-image>
-					<text class="u-font-20 u-m-t-10 text-content">AI创作</text>
-				</view>
+				<!-- <view class="u-flex-col align-center"> -->
+					<!-- <u-image :src="`/static/images/index/${defaultThemeName}/Blindbox.png`" -->
+						<!-- class="kong-top-item-icon-box" width="60" height="60"></u-image> -->
+					<!-- <text class="u-font-20 u-m-t-10 text-content">AI创作</text> -->
+				<!-- </view> -->
 				<!-- @click="$u.route('/pages/my/lucky-draw/lucky-draw')" -->
-				<view class="u-flex-col align-center">
-					<u-image :src="`/static/images/index/${defaultThemeName}/drawlots.png`"
-						class="kong-top-item-icon-box" width="60" height="60"></u-image>
-					<text class="u-font-20 u-m-t-10 text-content">抽奖</text>
-				</view>
+				<!-- <view class="u-flex-col align-center"> -->
+					<!-- <u-image :src="`/static/images/index/${defaultThemeName}/drawlots.png` -->
+						<!-- class="kong-top-item-icon-box" width="60" height="60"></u-image> -->
+					<!-- <text class="u-font-20 u-m-t-10 text-content">抽奖</text> -->
+				<!-- </view> -->
 				<!-- @click="$u.route('/')" -->
-				<view class="u-flex-col align-center">
-					<u-image :src="`/static/images/index/${defaultThemeName}/compose.png`"
-						class="kong-top-item-icon-box" width="60" height="60"></u-image>
-					<text class="u-font-20 u-m-t-10 text-content">会员榜</text>
-				</view>
+				<!-- <view class="u-flex-col align-center"> -->
+					<!-- <u-image :src="`/static/images/index/${defaultThemeName}/compose.png`" -->
+						<!-- class="kong-top-item-icon-box" width="60" height="60"></u-image> -->
+					<!-- <text class="u-font-20 u-m-t-10 text-content">会员榜</text> -->
+				<!-- </view> -->
 
 				<!-- @click="$u.route('/pages/my/myTeam/myTeam')" -->
-				<view class="u-flex-col align-center" >
-					<u-image :src="`/static/images/index/${defaultThemeName}/npc.png`" class="kong-top-item-icon-box"
-						width="60" height="60"></u-image>
-					<text class="u-font-20 u-m-t-10 text-content">团队榜</text>
-				</view>
+				<!-- <view class="u-flex-col align-center" > -->
+					<!-- <u-image :src="`/static/images/index/${defaultThemeName}/npc.png`" class="kong-top-item-icon-box" -->
+						<!-- width="60" height="60"></u-image> -->
+					<!-- <text class="u-font-20 u-m-t-10 text-content">团队榜</text> -->
+				<!-- </view> -->
 
-			</view>
+			<!-- </view> -->
 
 		</view>
 		<view :class="getThemeClass">

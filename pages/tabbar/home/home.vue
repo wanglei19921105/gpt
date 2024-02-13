@@ -163,39 +163,38 @@
 			</view> -->
 
 			<!-- @click="$u.route('/')" -->
-			<view class="main-card kong-bottom-box u-flex m-page-content-item justify-around u-m-t-20">
+			<!-- <view class="main-card kong-bottom-box u-flex m-page-content-item justify-around u-m-t-20">
 				<view class="u-flex-col align-center">
 					<u-image :src="`/static/images/index/${defaultThemeName}/Copyright.png`"
 						class="kong-top-item-icon-box" width="60" height="60"></u-image>
 					<text class="u-font-20 u-m-t-10 text-content">AI助手</text>
-				</view>
+				</view> -->
 				<!-- @click="$u.route('/pages/AIcreation/myGallery/myGallery')" -->
-				<view class="u-flex-col align-center">
+				<!-- <view class="u-flex-col align-center">
 					<u-image :src="`/static/images/index/${defaultThemeName}/Blindbox.png`"
 						class="kong-top-item-icon-box" width="60" height="60"></u-image>
 					<text class="u-font-20 u-m-t-10 text-content">AI创作</text>
-				</view>
+				</view> -->
 				<!-- @click="$u.route('/pages/my/lucky-draw/lucky-draw')" -->
-				<view class="u-flex-col align-center">
+				<!-- <view class="u-flex-col align-center">
 					<u-image :src="`/static/images/index/${defaultThemeName}/drawlots.png`"
 						class="kong-top-item-icon-box" width="60" height="60"></u-image>
 					<text class="u-font-20 u-m-t-10 text-content">抽奖</text>
-				</view>
+				</view> -->
 				<!-- @click="$u.route('/')" -->
-				<view class="u-flex-col align-center">
+				<!-- <view class="u-flex-col align-center">
 					<u-image :src="`/static/images/index/${defaultThemeName}/compose.png`"
 						class="kong-top-item-icon-box" width="60" height="60"></u-image>
 					<text class="u-font-20 u-m-t-10 text-content">会员榜</text>
-				</view>
+				</view> -->
 
 				<!-- @click="$u.route('/pages/my/myTeam/myTeam')" -->
-				<view class="u-flex-col align-center">
+				<!-- <view class="u-flex-col align-center">
 					<u-image :src="`/static/images/index/${defaultThemeName}/npc.png`" class="kong-top-item-icon-box"
 						width="60" height="60"></u-image>
 					<text class="u-font-20 u-m-t-10 text-content">团队榜</text>
-				</view>
-
-			</view>
+				</view> -->
+			<!-- </view> -->
 
 		</view>
 		<view :class="getThemeClass">
@@ -210,19 +209,34 @@
 						<image class="item-cover-img" :src="item.cover_image" mode="aspectFill"></image>
 					</view>
 					<view class="item-info">
-						<text class="item-info-name">{{ item.name }}</text>
-						<view class="item-other">
-							<view class="item-other-left">
-								<image class="item-vip-icon" src="../../../static/images/tab/light/VIP1.png"></image>
-								<view class="item-limit">
-									<view class="item-limit-tips">限购份数</view>
-									<view class="item-limit-total">{{item.limit}}</view>
-								</view>
+						<view class="item-info-content">
+							<view>
+								<view class="item-info-name">{{ item.name }}</view>
+								<view class="item-info-total">项目数量：{{ item.stock + item.sales }}</view>
 							</view>
 							<view class="item-price">
 								<text class="item-price-unit">￥</text>
 								<text class="item-price-num">{{ item.maxmum_investment }}</text>
-							</view>	
+							</view>
+						</view>
+						<view class="progress-bar">
+							<view class="progress-bar-bg">
+								<view class="progress" :style="'width:' + returnRate(item) +'%;'"></view>
+							</view>
+							<text class="progress-text">{{ returnRate(item) }}%</text>
+						</view>
+						<view class="item-other">
+							<view class="item-other-left">
+								<view class="item-limit">
+									<view class="item-limit-tips">日收益率</view>
+									<view class="item-limit-total">{{item.profit_rate + '%'}}</view>
+								</view>
+								<view class="item-limit">
+									<view class="item-limit-tips">投资周期</view>
+									<view class="item-limit-total">{{item.keep_days}}天</view>
+								</view>
+								<image class="item-vip-icon" src="../../../static/images/tab/light/VIP1.png"></image>
+							</view>
 						</view>
 					</view>
 				</view>
@@ -370,14 +384,13 @@
 				return Number(Number(item.maxmum_investment) * Number(item.profit_rate / 100) / item.keep_days).toFixed(2)
 			},
 			returnRate(item) {
-				var rate = Number(item.sales / (item.stock + item.sales)).toFixed(2)
+				var rate = Number(item.sales / (item.stock + item.sales)).toFixed(2) 
 				if (rate > item.virtual_progress) {
 					return rate;
 				}
 				return item.virtual_progress
 			},
 			changeBanner(e) {
-				console.log(e)
 				this.currBanner = e.detail.current
 			},
 			// 去签到 或 积分商城
@@ -585,7 +598,7 @@
 			},
 			godetail(id) {
 				uni.navigateTo({
-					url: `/pages/Special/SpecialDetailsNew20240208?id=${id}`
+					url: `/pages/Special/SpecialDetailsNew20240213?id=${id}`
 				})
 				return
 				uni.navigateTo({
@@ -626,50 +639,24 @@
 			}
 			.item-info {
 				width: 100%;
-				padding: 30rpx;
-				.item-info-name {
-					font-size: 30rpx;
-					font-family: PingFang SC;
-					color: #ffffff;
-				}
-				.item-other {
-					width: 100%;
-					height: 60rpx;
+				padding: 24rpx 30rpx 30rpx;
+				.item-info-content {
 					display: flex;
 					justify-content: space-between;
-					align-items: center;
-					margin-top: 20rpx;
-					.item-other-left {
-						display: flex;
-						.item-vip-icon {
-							width: 74rpx;
-							height: 40rpx;
-						}
-						.item-limit {
-							display: flex;
-							margin-left: 16rpx;
-							.item-limit-tips {
-								line-height: 34rpx;
-								padding: 3rpx 10rpx;
-								border-top-left-radius: 5rpx;
-								border-bottom-left-radius: 5rpx;
-								background-color: #00E0BD;
-								font-family: PingFang SC;
-								font-size: 24rpx;
-								color: #000000;
-							}
-							.item-limit-total {
-								line-height: 34rpx;
-								padding: 3rpx 10rpx;
-								border-top-right-radius: 5rpx;
-								border-bottom-right-radius: 5rpx;
-								border: 1rpx solid rgba(255, 255, 255, 0.4);
-								border-left-width: 0;
-								font-family: PingFang SC;
-								font-size: 24rpx;
-								color: #FFFFFF;
-							}
-						}
+					align-items: flex-start;
+					.item-info-name {
+						font-size: 30rpx;
+						font-weight: 500;
+						font-family: PingFang SC;
+						color: #ffffff;
+						line-height: 42rpx;
+					}
+					.item-info-total {
+						font-family: PingFang SC;
+						font-size: 22rpx;
+						color: rgba(255, 255, 255, 0.6);
+						margin-top: 6rpx;
+						line-height: 22rpx;
 					}
 					.item-price {
 						display: flex;
@@ -678,12 +665,77 @@
 							font-family: PingFang SC;
 							font-size: 24rpx;
 							color: #FFC999;
-							margin-bottom: 5rpx;
+							margin-bottom: 7rpx;
 						}
 						.item-price-num {
 							font-family: PingFang SC;
 							font-size: 42rpx;
 							color: #FFC999;
+						}
+					}
+				}
+
+				.progress-bar {
+					display: flex;
+					align-items: center;
+					margin-top: 8rpx;
+					.progress-bar-bg {
+						width: 279rpx;
+						height: 10rpx;
+						background-color: #3B3E44;
+						border-radius: 5rpx;
+						.progress {
+							height: 10rpx;
+							background-color: #00E0BD;
+							border-radius: 5rpx;
+						}
+					}
+					.progress-text {
+						font-family: PingFang SC;
+						font-size: 24rpx;
+						color: #FFFFFF;
+						margin-left: 12rpx;
+						line-height: 34rpx;
+					}
+				}
+				
+				.item-other {
+					width: 100%;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-top: 20rpx;
+					.item-other-left {
+						display: flex;
+						align-items: center;
+						.item-vip-icon {
+							width: 74rpx;
+							height: 40rpx;
+						}
+						.item-limit {
+							display: flex;
+							margin-right: 16rpx;
+							.item-limit-tips {
+								line-height: 40rpx;
+								padding: 5rpx 10rpx;
+								border-top-left-radius: 5rpx;
+								border-bottom-left-radius: 5rpx;
+								background-color: #00E0BD;
+								font-family: PingFang SC;
+								font-size: 22rpx;
+								color: #000000;
+							}
+							.item-limit-total {
+								line-height: 40rpx;
+								padding: 5rpx 10rpx;
+								border-top-right-radius: 6rpx;
+								border-bottom-right-radius: 6rpx;
+								border: 1rpx solid rgba(255, 255, 255, 0.4);
+								border-left-width: 0;
+								font-family: PingFang SC;
+								font-size: 22rpx;
+								color: #FFFFFF;
+							}
 						}
 					}
 				}

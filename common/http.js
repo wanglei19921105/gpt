@@ -431,6 +431,7 @@ const install = (Vue, vm) => {
 	const vip_product_detail = (params) => vm.$u.post('api/vip/product_detail', params);
 	const getJFGoodsInfo = (params) => vm.$u.get('api/point_goods/' + params.id, params);
 	const getProjectGoodsInfo = (params) => vm.$u.get('api/project/' + params.id, params);
+	const getProjectGoodsSoldList = (params) => vm.$u.get(`api/project/${params.id}/sold_list` , params);
 	const getProjectGoodsReturnLog = (params) => vm.$u.get('api/cashback', params); // 项目返现列表
 	const getProjectGoodsLog = (params) => vm.$u.get('api/purchase_log', params); // 项目购买列表
 	const getProjectGoodsInfoOrder = (params) => vm.$u.post('api/purchase_log', params);
@@ -451,8 +452,8 @@ const install = (Vue, vm) => {
 	const my_team = (params) => vm.$u.post('api/center/my_team', params); //我的团队
 	const my_team_detail = (params) => vm.$u.post('api/center/my_team_detail', params); //我的团队详情
 
-	const my_sign_in = (params) => vm.$u.post('api/center/sign_record', params); //签到信息
-	const my_sign_in_info = (params) => vm.$u.post('api/center/sign_ranking', params); //签到信息详情
+	const my_sign_in = (params) => vm.$u.post(`api/center/sign_record?page=${params.page}`, params); //签到信息
+	const my_sign_in_info = (params) => vm.$u.post(`api/center/sign_ranking?page=${params.page}`, params); //签到信息详情
 	const my_sign_in_info_num = (params) => vm.$u.post('api/center/sign_gifts', params); //签到信息详情积分
 
 	// 交易所
@@ -493,6 +494,9 @@ const install = (Vue, vm) => {
 
 	// 三方聊天
 	const openaiRegister = (params) => vm.$u.post('api/center/openaiRegister', params);
+
+	// 余额查询
+	const walletIndex = (params) => vm.$u.post('/api/wallet/index', params);
 
 	vm.$u.api = {
 		openaiRegister,
@@ -538,6 +542,7 @@ const install = (Vue, vm) => {
 		vip_product_detail,
 		getJFGoodsInfo,
 		getProjectGoodsInfo,
+		getProjectGoodsSoldList,
 		getProjectGoodsInfoOrder,
 		getProjectGoodsLog,
 		getProjectGoodsReturnLog,
@@ -845,7 +850,8 @@ const install = (Vue, vm) => {
 		box_pay_sandYun,
 		cast_pay_sandYun,
 		shop_detail,
-		shop_exchange
+		shop_exchange,
+		walletIndex
 	};
 }
 

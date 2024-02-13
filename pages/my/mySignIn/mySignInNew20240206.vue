@@ -143,7 +143,7 @@
             </view>
           </view>
           <view class="Width100 MarginT_20rpx">
-            <view class="Width100 TitleBox PaddingT_20rpx PaddingB_20rpx" v-for="(item,index) in info.ranking_list" :key="index" :class="(index+1) % 2 == 1 ? 'ListBg1':''">
+            <view class="Width100 TitleBox PaddingT_20rpx PaddingB_20rpx" v-for="(item,index) in info" :key="index" :class="(index+1) % 2 == 1 ? 'ListBg1':''">
               <view class="WidthGlobal1 MarginAuto Flex Flex_C_S-B">
                 <view class="ListUnit Width_15">
                   <image v-if="index === 0" :src="$.imgSrc + '/images/rank1.png'" mode="aspectFit" class="RankIcon"></image>
@@ -215,6 +215,8 @@
     components: {LBarrage},
     data() {
 			return {
+				signPage: 1,
+				rankPage: 1,
 				sign: {
 					sign_num: 0,
 					red_packet: 0
@@ -350,14 +352,13 @@
 				}
 			},
 			getInfoLB() {
-				this.$u.api.my_sign_in({}).then(res => {
+				this.$u.api.my_sign_in({
+					page: this.signPage
+				}).then(res => {
 					if (res.code == 200) {
-						if (typeof(res.data.faker_signs) != 'undefined') {
-              this.infoLB = res.data.faker_signs
-              // this.times = setInterval(() => {
-              //   this.infoLB.push(...res.data.faker_signs)
-              // },8000)
-							// this.infoLB = res.data.faker_signs
+						const data = res.data || {}
+						if (data && data.faker_signs && data.faker_signs.data) {
+							this.infoLB = data.faker_signs.data
 						}
 					}
 				}).catch(err => {
@@ -365,9 +366,15 @@
 				})
 			},
 			getInfo() {
-				this.$u.api.my_sign_in_info({}).then(res => {
+				this.$u.api.my_sign_in_info({
+					page: this.rankPage
+				}).then(res => {
 					if (res.code == 200) {
-						this.info = res.data
+						const data = res.data || {}
+						console.log(data);
+						if (data && data.ranking_list && data.ranking_list.data) {
+							this.info = data.ranking_list.data
+						}
 						// if (this.info.ranking_list.length > 0) {
 						// 	let user = JSON.parse(this.$.getData('usr'))
 							
@@ -443,6 +450,9 @@
         this.getNewSignInLog()
       }
     },
+		pageNext() {
+			console.log('jiazai');
+		}
 	}
 </script>
 

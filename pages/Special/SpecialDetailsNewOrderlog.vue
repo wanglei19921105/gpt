@@ -1,63 +1,18 @@
-<!-- @format -->
-
 <template>
 	<view
 		class="page"
-		:class="getThemeClass"
-	>
-		<!--		<view class="coll-head">-->
-		<!--			<u-tabs-->
-		<!--				:list="tabs" -->
-		<!--				:is-scroll="false" -->
-		<!--				:current="current" -->
-		<!--				@change="change" -->
-		<!--				:active-color="getMainColor" -->
-		<!--				:inactive-color="getNavInactiveColor" -->
-		<!--				:bg-color="getBgColor"-->
-		<!--			></u-tabs>-->
-		<!--		</view>-->
-		<!--		<view class="gap-100"></view>-->
-		<empty v-if="!list.length"></empty>
-		<view class="ListBox WidthGlobal1 MarginAuto">
+		:class="getThemeClass">
+		<empty v-if="!isLoading && !list.length"></empty>
+		<!-- <view class="list">
 			<view
 				v-for="(item, index) in list"
 				:key="index"
-				@click="
-					$u.route('/pages/Special/SpecialDetailsNewOrderlogLog?id=' + item.id)
-				"
-				class="Unit MarginT_30rpx PaddingT_32rpx PaddingB_32rpx Width100 BorderR_20rpx"
-			>
-				<!-- <view class="Width100 PaddingB_32rpx BorderB">
-          <view class="WidthGlobal1 MarginAuto">
-            <view class="ImgBox FloatL BorderR_20rpx OverH">
-              <image :src="(item.project || {}).cover_image" mode="aspectFill" class="Width100 Height100"></image>
-            </view>
-            <view class="FloatR Text">
-              <text class="Block FontBold Color_FFFFFF FontS_48rpx Warp_E">{{(item.project || {}).name}}</text>
-		<!-- <text class="Block FontS_28rpx Color_96FF44 MarginT_4rpx">兑换成功</text>  -->
-				<!-- </view> -->
-				<!-- <view class="ClearB"></view> -->
-				<!-- </view> -->
-				<!-- </view>  -->
-				<!-- <view class="WidthGlobal1 MarginAuto">
-          <view class="Width100 MarginT_30rpx">
-            <text class="Block FontS_28rpx Color_C8C9CB FloatL">交易时间</text>
-            <text class="Block FontS_28rpx Color_FFFFFF FloatR">{{ item.paid_at }}</text>
-            <view class="ClearB"></view>
-          </view>
-          <view class="Width100 MarginT_30rpx">
-            <text class="Block FontS_28rpx Color_C8C9CB FloatL">记录单号</text>
-            <text class="Block FontS_28rpx Color_FFFFFF FloatR">{{ item.order_no }}</text>
-            <view class="ClearB"></view>
-          </view>
-        </view> -->
+				@click="$u.route('/pages/Special/SpecialDetailsNewOrderlogInfo?id=' + item.id)"
+				class="Unit MarginT_30rpx PaddingT_32rpx PaddingB_32rpx Width100 BorderR_20rpx">
 				<view class="container">
-					
 					<view class="title-section Color_FFFFFF">
 						<text class="title rate">{{ item.project.name }}</text>
-						
 					</view>
-					
 					<view class="rate-section">
 						<text>
 							<template v-if="item.return_type == 0">每日返息，到期返本 </template>
@@ -130,72 +85,54 @@
 					</button>
 				</view>
 			</view>
-		</view>
-		<!--		<view v-for="(item, index) in list" :key="index" class="itemBox card-bg" @click="godetail(item.id)">-->
-		<!--			<view class="head_img">-->
-		<!--				<view class="casting_info">-->
-		<!--					<view class="casting_head">-->
-		<!--						<view class="head_left">-->
-		<!--							&lt;!&ndash; NFT铸品名称 &ndash;&gt;-->
-		<!--							<view class="name" v-if="current==0">-->
-		<!--								订单号码：{{ item.out_trade_no }}<br>-->
-		<!--								商品名称：{{ item.name }}<br>-->
-		<!--								下单时间：{{ item.created_at }}-->
-		<!--							</view>-->
-		<!--							<view class="name" v-if="current==1">-->
-		<!--								订单号码：{{ item.out_trade_no }}<br>-->
-		<!--								商品名称：{{ item.name }}<br>-->
-		<!--								快递单号：{{ item.kd_id }}<br>-->
-		<!--								发货时间：{{ item.updated_at }}-->
-		<!--							</view>-->
-		<!--							<view class="name" v-if="current==2">-->
-		<!--								订单号码：{{ item.out_trade_no }}<br>-->
-		<!--								商品名称：{{ item.name }}<br>-->
-		<!--								快递单号：{{ item.kd_id }}<br>-->
-		<!--								发货时间：{{ item.updated_at }}-->
-		<!--							</view>-->
-		<!--						</view>-->
-		<!--					</view>-->
-		<!--				</view>-->
-		<!--			</view>-->
-		<!--			<view class="btns" v-if="current==1">-->
-		<!--				&lt;!&ndash;<botBtn-->
-		<!--					padding="18rpx 78rpx"-->
-		<!--					@click="getExpress(item.id)"-->
-		<!--					type="error"-->
-		<!--					plain-->
-		<!--				>-->
-		<!--					<text>查看物流</text>-->
-		<!--				</botBtn>&ndash;&gt;-->
-		<!--				<botBtn-->
-		<!--					padding="20rpx 80rpx"-->
-		<!--					@click="shouhuo(item.id)"-->
-		<!--				>-->
-		<!--					<text>确认收货</text>-->
-		<!--				</botBtn>-->
-		<!--			</view>-->
-		<!--			&lt;!&ndash;<view class="btns" v-if="current==2">-->
-		<!--				 <botBtn-->
-		<!--					padding="18rpx 78rpx"-->
-		<!--					@click="getExpress(item.id)"-->
-		<!--					type="error"-->
-		<!--					plain-->
-		<!--				>-->
-		<!--					<text>查看物流</text>-->
-		<!--				</botBtn>-->
-		<!--				<botBtnp-->
-		<!--					padding="20rpx 80rpx"-->
-		<!--					@click="godetail(item.id)"-->
-		<!--				>-->
-		<!--					<text>查看详情</text>-->
-		<!--				</botBtnp>-->
-		<!--			</view>&ndash;&gt;-->
-
-		<!--		</view>-->
-
-		<uni-load-more :status="loadStatus"></uni-load-more>
-
-		<!--		<express :express="express" ref="express"></express>-->
+		</view> -->
+		<scroll-view
+			class="list"
+			scroll-y="true"
+			@refresherrefresh="loadData(true, true)"
+			@scrolltolower="pageNext">
+			<view
+				class="list-item"
+				v-for="(item, index) in list"
+				:key="index"
+				@click="$u.route('/pages/Special/SpecialDetailsNewOrderlogInfo?id=' + item.id)">
+				<view class="user-info">
+					<view class="user-info-header">
+						<image class="user-info-header-img" :src="userInfo.avatar" mode="aspectFill"></image>
+					</view>
+					<text class="user-name">{{ userInfo.name }}</text>
+				</view>
+				<view class="order-flex">
+					<text class="order-left">项目昵称</text>
+					<text class="order-right">{{ item.project.name }}</text>
+				</view>
+				<view class="order-flex">
+					<text class="order-left">投资金额</text>
+					<text class="order-right text-color">{{ item.amount }}元</text>
+				</view>
+				<view class="order-flex">
+					<text class="order-left">订单编号</text>
+					<text class="order-right">{{ item.order_no }}</text>
+				</view>
+				<view class="order-flex">
+					<text class="order-left">购买时间</text>
+					<text class="order-right">{{ item.created_at }}</text>
+				</view>
+				<view class="order-flex">
+					<text class="order-left">到期时间</text>
+					<text class="order-right">{{ item.end_date }}</text>
+				</view>
+				<view class="order-flex">
+					<text class="order-left">项目状态</text>
+					<text class="order-right text-color">{{ statusMap[item.status] }}</text>
+				</view>
+				<view class="order-detail" @click="$u.route('/pages/Special/SpecialDetailsNewOrderlogInfo?id=' + item.id)">
+					<text class="order-detail-text">订单明细</text>
+					<image class="order-detail-icon" src="../../static/images/orderDetail_icon.png" mode="aspectFill"></image>
+				</view>	
+			</view>
+		</scroll-view>
+		<uni-load-more v-if="!isLoading" :status="loadStatus"></uni-load-more>
 	</view>
 </template>
 
@@ -204,22 +141,15 @@ export default {
 	data() {
 		return {
 			page: 1,
+			isLoading: true,
 			list: [],
+			userInfo: JSON.parse(uni.getStorageSync('usr') || `{}`),
 			loadStatus: "noMore",
-			tabs: [
-				{
-					name: "待发货",
-					id: 2,
-				},
-				{
-					name: "待收货",
-					id: 3,
-				},
-				{
-					name: "已完成",
-					id: 4,
-				},
-			],
+			statusMap: {
+				'NOT_STARTED': '未开始',
+				'CASHBACK_IN_PROGRESS' : '进行中',
+				'ENDED': '已完成',
+			},
 			current: 0,
 			express: {},
 		};
@@ -229,7 +159,12 @@ export default {
 	},
 	methods: {
 		loadData(flag) {
-			if (flag) this.page = 1;
+			if (flag) {
+				this.page = 1;
+			} else {
+				this.page += 1;
+				this.status = 'loading'
+			}
 			this.$u.api
 				.getProjectGoodsLog({
 					page: this.page,
@@ -239,274 +174,92 @@ export default {
 						this.list = flag ? res.data.data : this.list.concat(res.data.data);
 						this.loadStatus =
 							res.data.current_page == res.data.last_page ? "noMore" : "more";
+						this.isLoading = false;
 					}
+				}).catch(err => {
+					this.isLoading = false;
 				});
 		},
-		change(index) {
-			if (this.current == index) return;
-			this.list = [];
-			this.current = index;
-			this.loadData(true);
-		},
-		getExpress(id) {
-			uni.showLoading({
-				title: "加载中...",
-				mask: false,
-			});
-			this.$u.api
-				.myOrders_express({
-					order_id: id,
-				})
-				.then((res) => {
-					this.express = res.data.data;
-					this.$refs.express.show();
-				});
-		},
-		shouhuo(id) {
-			this.$u.api
-				.myOrders_receive({
-					order_id: id,
-				})
-				.then((res) => {
-					uni.showToast({
-						title: "操作成功",
-						icon: "none",
-					});
-					this.loadData(true);
-				});
-		},
-		godetail(id) {
-			uni.navigateTo({
-				url: `/pages/my/logistics-order/logistics-detail?id=${id}`,
-			});
+		pageNext(){
+			if (this.loadStatus !== 'nomore' && this.loadStatus !== 'loading') {
+				this.loadData()
+			}
 		},
 	},
 };
 </script>
 
-<style lang="scss">
-.BorderB {
-	border-bottom: 2rpx solid #535559;
-}
-.ListBox {
-	.Unit {
-		background: linear-gradient(270deg, #0c0c0f 0%, #282c37 100%);
-		.ImgBox {
-			width: 160rpx;
-			height: 160rpx;
-		}
-		.Text {
-			width: calc(100% - 192rpx);
-		}
-	}
-}
-.coll-head {
-	width: 750rpx;
-	position: fixed;
-	// top: calc(44px + var(--status-bar-height));
-	// left: 0;
-	z-index: 10;
-}
-.itemBox {
-	overflow: hidden;
-	margin: 32rpx 30rpx;
-	border-radius: 30rpx;
-	// background-color: #fff;
-}
-
-.head_img {
-	image {
-		width: 100%;
-	}
-}
-
-.casting_info {
-	padding: 30rpx;
-	line-height: 60rpx;
-
-	.casting_head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-
-		.name {
-			// color: #111111;
-			font-size: 32rpx;
-			font-weight: bold;
-		}
-
-		.price {
-			// color: #a11716;
-			font-size: 38rpx;
-
-			text {
-				font-size: 26rpx;
-			}
-		}
-
-		.head_right {
-			// color: #eeb32e;
-			font-weight: bold;
-			font-size: 30rpx;
-		}
-	}
-
-	.casting_flex {
-		height: 96rpx;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		.casting_left {
-			// color: #999999;
-			font-size: 26rpx;
-		}
-
-		.casting_right {
-			// color: #111111;
-			font-size: 28rpx;
+<style lang="scss" scoped>
+.list {
+	width: 100%;
+	padding: 20rpx 30rpx;
+	.list-item {
+		border-radius: 16px;
+		background: #1A1B1E;
+		padding: 36rpx 30rpx;
+		margin-bottom: 20rpx;
+		.user-info {
 			display: flex;
 			align-items: center;
-
-			.avatar {
-				width: 44rpx;
-				height: 44rpx;
+			margin: 20rpx 0;
+			.user-info-header {
+				width: 60rpx;
+				height: 60rpx;
 				border-radius: 50%;
-				margin-right: 24rpx;
 				overflow: hidden;
-
-				image {
+				.user-info-header-img {
 					width: 100%;
+					height: 100%;
 				}
 			}
-
-			.uicon {
-				margin-left: 20rpx;
-				width: 22rpx;
-				border-radius: 0;
+			.user-name {
+				margin-left: 16rpx;
+				font-family: PingFang SC;
+				font-size: 28rpx;
+				color: #FFFFFF;
+			}
+		}
+		.order-flex {
+			width: 100%;
+			height: 60rpx;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.order-left {
+				font-family: PingFang SC;
+				font-size: 24rpx;
+				line-height: 60rpx;
+				color: rgba(255, 255, 255, 0.4);
+			}
+			.order-right {
+				font-family: PingFang SC;
+				font-size: 24rpx;
+				line-height: 60rpx;
+				color: #FFFFFF;
+			}
+			.text-color {
+				color: #00FFD7;
+			}
+		}
+		.order-detail {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 33rpx;
+			.order-detail-text {
+				font-family: PingFang SC;
+				font-size: 24rpx;
+				color: #FFFFFF;
+			}
+			.order-detail-icon {
+				width: 24rpx;
+				height: 24rpx;
+				margin-left: 6rpx;
 			}
 		}
 	}
-
-	.casting_flex + .casting_flex {
-		border-top: 1px solid;
-	}
 }
 
-.btns {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	margin: 30rpx 0 30rpx 0rpx;
-	.btn {
-		width: 300rpx;
-		height: 94rpx;
-		line-height: 94rpx;
-		text-align: center;
-		// background-color:  #764E39;
-		// color: #fff;
-		font-size: 32rpx;
-		border-radius: 10rpx;
-	}
-	.cancel {
-		background-color: #fff;
-		border: 3rpx solid red;
-		color: red;
-	}
-}
-.dfk {
-	display: flex;
-	// color: #ffffff;
-	width: 630rpx;
-	margin-top: 20rpx;
-}
-</style>
 
-<style scoped>
-.container {
-	display: flex;
-	flex-direction: column;
-	max-width: 350px;
-	margin: 10px auto;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.title-section {
-	text-align: center;
-	margin-bottom: 10px;
-}
-
-.title {
-	font-size: 18px;
-	color: #333;
-}
-
-.rate-section {
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.rate {
-	font-size: 24px;
-	color: #ff6f00;
-}
-
-.rate-label {
-	color: #888;
-	font-size: 14px;
-}
-
-.info-section {
-	display: flex;
-	justify-content: space-around;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
-	padding: 10px 0;
-}
-
-.info-item {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.info-value {
-	font-size: 16px;
-	color: #333;
-}
-
-.info-label {
-	color: #888;
-	font-size: 14px;
-}
-
-.bottom-section {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 10px;
-}
-
-.term-label,
-.status-label {
-	color: #888;
-	font-size: 14px;
-}
-
-.term-value,
-.status-value {
-	color: #333;
-	font-size: 14px;
-}
-
-.check-button {
-	background-color: #ff6f00;
-	color: #fff;
-	border: none;
-	padding: 10px;
-	margin-top: 20px;
-	border-radius: 4px;
-	font-size: 16px;
-}
 </style>

@@ -1449,7 +1449,7 @@
 		}, {
 			"path": "pages/Special/SpecialDetailsNewOrderlog",
 			"style": {
-				"navigationBarTitleText": "认购记录",
+				"navigationBarTitleText": "投资订单",
 				"enablePullDownRefresh": false
 			}
 
@@ -1459,7 +1459,12 @@
 				"navigationBarTitleText": "返现记录",
 				"enablePullDownRefresh": false
 			}
-
+		}, {
+			"path": "pages/Special/SpecialDetailsNewOrderlogInfo",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"enablePullDownRefresh": false
+			}
 		},{
 			"path": "pages/Special/Special-buy",
 			"style": {

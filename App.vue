@@ -7,6 +7,33 @@
 	import {
 		NimKitCore
 	} from '@xkit-yx/core-kit/dist/uniapp-nim-core'
+
+    // 强制禁止用户修改微信客户端的字体大小
+    (function() {
+        if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+            handleFontSize();
+        } else {
+            if (document.addEventListener) {
+                document.addEventListener("WeixinJSBridgeReady", handleFontSize, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("WeixinJSBridgeReady", handleFontSize);
+                document.attachEvent("onWeixinJSBridgeReady", handleFontSize);
+            }
+        }
+        function handleFontSize() {
+            // 设置网页字体为默认大小
+            WeixinJSBridge.invoke('setFontSizeCallback', {
+                'fontSize': 0
+            });
+            // 重写设置网页字体大小的事件
+            WeixinJSBridge.on('menu:setfont', function() {
+                WeixinJSBridge.invoke('setFontSizeCallback', {
+                        'fontSize': 0
+                });
+            });
+        }
+    })();
+
 	const STORAGE_KEY = '__yx_im_options__'
 	export default {
 		globalData: {

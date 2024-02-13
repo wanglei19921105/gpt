@@ -7,10 +7,10 @@
 					<image src="../../../static/images/index/light/baidong_icon.png" style="width: 190rpx;"
 						mode="widthFix" class="u-m-t-15"></image>
 				</view>
-<!--				<view class="my-nav-ber-a-r" style="display: flex;">-->
-<!--					<u-icon name="search" :color="getTextContentColor" size="40"-->
-<!--						@click="$u.route('/pages/tabbar/bazaar/bazaar')"></u-icon>-->
-<!--				</view>-->
+				<!--				<view class="my-nav-ber-a-r" style="display: flex;">-->
+				<!--					<u-icon name="search" :color="getTextContentColor" size="40"-->
+				<!--						@click="$u.route('/pages/tabbar/bazaar/bazaar')"></u-icon>-->
+				<!--				</view>-->
 
 			</view>
 		</unavbar>
@@ -20,14 +20,17 @@
 			<uswiper :list="list"></uswiper>
 		</view> -->
 		<view class="u-p-t-30 u-p-b-20 u-p-l-0 u-p-r-0">
-      <view class="SwiperBox PositionR">
-        <swiper class="Swiper" circular :indicator-dots="false" :autoplay="true" :interval="2000"
-                :duration="500" @change="changeBanner" previous-margin="20rpx" next-margin="20rpx">
-          <swiper-item class="Width100 Transition_100ms" :class="index === currBanner ? 'Height100':'Height_30rpx'" v-for="(item,index) in list" :key="index">
-            <view class="PositionR Item MarginAuto BorderR_8rpx OverH Transition_100ms"  :class="index === currBanner ? 'Height100':'Height_30rpx'">
-              <image :src="item.pic" mode="aspectFill" class="Width100 Height100"></image>
-              <!--    总注册会员        -->
-              <!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 1">
+			<view class="SwiperBox PositionR">
+				<swiper class="Swiper" circular :indicator-dots="false" :autoplay="true" :interval="2000"
+					:duration="500" @change="changeBanner" previous-margin="20rpx" next-margin="20rpx">
+					<swiper-item class="Width100 Transition_100ms"
+						:class="index === currBanner ? 'Height100':'Height_30rpx'" v-for="(item,index) in list"
+						:key="index">
+						<view class="PositionR Item MarginAuto BorderR_8rpx OverH Transition_100ms"
+							:class="index === currBanner ? 'Height100':'Height_30rpx'">
+							<image :src="item.pic" mode="aspectFill" class="Width100 Height100"></image>
+							<!--    总注册会员        -->
+							<!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 1">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   总注册会员
                 </text>
@@ -35,10 +38,10 @@
                   {{ totalData.total_user }}
                 </text>
                 <!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
-                <!--                  欢迎加入，造福全人类的AGI-->
-                <!--                </text>-->
-              <!-- </view> -->
-             <!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 2">
+							<!--                  欢迎加入，造福全人类的AGI-->
+							<!--                </text>-->
+							<!-- </view> -->
+							<!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 2">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   总签到人数
                 </text>
@@ -46,40 +49,41 @@
                   {{ totalData.total_sign }}
                 </text>
 <!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
-<!--                  欢迎加入，造福全人类的AGI-->
-<!--                </text>-->
-              <!-- </view> -->
-              <!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 3">
+							<!--                  欢迎加入，造福全人类的AGI-->
+							<!--                </text>-->
+							<!-- </view> -->
+							<!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 3">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   会员申购总额
                 </text>
                 <text class="Block Color_FFFFFF FontS_62rpx FontBold Font1">
                   {{ totalData.total_user }}
                 </text> -->
-                <!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
-                <!--                  欢迎加入，造福全人类的AGI-->
-                <!--                </text>-->
-              <!-- </view> -->
-              <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 4">
-                <text class="Block Color_FFFFFF FontS_32rpx FontBold">
-                  累计赠送福利
-                </text>
-                <text class="Block Color_FFFFFF FontS_62rpx FontBold Font1">
-                  {{ totalData.total_send }}
-                </text>
-                <!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
-                <!--                  欢迎加入，造福全人类的AGI-->
-                <!--                </text>-->
-              </view>
-            </view>
-          </swiper-item>
-        </swiper>
-        <view class="DotsBoxSelf PositionA">
-          <view class="DotsSelf FloatL" v-for="(item,index) in list" :key="index" :class="currBanner == index ? 'DotsA':''"></view>
-          <view class="ClearB"></view>
-        </view>
-      </view>
-<!--			<uswiper :list="list" effect3d></uswiper>-->
+							<!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
+							<!--                  欢迎加入，造福全人类的AGI-->
+							<!--                </text>-->
+							<!-- </view> -->
+							<view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 4">
+								<text class="Block Color_FFFFFF FontS_32rpx FontBold">
+									累计赠送福利
+								</text>
+								<text class="Block Color_FFFFFF FontS_62rpx FontBold Font1">
+									{{ totalData.total_send }}
+								</text>
+								<!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
+								<!--                  欢迎加入，造福全人类的AGI-->
+								<!--                </text>-->
+							</view>
+						</view>
+					</swiper-item>
+				</swiper>
+				<view class="DotsBoxSelf PositionA">
+					<view class="DotsSelf FloatL" v-for="(item,index) in list" :key="index"
+						:class="currBanner == index ? 'DotsA':''"></view>
+					<view class="ClearB"></view>
+				</view>
+			</view>
+			<!--			<uswiper :list="list" effect3d></uswiper>-->
 		</view>
 		<!-- 菜单 -->
 
@@ -109,8 +113,9 @@
 						<view class="u-font-20 u-m-t-10 color-9a"> </view>
 					</view>
 				</view> -->
-<!--        @click="signIn()"-->
-				<view class="home-card flex card-bg  align-center" @click="$u.route('/pages/my/mySignIn/mySignInNew20240206')">
+				<!--        @click="signIn()"-->
+				<view class="home-card flex card-bg  align-center"
+					@click="$u.route('/pages/my/mySignIn/mySignInNew20240206')">
 					<u-image :src="`/static/images/index/light/openbg3.png`" class="kong-top-item-icon-box u-m-l-30"
 						width="56" height="56"></u-image>
 					<view class="u-m-l-22">
@@ -184,7 +189,7 @@
 				</view>
 
 				<!-- @click="$u.route('/pages/my/myTeam/myTeam')" -->
-				<view class="u-flex-col align-center" >
+				<view class="u-flex-col align-center">
 					<u-image :src="`/static/images/index/${defaultThemeName}/npc.png`" class="kong-top-item-icon-box"
 						width="60" height="60"></u-image>
 					<text class="u-font-20 u-m-t-10 text-content">团队榜</text>
@@ -198,169 +203,36 @@
 				<u-tabs :list="tabs" :is-scroll="true" :current="current" @change="change" :active-color="getMainColor"
 					:inactive-color="getNavInactiveColor" :bg-color="getBgColor"></u-tabs>
 			</view>
-<!--      <view class="ListBox WidthGlobal1 MarginAuto">-->
-<!--        <view class="Unit MarginT_32rpx BorderR_20rpx" v-for="(item,index) in goodsList"  @click="godetail(item.id)" :key="index" :class="(index+1)%2 != 0 ? 'FloatL':'FloatR'">-->
-<!--          <view class="ImgBox OverH PositionR">-->
-<!--            <view class="BottomText Width100 PositionA">-->
-<!--              <view class="MarginAuto WidthGlobal5 MarginAuto">-->
-<!--                <text class="Block Color_FFFFFF FloatL FontS_20rpx">-->
-<!--                  回报率: {{item.profit_rate }}%-->
-<!--                </text>-->
-<!--                <text class="Block Color_FFFFFF FloatR FontS_20rpx">-->
-<!--                  限购{{item.limit}}份-->
-<!--                </text>-->
-<!--                <view class="ClearB"></view>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--            <image :src="item.cover_image" mode="aspectFill" class="Width100 Height100"></image>-->
-<!--          </view>-->
-<!--          <view class="Bottom PaddingT_1rpx Width100">-->
-<!--            <view class="WidthGlobal5 MarginAuto ">-->
-<!--              <text class="Block Color_FFFFFF FontBold FontS_32rpx MarginT_16rpx Warp_E MarginT_20rpx">{{item.title}}</text>-->
-<!--              <text class="Block Color_FFFFFF FontS_24rpx">冻结期: {{item.keep_days + dataShow[item.return_type]}}</text>-->
-<!--              <view class="MarginT_16rpx">-->
-<!--                &lt;!&ndash;                <text class="Block FontS_28rpx Color_FFC393 FontBold FloatL MarginT_4rpx">{{item.price}}</text>&ndash;&gt;-->
-<!--                &lt;!&ndash;                <text class="Block FontS_24rpx Color_FFC393 FloatL MarginL_10rpx MarginT_6rpx">USDT</text>&ndash;&gt;-->
-<!--                <image :src="$.imgSrc + '/images/signIn/rank1.jpg'" mode="aspectFit" class="FloatL Icon"></image>-->
-<!--                <text class="Block FontS_24rpx Color_FFC393 FloatL MarginL_16rpx Warp_E MarginT_2rpx">金币：{{(item.maxmum_investment)}}</text>-->
-<!--                <view class="ClearB"></view>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--        <view class="ClearB"></view>-->
-<!--      </view>-->
-      <view class="GoodsList WidthGlobal1 MarginAuto">
-        <view class="Unit Width100 BG_171717 BorderR_20rpx MarginT_32rpx" v-for="(item,index) in goodsList" :key="index" @click="godetail(item.id)">
-          <view class="ImgBox Width100">
-            <image :src="item.cover_image" mode="aspectFill" class="Width100 Height100"></image>
-          </view>
-          <view class="Width100 PaddingT_1rpx BottomBox MarginT_40rpx">
-            <view class="WidthGlobal5 MarginAuto">
-              <view class="FloatL">
-                <text class="Block FontS_40rpx Color_FFFFFF">{{item.name}}</text>
-                <view class="ProgressBox MarginT_20rpx">
-                  <view class="ProgressMain BG_FFFFFF FloatL BorderR_20rpx OverH MarginT_8rpx">
-                    <view class="Progress Height100 BorderR_20rpx" :style="'width:' + returnRate(item) +'%;'"></view>
-                  </view>
-                  <text class="Block FloatL Color_D1D1D1 MarginL_16rpx FontS_24rpx">
-                    {{returnRate(item)}}%
-                  </text>
-                  <view class="ClearB"></view>
-                </view>
-              </view>
-              <text class="Block FloatR FontS_36rpx Color_FFC393 FontBold">￥{{(item.maxmum_investment)}} </text>
-              <view class="ClearB"></view>
-              <view class="TagList MarginT_40rpx">
-               <!-- <view class="Tag2 FloatL MarginR_32rpx TextCenter" :style="bgUrl1">
-                  <text class="Block FontS_20rpx FontBold Color_000000" >{{ (item.level || {}).name }}</text>
-                </view> -->
-                <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
-                  <text class="Block FontS_20rpx FontBold FloatL Color_000000">限购份数</text>
-                  <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{item.limit}}</text>
-                  <view class="ClearL"></view>
-                </view>
-                <view class="Tag1 FloatL BG_FFFFFF BorderR_6rpx MarginR_32rpx">
-                  <text class="Block FontS_20rpx FontBold FloatL Color_000000">日化利率</text>
-                  <text class="Block FontS_20rpx FontBold FloatL MarginL_16rpx Color_000000">{{ item.profit_rate + '%' }}</text>
-                  <view class="ClearL"></view>
-                </view>
-                <view class="ClearL"></view>
-<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
-<!--                  <view class="TagL TextCenter FloatL">-->
-<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">项目数量</text>-->
-<!--                  </view>-->
-<!--                  <view class="FloatL TagR">-->
-<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
-<!--                      {{ item.stock + item.sales }}-->
-<!--                    </text>-->
-<!--                  </view>-->
-<!--                  <view class="ClearB"></view>-->
-<!--                </view>-->
-<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
-<!--                  <view class="TagL TextCenter FloatL">-->
-<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">日化利率</text>-->
-<!--                  </view>-->
-<!--                  <view class="FloatL TagR">-->
-<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
-<!--                      {{ returnDayRate(item) + '%' }}-->
-<!--                    </text>-->
-<!--                  </view>-->
-<!--                  <view class="ClearB"></view>-->
-<!--                </view>-->
-<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
-<!--                  <view class="TagL TextCenter FloatL">-->
-<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">投资周期</text>-->
-<!--                  </view>-->
-<!--                  <view class="FloatL TagR">-->
-<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
-<!--                      {{ item.keep_days }}天-->
-<!--                    </text>-->
-<!--                  </view>-->
-<!--                  <view class="ClearB"></view>-->
-<!--                </view>-->
-<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
-<!--                  <view class="TagL TextCenter FloatL">-->
-<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">起购份数</text>-->
-<!--                  </view>-->
-<!--                  <view class="FloatL TagR">-->
-<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
-<!--                      {{item.min_buy }}-->
-<!--                    </text>-->
-<!--                  </view>-->
-<!--                  <view class="ClearB"></view>-->
-<!--                </view>-->
-<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
-<!--                  <view class="TagL TextCenter FloatL">-->
-<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">限购份数</text>-->
-<!--                  </view>-->
-<!--                  <view class="FloatL TagR">-->
-<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
-<!--                      {{item.limit}}-->
-<!--                    </text>-->
-<!--                  </view>-->
-<!--                  <view class="ClearB"></view>-->
-<!--                </view>-->
-<!--                <view class="Tag FloatL MarginT_20rpx MarginR_40rpx">-->
-<!--                  <view class="TagL TextCenter FloatL">-->
-<!--                    <text class="Block FontS_20rpx Color_1C2B2F FontBold">可购等级</text>-->
-<!--                  </view>-->
-<!--                  <view class="FloatL TagR">-->
-<!--                    <text class="Block Color_FFFFFF FontS_20rpx">-->
-<!--                      {{ (item.level || {}).name }}-->
-<!--                    </text>-->
-<!--                  </view>-->
-<!--                  <view class="ClearB"></view>-->
-<!--                </view>-->
-                <view class="ClearB"></view>
-              </view>
-              <view class="Width100 Flex Flex_C_S-B MarginT_32rpx">
-                <view class="DataUnit1 TextCenter">
-                  <text class="Color_B4B4B6 Block FontS_24rpx">项目数量</text>
-                  <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx"> {{ item.stock + item.sales }}</text>
-                </view>
-                <view class="DataUnit1 TextCenter">
-                  <text class="Color_B4B4B6 Block FontS_24rpx">起购份数</text>
-                  <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{item.min_buy }}</text>
-                </view>
-              <!--  <view class="DataUnit1 TextCenter">
-                  <text class="Color_B4B4B6 Block FontS_24rpx">投资周期</text>
-                  <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ item.keep_days }}天</text>
-                </view> -->
-                <view class="DataUnit1 TextCenter">
-                  <text class="Color_FFFFFF Block FontS_24rpx">可购等级</text>
-                  <text class="Color_FFFFFF Block FontS_28rpx FontBold MarginT_8rpx">{{ (item.level || {}).name }}</text>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
+			<view class="goods-list">
+				<view class="goods-list-item" v-for="(item,index) in goodsList"
+					:key="index" @click="godetail(item.id)">
+					<view class="item-cover">
+						<image class="item-cover-img" :src="item.cover_image" mode="aspectFill"></image>
+					</view>
+					<view class="item-info">
+						<text class="item-info-name">{{ item.name }}</text>
+						<view class="item-other">
+							<view class="item-other-left">
+								<image class="item-vip-icon" src="../../../static/images/tab/light/VIP1.png"></image>
+								<view class="item-limit">
+									<view class="item-limit-tips">限购份数</view>
+									<view class="item-limit-total">{{item.limit}}</view>
+								</view>
+							</view>
+							<view class="item-price">
+								<text class="item-price-unit">￥</text>
+								<text class="item-price-num">{{ item.maxmum_investment }}</text>
+							</view>	
+						</view>
+					</view>
+				</view>
+			</view>
 			<empty v-if="!goodsList.length"></empty>
 			<uni-load-more :status="loadStatus"></uni-load-more>
 			<u-toast ref="uToast" />
 		</view>
-		<u-modal class="my-modal" v-model="showSignIn" :content="`签到将获得 ${sign.num} 积分`" title="签到" :confirm-color="getMainColor" @confirm="signIn(1)" confirmText="签到" show-cancel-button asyncClose></u-modal>
+		<u-modal class="my-modal" v-model="showSignIn" :content="`签到将获得 ${sign.num} 积分`" title="签到"
+			:confirm-color="getMainColor" @confirm="signIn(1)" confirmText="签到" show-cancel-button asyncClose></u-modal>
 	</view>
 </template>
 
@@ -380,7 +252,7 @@
 				show: false,
 				showSignIn: false,
 				keyword: '', //搜索框搜索关键字
-        bgUrl1: '', //
+				bgUrl1: '', //
 				list: [], //banner图
 				seriesList: [{
 						name: ''
@@ -395,7 +267,7 @@
 				clendar: [],
 				startAnimationUrl: '',
 				isDouble: false,
-        currBanner: 0,
+				currBanner: 0,
 				userCheck: 0,
 				// token: uni.getStorageSync("token"),
 				token: '',
@@ -406,10 +278,10 @@
 				},
 				user: null,
 				page: 1,
-        goodsList: [],
-        specialList: [],
-        specialListL: [],
-        specialListR: [],
+				goodsList: [],
+				specialList: [],
+				specialListL: [],
+				specialListR: [],
 				loadStatus: 'noMore',
 				tabs: [{
 					name: 'VIP1区',
@@ -445,28 +317,29 @@
 				current: 0,
 				vip_level: 0,
 				exchange_rate: '',
-        dataShow:{
-          '0':'天',
-          '1':'周',
-          '2':'月',
-          '3':'天',
-          '4':'小时',
-          '5':'天',
-        },
-        totalData:{
-          total_sign:'',
-          total_user:'',
-          total_send:'',
-        },
-        $:this.$,
+				dataShow: {
+					'0': '天',
+					'1': '周',
+					'2': '月',
+					'3': '天',
+					'4': '小时',
+					'5': '天',
+				},
+				totalData: {
+					total_sign: '',
+					total_user: '',
+					total_send: '',
+				},
+				$: this.$,
 			}
 		},
 		onShow() {
-      this.bgUrl1 = "background-image:url('"+ this.$.imgUrl +"/name_bg1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
+			this.bgUrl1 = "background-image:url('" + this.$.imgUrl +
+				"/name_bg1.png');background-repeat: no-repeat;background-position: center center;background-size:100% 100%;"
 			// this.setTabBar()
 			this.getTabs()
-      this.getHomedata()
-      this.getNum()
+			this.getHomedata()
+			this.getNum()
 		},
 		created() {
 			this.seriesList[0].name = '版权品精选'
@@ -481,7 +354,7 @@
 			if (data.token) {
 				uni.setStorageSync('token', data.token)
 			}
-      this.exchange_rate = uni.getStorageSync('exchange_rate');
+			this.exchange_rate = uni.getStorageSync('exchange_rate');
 		},
 		onReachBottom() {
 			// if(this.listStatus === 'loadmore'){
@@ -493,21 +366,20 @@
 			this.getHomedata()
 		},
 		methods: {
-      returnDayRate(item){
-        return Number(Number(item.maxmum_investment) * Number(item.profit_rate/100) / item.keep_days).toFixed(2)
-      },
-      returnRate(item){
-        var rate =  Number(item.sales / (item.stock + item.sales)).toFixed(2)
-		if(rate > item.virtual_progress)
-		{
-			return rate;
-		}
-		return item.virtual_progress
-      },
-      changeBanner(e){
-        console.log(e)
-        this.currBanner = e.detail.current
-      },
+			returnDayRate(item) {
+				return Number(Number(item.maxmum_investment) * Number(item.profit_rate / 100) / item.keep_days).toFixed(2)
+			},
+			returnRate(item) {
+				var rate = Number(item.sales / (item.stock + item.sales)).toFixed(2)
+				if (rate > item.virtual_progress) {
+					return rate;
+				}
+				return item.virtual_progress
+			},
+			changeBanner(e) {
+				console.log(e)
+				this.currBanner = e.detail.current
+			},
 			// 去签到 或 积分商城
 			goUrl(url) {
 				if (!(this.user && this.user.user_account)) {
@@ -523,17 +395,17 @@
 			},
 			getHomedata() { //首页信息 接口
 				this.$u.api.home_index().then(res => {
-          this.list = []
-          // this.list.push({id:1111,link:null,pic:this.$.imgUrl + '/banner1.png',show_type:1,bannerType:1})
-          // this.list.push({id:2222,link:null,pic:this.$.imgUrl + '/banner2.png',show_type:1,bannerType:2})
-          // this.list.push({id:3333,link:null,pic:this.$.imgUrl + '/banner3.png',show_type:1,bannerType:3})
-          // this.list.push({id:4444,link:null,pic:this.$.imgUrl + '/banner4.png',show_type:1,bannerType:4})
+					this.list = []
+					// this.list.push({id:1111,link:null,pic:this.$.imgUrl + '/banner1.png',show_type:1,bannerType:1})
+					// this.list.push({id:2222,link:null,pic:this.$.imgUrl + '/banner2.png',show_type:1,bannerType:2})
+					// this.list.push({id:3333,link:null,pic:this.$.imgUrl + '/banner3.png',show_type:1,bannerType:3})
+					// this.list.push({id:4444,link:null,pic:this.$.imgUrl + '/banner4.png',show_type:1,bannerType:4})
 					// this.list = res.data.banners
-          for(let a = 0; a < res.data.banners.length; a++){
-            res.data.banners[a].bannerType = ''
-          }
-          this.list.push(...res.data.banners)
-          console.log(this.list)
+					for (let a = 0; a < res.data.banners.length; a++) {
+						res.data.banners[a].bannerType = ''
+					}
+					this.list.push(...res.data.banners)
+					console.log(this.list)
 					this.featuredList = res.data.cast_list.data; //精选系列
 					// this.artistData = res.data.author_list; //人气艺术家
 					this.blindboxList = res.data.list1; //盲盒系列
@@ -557,15 +429,15 @@
 					uni.stopPullDownRefresh()
 				})
 			},
-      getNum() {
-        this.$u.api.home_index_total_data().then(res => {
-          if(res.code == 200){
-            this.totalData = res.data
-          }
-        }).catch(err => {
+			getNum() {
+				this.$u.api.home_index_total_data().then(res => {
+					if (res.code == 200) {
+						this.totalData = res.data
+					}
+				}).catch(err => {
 
-        })
-      },
+				})
+			},
 			searchChange(val) {
 				getApp().keyword = val
 				// uni.reLaunch({
@@ -658,18 +530,17 @@
 					this.showSignIn = true
 				}
 			},
-      getTabs(){
-        this.$u.api.getTabs({
-        }).then(res => {
-          if (res.code == 200) {
-            this.tabs = res.data.list
-            if(this.tabs.length > 0){
-              this.getGoodsList()
-            }
-            // this.loadData(true)
-          }
-        })
-      },
+			getTabs() {
+				this.$u.api.getTabs({}).then(res => {
+					if (res.code == 200) {
+						this.tabs = res.data.list
+						if (this.tabs.length > 0) {
+							this.getGoodsList()
+						}
+						// this.loadData(true)
+					}
+				})
+			},
 			loadData(flag) {
 				if (flag) this.page = 1
 				this.$u.api.vip_index({
@@ -685,21 +556,21 @@
 					}
 				})
 			},
-      getGoodsList() {
-        this.$u.api.getProjects({
-          cate_id: this.tabs[this.current].id
-        }).then(res => {
-          if (res.code == 200) {
-            this.goodsList = res.data.list
-          }
-        })
-      },
+			getGoodsList() {
+				this.$u.api.getProjects({
+					cate_id: this.tabs[this.current].id
+				}).then(res => {
+					if (res.code == 200) {
+						this.goodsList = res.data.list
+					}
+				})
+			},
 			change(index) {
 				if (this.current == index) return
 				this.current = index;
-        this.getGoodsList()
-        // this.loadData(true)
-        return
+				this.getGoodsList()
+				// this.loadData(true)
+				return
 				console.log(this.vip_level, this.current);
 				if (this.vip_level + 1 < this.current) {
 					this.$refs.uToast.show({
@@ -708,152 +579,194 @@
 					});
 					return
 				} else {
-          this.loadData(true)
+					this.loadData(true)
 				}
 
 			},
 			godetail(id) {
-        uni.navigateTo({
-          url: `/pages/Special/SpecialDetailsNew20240208?id=${id}`
-        })
-        return
-        uni.navigateTo({
-          url: `/pages/Special/SpecialDetailsNew?id=${id}`
-        })
-        return
+				uni.navigateTo({
+					url: `/pages/Special/SpecialDetailsNew20240208?id=${id}`
+				})
+				return
+				uni.navigateTo({
+					url: `/pages/Special/SpecialDetailsNew?id=${id}`
+				})
+				return
 				if (this.vip_level - 1 < this.current) {
 					this.$refs.uToast.show({
 						title: "vip等级不够，无权限查看！",
 						type: 'error'
 					});
 					return
-				} else {
-				}
+				} else {}
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	.goods-list {
+		.goods-list-item {
+			width: 690rpx;
+			margin: 30rpx;
+			background-color: #1A1B1E;
+			border-radius: 20rpx;
+			margin-bottom: 30rpx;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			overflow: hidden;
+			.item-cover {
+				width: 690rpx;
+				height: 690rpx;
+				.item-cover-img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.item-info {
+				width: 100%;
+				padding: 30rpx;
+				.item-info-name {
+					font-size: 30rpx;
+					font-family: PingFang SC;
+					color: #ffffff;
+				}
+				.item-other {
+					width: 100%;
+					height: 60rpx;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-top: 20rpx;
+					.item-other-left {
+						display: flex;
+						.item-vip-icon {
+							width: 74rpx;
+							height: 40rpx;
+						}
+						.item-limit {
+							display: flex;
+							margin-left: 16rpx;
+							.item-limit-tips {
+								line-height: 34rpx;
+								padding: 3rpx 10rpx;
+								border-top-left-radius: 5rpx;
+								border-bottom-left-radius: 5rpx;
+								background-color: #00E0BD;
+								font-family: PingFang SC;
+								font-size: 24rpx;
+								color: #000000;
+							}
+							.item-limit-total {
+								line-height: 34rpx;
+								padding: 3rpx 10rpx;
+								border-top-right-radius: 5rpx;
+								border-bottom-right-radius: 5rpx;
+								border: 1rpx solid rgba(255, 255, 255, 0.4);
+								border-left-width: 0;
+								font-family: PingFang SC;
+								font-size: 24rpx;
+								color: #FFFFFF;
+							}
+						}
+					}
+					.item-price {
+						display: flex;
+						align-items: flex-end;
+						.item-price-unit {
+							font-family: PingFang SC;
+							font-size: 24rpx;
+							color: #FFC999;
+							margin-bottom: 5rpx;
+						}
+						.item-price-num {
+							font-family: PingFang SC;
+							font-size: 42rpx;
+							color: #FFC999;
+						}
+					}
+				}
+			}
+		}
+	} 
 
-.GoodsList{
-  .Unit{
-    padding-bottom: 36rpx;
-    .ImgBox{
-      width: 100%;
-      height: 574rpx!important;
-    }
-    .TagList{
-      .Tag1{
-        height: 40rpx;
-        padding: 0rpx 16rpx;
-        text{
-          line-height: 40rpx;
-        }
-      }
-      .Tag2{
-        width: 92rpx;
-        height: 40rpx;
-        text{
-          line-height: 40rpx;
-          background-image:-webkit-linear-gradient(bottom,#3A4461,#9A9EC3);
-          -webkit-background-clip:text;
-          -webkit-text-fill-color:transparent;
-        }
-      }
-      .Tag{
-        padding-right: 20rpx;
-        background-color: #2E2D2D;
-        border-radius: 6rpx;
-        .TagL{
-          width: 112rpx;
-          height: 40rpx;
-          border-radius: 6rpx;
-          background: linear-gradient(90deg, #E97FFF 0%, #64F2FF 100%);
-          line-height: 40rpx;
-        }
-        .TagR{
-          padding-left:20rpx;
-          text{
-            line-height: 40rpx;
-          }
-        }
-      }
-    }
-    .ProgressBox{
-      .ProgressMain{
-        width: 218rpx;
-        height: 8rpx;
-        .Progress{
-          background: linear-gradient(90deg, #2360EB 0%, #5FC5FF 100%);
-        }
-      }
-    }
-  }
-}
-.SwiperBox{
-  width: 100%;
-  height: 154px!important;
-  .DotsBoxSelf{
-    z-index: 999;
-    bottom: 20rpx;
-    left: 50%;
-    transform: translateX(-50%);
-    .DotsSelf{
-      width: 14rpx;
-      height: 14rpx;
-      margin: 0 6rpx;
-      border-radius: 22rpx;
-      transition: all 0.5s;
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-    .DotsA{
-      width: 36rpx!important;
-      background-color: rgba(255,255,255,0.8)!important;
-    }
-  }
-}
-.Swiper{
-  width: 100%;
-  height: 154px!important;
-  .Item{
-    width: calc(100% - 30rpx);
-  }
-  .Height_30rpx{
-    height: calc(100% - 30rpx);
-    padding-top: 15rpx;
-  }
-  .TextContent{
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-60%);
-  }
-}
-.ListBox{
-  .Unit{
-    overflow: hidden;
-    width: calc(50% - 16rpx);
-    .Bottom{
-      height: 178rpx;
-      background: linear-gradient(360deg, #131313 0%, #282828 100%);
-      .Icon{
-        width: 30rpx;
-        height: 30rpx;
-      }
-    }
-    .ImgBox{
-      width: 100%;
-      height: 266rpx;
-      .BottomText{
-        height: 64rpx;
-        line-height: 64rpx;
-        bottom: 0;
-        left: 0;
-        background: linear-gradient(360deg, #000000 0%, rgba(0,0,0,0) 100%);
-      }
-    }
-  }
-}
+	.SwiperBox {
+		width: 100%;
+		height: 154px !important;
+
+		.DotsBoxSelf {
+			z-index: 999;
+			bottom: 20rpx;
+			left: 50%;
+			transform: translateX(-50%);
+
+			.DotsSelf {
+				width: 14rpx;
+				height: 14rpx;
+				margin: 0 6rpx;
+				border-radius: 22rpx;
+				transition: all 0.5s;
+				background-color: rgba(0, 0, 0, 0.3);
+			}
+
+			.DotsA {
+				width: 36rpx !important;
+				background-color: rgba(255, 255, 255, 0.8) !important;
+			}
+		}
+	}
+
+	.Swiper {
+		width: 100%;
+		height: 154px !important;
+
+		.Item {
+			width: calc(100% - 30rpx);
+		}
+
+		.Height_30rpx {
+			height: calc(100% - 30rpx);
+			padding-top: 15rpx;
+		}
+
+		.TextContent {
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -60%);
+		}
+	}
+
+	.ListBox {
+		.Unit {
+			overflow: hidden;
+			width: calc(50% - 16rpx);
+
+			.Bottom {
+				height: 178rpx;
+				background: linear-gradient(360deg, #131313 0%, #282828 100%);
+
+				.Icon {
+					width: 30rpx;
+					height: 30rpx;
+				}
+			}
+
+			.ImgBox {
+				width: 100%;
+				height: 266rpx;
+
+				.BottomText {
+					height: 64rpx;
+					line-height: 64rpx;
+					bottom: 0;
+					left: 0;
+					background: linear-gradient(360deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+				}
+			}
+		}
+	}
+
 	.page {
 		// background-color: #FBF7F2;
 		// background-image: url('../../../static/images/HomeBgimg.png');

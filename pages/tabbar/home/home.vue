@@ -23,10 +23,10 @@
 			<view class="SwiperBox PositionR">
 				<swiper class="Swiper" circular :indicator-dots="false" :autoplay="true" :interval="2000"
 					:duration="500" @change="changeBanner" previous-margin="20rpx" next-margin="20rpx">
-					<swiper-item class="Width100 Transition_100ms"
+					<swiper-item class="Width100"
 						:class="index === currBanner ? 'Height100':'Height_30rpx'" v-for="(item,index) in list"
 						:key="index">
-						<view class="PositionR Item MarginAuto BorderR_8rpx OverH Transition_100ms"
+						<view class="PositionR Item MarginAuto BorderR_8rpx OverH"
 							:class="index === currBanner ? 'Height100':'Height_30rpx'">
 							<image :src="item.pic" mode="aspectFill" class="Width100 Height100"></image>
 							<!--    总注册会员        -->

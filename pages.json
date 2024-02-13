@@ -1430,7 +1430,16 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		},
+		{
+			"path": "pages/Special/SpecialDetailsNew20240213",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
 			"path": "pages/Special/SpecialDetailsNeworder",
 			"style": {
 				"navigationBarTitleText": "确认订单",

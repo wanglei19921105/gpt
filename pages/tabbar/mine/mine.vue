@@ -46,8 +46,8 @@
 							<!-- <u-tag :text="userData.level_name" mode="dark" type="success" /> -->
 						</view>
 						<view class="u-m-t-10 id-tab-no-bg">
-							<!-- <text class="u-font-24 text-content">邀请码：{{userData.invite_code || 0}}</text>
-							<image src="/static/images/copy.png" class="copy-image" @click="copy(userData.invite_code)" mode=""></image> -->
+							<text class="u-font-24 text-content">隐藏中间四位{{userData.phone || '未绑定'}}</text>
+							<image src="/static/images/copy.png" v-if="userData.phone || false" class="copy-image" @click="copy(userData.invite_code)" mode=""></image>
 						</view>
 						<view class="u-m-t-10 id-tab-no-bg">
 							<!-- <text class="u-font-24 line-1 text-content">区块链钱包地址：{{userData.account || '暂无'}}</text>
@@ -180,10 +180,10 @@
 			</view>
 			<view class="main-card u-p-45 u-m-t-24">
 				<view class="u-flex align-center justify-between card_msg">
-					<view class="u-flex-col align-center" @click="$u.route('/pages/my/collections/collections')">
+					<!-- <view class="u-flex-col align-center" @click="$u.route('/pages/my/collections/collections')">
 						<u-image :src="`/static/images/my/${getThemeName}/wdcp.png`" width="60" height="60"></u-image>
 						<text class="u-font-24 text-content u-m-t-20">我的藏品</text>
-					</view>
+					</view> -->
           <view class="u-flex-col align-center" @click="$u.route('/pages/my/myTeam/myTeamNew')">
             <u-image :src="`/static/images/my/${getThemeName}/yqfx.png`" width="55" height="55"></u-image>
             <text class="u-font-24 text-content u-m-t-20">我的团队</text>
@@ -197,10 +197,10 @@
             <text class="u-font-24 text-content u-m-t-20">返现记录</text>
           </view>
 
-					<view class="u-flex-col align-center" @click="$u.route('/pages/my/transaction/transaction')">
+				<!-- 	<view class="u-flex-col align-center" @click="$u.route('/pages/my/transaction/transaction')">
 						<u-image :src="`/static/images/my/${getThemeName}/jyjl.png`" width="55" height="55"></u-image>
 						<text class="u-font-24 text-content u-m-t-20">交易记录</text>
-					</view>
+					</view> -->
 				</view>
 				<!-- 				<view class="u-flex align-center justify-between card_msg u-m-t-30">
 					<view class="u-flex-col align-center" @click="$u.route('/pages/my/pending-payment/pending-payment')">
@@ -238,8 +238,8 @@
 					</view>
 				</view> -->
 			</view>
-			<view class="main-card u-m-t-30">
-				<view class="u-flex align-center justify-between card_msg">
+			<!-- <view class="main-card u-m-t-30"> -->
+				<!-- <view class="u-flex align-center justify-between card_msg"> -->
 					<!-- <view class="u-flex-col align-center" @click="userData.check === 1? $u.route('/pages/my/verified/verifiedSuccess') : $u.route('/pages/my/verified/verified')">
 						<u-image
 							:src="`/static/images/my/${getThemeName}/smrz.png`"
@@ -248,7 +248,7 @@
 						></u-image>
 						<text class="u-font-24 text-content u-m-t-20">实名认证</text>
 					</view> -->
-					<view class="u-flex-col align-center" @click="$u.route('/pages/my/lucky-draw/lucky-draw')">
+					<!-- <view class="u-flex-col align-center" @click="$u.route('/pages/my/lucky-draw/lucky-draw')">
 						<u-image :src="`/static/images/my/${getThemeName}/turntable.png`" width="55"
 							height="55"></u-image>
 						<text class="u-font-24 text-content u-m-t-20">大转盘</text>
@@ -267,7 +267,7 @@
 						<u-image :src="`/static/images/my/${getThemeName}/wdhl.png`" width="55" height="55"></u-image>
 						<text class="u-font-24 text-content u-m-t-20">我的画廊</text>
 					</view>
-				</view>
+				</view> -->
 	<!-- 			<view class="u-flex align-center justify-between card_msg u-m-t-30">
 					<view class="u-flex-col align-center" @click="$u.route('/pages/tabbar/foundry/foundry')">
 						<u-image :src="`/static/images/my/${getThemeName}/yhza.png`" width="55" height="55"></u-image>
@@ -303,7 +303,7 @@
 							<text class="u-font-24 text-content u-m-t-20">虚拟展厅</text>
 						</view>
 				</view> -->
-			</view>
+			<!-- </view> -->
 			<view class="main-card u-m-t-30 bot_fun">
 				<view class="botfun_item" @click="$u.route('/pages/my/logistics-order/logistics-order')">
 					<view class="item_left">
@@ -329,14 +329,14 @@
 					</view>
 					<u-icon class="u_icon" name="arrow-right"></u-icon>
 				</view>
-				<view class="botfun_item" @click="$u.route('/pages/my/invite/invite')">
+				<!-- <view class="botfun_item" @click="$u.route('/pages/my/invite/invite')">
 					<view class="item_left">
 						<u-image :src="`/static/images/my/${getThemeName}/newmine-share.png`" width="50"
 							height="50"></u-image>
 						<view class="color-call u-m-l-25">邀请分享</view>
 					</view>
 					<u-icon class="u_icon" name="arrow-right"></u-icon>
-				</view>
+				</view> -->
 				<view class="botfun_item" @click="$u.route('/pages/my/contact/contact')">
 					<view class="item_left">
 						<u-image :src="`/static/images/my/${getThemeName}/lxwm.png`" width="50" height="50"></u-image>

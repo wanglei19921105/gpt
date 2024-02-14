@@ -257,10 +257,10 @@
 		},
 		onLoad() {
       clearInterval(this.times)
-			this.getInfo()
-			this.getInfoLB()
 			this.getHomedata()
 			this.getUserinfo()
+			this.getInfoLB()
+			this.getInfo()
       this.signInLog = []
       this.listQuery.page = 1
 		},
@@ -330,13 +330,16 @@
 				if (o) {
 					this.$u.api.signUp().then(res => {
 						if (res.code == 200) {
-							//this.getUserinfo()
 							uni.showToast({
 								icon: 'success',
 								title: '签到成功'
 							})
 							this.showSignIn = false
 							this.signStatus = 1
+							this.getHomedata()
+							this.getUserinfo()
+							this.getInfoLB()
+							this.getInfo()
 						}
 					})
 				} else {

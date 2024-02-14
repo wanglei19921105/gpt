@@ -33,7 +33,8 @@
 			</view>
 			<view class="income-content">
 				<view class="income-list" v-for="(item, index) in cashbackLog" :key="index">
-					<view class="num">第{{ index + 1 }}期</view>
+					<view class="num" v-if="isLastShowTitle(index)">本金偿还</view>
+					<view class="num" v-else>第{{ index + 1 }}期</view>
 					<view class="price-box">
 						<view class="price-item">
 							<view class="price-item-top first-item">
@@ -94,7 +95,7 @@
         	3: '到期还本还息',
         	4: '每小时返息，到期返本',
         	5: '保本保息，每日返本返息'
-				},	
+				},
 			}
 		},
 		onLoad(e) {
@@ -103,7 +104,13 @@
       }
 			this.loadData()
 		},
-		methods:{
+		methods: {
+			isLastShowTitle(index) {
+				const returnType = [0,1,2,4];
+				if (returnType.includes(this.purchaseLog.return_type) && index === this.cashbackLog.length - 1) {
+					return true
+				}
+			},
 			loadData(){
 				this.$u.api.getProjectGoodsReturnLog({
 						page: this.page,
@@ -138,13 +145,13 @@
 		margin-top: 12rpx;
 		.order-price-unit {
 			font-family: PingFang SC;
-			font-size: 24rpx;
+			font-size: 36rpx;
 			color: #FFC999;
 			line-height: 75rpx;
 		}
 		.order-price-num {
 			font-family: PingFang SC;
-			font-size: 42rpx;
+			font-size: 64rpx;
 			color: #FFC999;
 			line-height: 90rpx;
 		}

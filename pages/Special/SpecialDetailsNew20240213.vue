@@ -23,11 +23,11 @@
 				</view>
 				<view class="specia-detail-card-content">
 					<view class="specia-detail-card-content-item">
-						<text class="specia-detail-card-content-item-text">{{ info.profit_rate + '%' }}</text>
+						<text class="specia-detail-card-content-item-text" v-if="info.profit_rate">{{ info.profit_rate + '%' }}</text>
 						<text class="specia-detail-card-content-item-title">日收益率</text>
 					</view>
 					<view class="specia-detail-card-content-item">
-						<text class="specia-detail-card-content-item-text">{{info.daily_returned || 0 }}</text>
+						<text class="specia-detail-card-content-item-text" v-if="info.daily_returned">{{info.daily_returned || 0 }}</text>
 						<text class="specia-detail-card-content-item-title">每日收益</text>
 					</view>
 					<view class="specia-detail-card-content-item">
@@ -72,7 +72,9 @@
 				</view>
 			</view>
 			<view class="specia-detail-content m-t-30">
-				<view class="specia-detail-content-text" v-html="info.details"></view>
+				<view class="specia-detail-content-text" v-if="info.details">
+					<rich-text :nodes="info.details | contextFormatter"></rich-text>
+				</view>
 			</view>
 		</view>
 		<!-- 底部购买按钮 -->
@@ -121,19 +123,19 @@
 const defPurchaseList = [{
 	amount: "10.00",
 	avatar: "https://thirdwx.qlogo.cn/mmopen/vi_32/nAoD6adj1GHx0FVzLLNfx630UcsVVG9BC9lhABU6icekeLicVLmshhKJWJOwostQUNRmjnkvbR83SGCagGshzLAA/132",
-	nickname: "GPT***N",
+	nickname: "李**",
 	paid_amount: "1000.00",
 	purchased_at: "2024-02-14 08:56:30"
 }, {
 	amount: "10.00",
 	avatar: "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKjfia2bB1KmJENFR1LcMDNYuTVNDjDp1eN5coLkZd4KcCeB06L68Uwrrd1ib84dSIFckYtnicA5QaGg/132",
-	nickname: "铠武",
+	nickname: "铠**",
 	paid_amount: "1000.00",
 	purchased_at: "2024-02-14 09:06:30"
 }, {
 	amount: "10.00",
 	avatar: "https://h5static.kuwo.cn/upload/image/4f768883f75b17a426c95b93692d98bec7d3ee9240f77f5ea68fc63870fdb050.png",
-	nickname: "林小妞",
+	nickname: "林**",
 	paid_amount: "1000.00",
 	purchased_at: "2024-02-14 11:40:30"
 }]
@@ -178,7 +180,7 @@ export default {
         }
       ],
       isInputError: false,
-
+			requestIndex: 0,
 		};
 	},
 	onLoad(option) {
@@ -186,6 +188,22 @@ export default {
 			this.id = option.id
 			this.getGoodsInfo()
 			this.getGoodsSoldList()
+		}
+	},
+	watch: {
+		requestIndex: {
+			handler: function (val) {
+				// 设置购买动态默认数据
+				if (val == 2 && this.purchaseList.length == 0) {
+					this.purchaseList = defPurchaseList
+					this.purchaseList.forEach((item, index) => {
+						item.paid_amount = this.info.maxmum_investment
+						item.amount = Number(this.info.maxmum_investment * (this.info.profit_rate / 100)).toFixed(2)
+						item.purchased_at = this.formatTime(24 * index)
+					})
+				}
+			},
+			deep: true
 		}
 	},
 	computed:{
@@ -265,6 +283,7 @@ export default {
 					const data = res.data || {}
 					const projectObj = data.project || {}
 					this.info = projectObj
+					this.requestIndex += 1;
 				}
 			}).catch(err => {
 				this.info = {}
@@ -280,13 +299,7 @@ export default {
 					const data = res.data || {}
 					const userList = data && data.users && data.users.data || []
 					this.purchaseList = userList;
-					if (this.purchaseList.length == 0) {
-						this.purchaseList = defPurchaseList
-						this.purchaseList.forEach(item => {
-							item.paid_amount = this.returnPrice
-							item.purchased_at = this.$u.formatTime(new Date(), 'yyyy-MM-dd hh:mm:ss')
-						})
-					}
+					this.requestIndex += 1;
 				}
 			}).catch(err => {
 				this.purchaseList = []
@@ -342,8 +355,26 @@ export default {
       if (index > 0) {
         this.$refs['ref' + (index - 1)][0].$el.querySelector('input').focus()
       }
-    }
-	}
+    },
+		formatTime(time = 60) {
+			const date = new Date(); 
+			const min = date.getMinutes();
+			date.setMinutes(min - time);
+			const y = date.getFullYear();
+			const m = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1);
+			const d = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate();
+			const h = date.getHours() < 10 ? ('0' + date.getHours()) : date.getHours()
+			const f = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes()
+			const s = date.getSeconds() < 10 ? ('0' + date.getseconds()) : date.getSeconds()
+			const formatdate = y+'-'+m+'-'+d + " " + h + ":" + f + ":" + s;
+			return formatdate;
+		},
+	},
+	filters: {
+		contextFormatter(v) {
+			return v.replace(/\d{11}/, (re) => `<view class="subelement">${re}</view>`)
+		},
+	},
 }
 </script>
 
@@ -473,18 +504,18 @@ export default {
 					display: flex;
 					margin-right: 16rpx;
 					.tips-limit-tips {
-						line-height: 40rpx;
-						padding: 5rpx 10rpx;
-						border-top-left-radius: 5rpx;
-						border-bottom-left-radius: 5rpx;
+						line-height: 32rpx;
+						padding: 4rpx 10rpx;
+						border-top-left-radius: 6rpx;
+						border-bottom-left-radius: 6rpx;
 						background-color: #00E0BD;
 						font-family: PingFang SC;
 						font-size: 22rpx;
 						color: #000000;
 					}
 					.tips-limit-total {
-						line-height: 40rpx;
-						padding: 5rpx 10rpx;
+						line-height: 32rpx;
+						padding: 4rpx 10rpx;
 						border-top-right-radius: 6rpx;
 						border-bottom-right-radius: 6rpx;
 						border: 1rpx solid rgba(255, 255, 255, 0.4);
@@ -511,6 +542,8 @@ export default {
 			}
 			.purchase-list-content {
 				width: 100%;
+				max-height: 396rpx;
+				overflow-y: auto;
 				margin-top: 16rpx;
 				.purchase-list-item {
 					display: flex;
@@ -584,12 +617,17 @@ export default {
 			background: #1A1B1E;
 			padding: 30rpx;
 			min-height: 200rpx;
-			margin-bottom: 260px;
+			margin-bottom: 230px;
 			.specia-detail-content-text {
 				font-size: 30rpx;
 				font-weight: 500;
 				color: rgba(255, 255, 255, 0.3);
 				line-height: 42rpx;
+				p {
+					img {
+						width: 100%;
+					}
+				}
 			}
 		}
 	}
@@ -599,7 +637,7 @@ export default {
 		left: 0;
 		z-index: 999;
 		width: 100%;
-		height: 260rpx;
+		height: 232rpx;
 		padding: 25rpx 30rpx 20rpx;
 		background: #0D0E12;
 		.buy-content-price {

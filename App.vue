@@ -185,17 +185,15 @@
         },
 		methods: {
             playMusic() {
-                console.log('开始播放');
                 const that = this;
                 that.innerAudioContext = uni.createInnerAudioContext();
                 that.innerAudioContext.autoplay = true;//自动播放
                 that.innerAudioContext.loop = false; //循环播放
-                //只要音频路径是网络路径，基本上没啥问题了，本地路径好像就不行
                 that.innerAudioContext.src =  'https://dev5.huayingtenghui.com/static/audio/hyl.mp3';
                 that.innerAudioContext.volume = 0.8;
                 that.innerAudioContext.onPlay(() => {//可以播放事件
                     console.log('开始播放');
-                    that.playing = !innerAudioContext.paused;//查看是否可以自动播放
+                    that.playing = !that.innerAudioContext.paused;//查看是否可以自动播放
                 });
                 that.innerAudioContext.onError((res) => {
                     onsole.log(res.errMsg);

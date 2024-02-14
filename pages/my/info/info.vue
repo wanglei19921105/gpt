@@ -7,29 +7,29 @@
 				<image class="avatar" :src="userInfo.avatar" mode="widthFix"></image>
 			</view>
 			<!-- 修改头像 -->
-			<view class="grey_text text-content" @click="portrait">{{i18n.information2}}
+			<!-- <view class="grey_text text-content" @click="portrait">{{i18n.information2}}
 				<u-icon name="arrow-right" color="#D6D2D3" class="uicon"></u-icon>
-			</view>
+			</view> -->
 		</view>
 		<view class="fun_box card-bg">
 			<view class="fun">
-				<!-- 昵称 -->
+				<!-- 昵称 @click="setNickname" -->
 				<view>{{i18n.information3}}</view>
-				<view class="grey_text black_tex text-content" @click="setNickname">{{userInfo.nickname}}
-					<u-icon name="arrow-right" color="#D6D2D3" class="uicon"></u-icon>
+				<view class="grey_text black_tex text-content">{{userInfo.nickname}}
+					<!-- <u-icon name="arrow-right" color="#D6D2D3" class="uicon"></u-icon> -->
 				</view>
 			</view>
 			<view class="line"></view>
 			<view class="fun">
 				<!-- 账号 -->
 				<view>{{i18n.information4}}</view>
-				<view class="grey_text black_text text-content">{{userInfo.user_account}}</view>
+				<view class="grey_text black_text text-content">{{userInfo.phone}}</view>
 			</view>
-			<view class="line"></view>
+			<!-- <view class="line"></view>
 			<view class="fun" @click="$u.route('/pages/market/artist-space/artist-space', {id: userInfo.id, userId: userInfo.id})">
 				<view>设置艺术家背景</view>
 				<u-icon name="arrow-right" color="#D6D2D3" class="uicon"></u-icon>
-			</view>
+			</view> -->
 			<!-- <view class="fun" @click="$u.route('/pages/my/change-artist-bg/change-artist-bg')">
 				<view>设置艺术家背景</view>
 				<u-icon name="arrow-right" color="#D6D2D3" class="uicon"></u-icon>

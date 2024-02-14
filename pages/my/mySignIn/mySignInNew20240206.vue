@@ -19,7 +19,7 @@
               <text class="Block FontS_36rpx Color_FFFFFF FontBold">{{ userData.nickname }}</text>
               <view class="MarginT_16rpx">
                 <text class="Block Color_FFFFFF FontS_28rpx FloatL MarginT_10rpx">您已连续签到</text>
-                <text class="Block FontS_48rpx FontBold FloatL Text1 Color_9EF797 MarginL_8rpx">{{ info.user_signs_total }}</text>
+                <text class="Block FontS_48rpx FontBold FloatL Text1 Color_9EF797 MarginL_8rpx">{{ signInfo.user_signs_total }}</text>
                 <text class="Block Color_FFFFFF FontS_28rpx FloatL MarginT_10rpx MarginL_8rpx">天</text>
                 <view class="ClearB"></view>
               </view>
@@ -59,7 +59,7 @@
       <view class="UnitBox BG_171717 WidthGlobal1 MarginAuto BorderR_20rpx MarginT_30rpx PaddingT_1rpx">
         <view class="TodayBox WidthGlobal5 MarginAuto MarginT_16rpx">
           <view class="Top Width100   PaddingT_1rpx" :style="bgUrl5">
-            <text class="Block TextC FontS_96rpx Color_FFFFFF FontBold Font1 MarginT_32rpx">{{ info.sign_total }}</text>
+            <text class="Block TextC FontS_96rpx Color_FFFFFF FontBold Font1 MarginT_32rpx">{{ signInfo.sign_total }}</text>
             <text class="Block TextC FontS_28rpx Color_FFFFFF MarginT_28rpx">今日签到会员</text>
           </view>
           <view class="BuyLog Width100 BorderR_20rpx BG_171717 PaddingT_16rpx PaddingB_48rpx MarginT_32rpx">
@@ -221,6 +221,11 @@
 					sign_num: 0,
 					red_packet: 0
 				},
+				signInfo: {
+					is_signed: false,
+					sign_total: 0,
+					user_signs_total: 0
+				},
 				signStatus: 0,
 				list: [],
 				rankData: null,
@@ -258,7 +263,6 @@
 			this.getUserinfo()
       this.signInLog = []
       this.listQuery.page = 1
-      this.getNewSignInLog()
 		},
     onUnload(){
       clearInterval(this.times)
@@ -295,19 +299,6 @@
 					uni.stopPullDownRefresh()
 				})
 			},
-      getNewSignInLog() {
-        this.$u.api.getNewSignInLog(this.listQuery).then(res => {
-          if (res.code == 200) {
-            this.signInLog.push(...res.data.signs.data)
-            if(res.data.signs.last_page <= res.data.signs.current_page){
-              this.isMore = false
-            }else {
-              this.isMore = true
-            }
-          }
-        }).catch(err => {
-        })
-      },
 			getHomedata() {
 				this.$u.api.center_index().then(res => {
 					if (res.code == 200) {
@@ -345,6 +336,7 @@
 								title: '签到成功'
 							})
 							this.showSignIn = false
+							this.signStatus = 1
 						}
 					})
 				} else {
@@ -371,7 +363,11 @@
 				}).then(res => {
 					if (res.code == 200) {
 						const data = res.data || {}
-						console.log(data);
+						this.signInfo = {
+							is_signed: data.is_signed,
+							sign_total: data.sign_total,
+							user_signs_total: data.user_signs_total
+						}
 						if (data && data.ranking_list && data.ranking_list.data) {
 							this.info = data.ranking_list.data
 						}
@@ -444,12 +440,6 @@
 				})
 			},
 		},
-    onReachBottom() {
-      if(this.isMore){
-        this.listQuery ++
-        this.getNewSignInLog()
-      }
-    },
 		pageNext() {
 			console.log('jiazai');
 		}

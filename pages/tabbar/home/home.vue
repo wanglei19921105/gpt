@@ -29,7 +29,7 @@
 						<view class="PositionR Item MarginAuto BorderR_8rpx OverH"
 							:class="index === currBanner ? 'Height100':'Height_30rpx'">
 							<image :src="item.pic" mode="aspectFill" class="Width100 Height100"></image>
-							<!--    总注册会员        -->
+
 							<!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 1">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   总注册会员
@@ -37,32 +37,31 @@
                 <text class="Block Color_FFFFFF FontS_62rpx FontBold Font1">
                   {{ totalData.total_user }}
                 </text>
-                <!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
-							<!--                  欢迎加入，造福全人类的AGI-->
-							<!--                </text>-->
-							<!-- </view> -->
-							<!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 2">
+								<text class="Block Color_FFFFFF FontS_28rpx">欢迎加入，造福全人类的AGI</text>
+							</view>
+
+							<view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 2">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   总签到人数
                 </text>
                 <text class="Block Color_FFFFFF FontS_62rpx FontBold Font1">
                   {{ totalData.total_sign }}
                 </text>
-<!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
-							<!--                  欢迎加入，造福全人类的AGI-->
-							<!--                </text>-->
-							<!-- </view> -->
-							<!-- <view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 3">
+               	<text class="Block Color_FFFFFF FontS_28rpx">欢迎加入，造福全人类的AGI</text>
+							</view>
+
+							<view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 3">
                 <text class="Block Color_FFFFFF FontS_32rpx FontBold">
                   会员申购总额
                 </text>
                 <text class="Block Color_FFFFFF FontS_62rpx FontBold Font1">
                   {{ totalData.total_user }}
-                </text> -->
-							<!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
-							<!--                  欢迎加入，造福全人类的AGI-->
-							<!--                </text>-->
-							<!-- </view> -->
+                </text>
+								<text class="Block Color_FFFFFF FontS_28rpx">
+									欢迎加入，造福全人类的AGI
+								</text>
+							</view>
+
 							<view class="TextContent TextCenter Width100 PositionA" v-show="item.bannerType === 4">
 								<text class="Block Color_FFFFFF FontS_32rpx FontBold">
 									累计赠送福利
@@ -70,10 +69,10 @@
 								<text class="Block Color_FFFFFF FontS_62rpx FontBold Font1">
 									{{ totalData.total_send }}
 								</text>
-								<!--                <text class="Block Color_FFFFFF FontS_28rpx">-->
-								<!--                  欢迎加入，造福全人类的AGI-->
-								<!--                </text>-->
-							</view>
+								<text class="Block Color_FFFFFF FontS_28rpx">
+								  欢迎加入，造福全人类的AGI
+								</text>
+							</view> -->
 						</view>
 					</swiper-item>
 				</swiper>
@@ -716,18 +715,18 @@
 							display: flex;
 							margin-right: 16rpx;
 							.item-limit-tips {
-								line-height: 40rpx;
-								padding: 5rpx 10rpx;
-								border-top-left-radius: 5rpx;
-								border-bottom-left-radius: 5rpx;
+								line-height: 32rpx;
+								padding: 4rpx 10rpx;
+								border-top-left-radius: 6rpx;
+								border-bottom-left-radius: 6rpx;
 								background-color: #00E0BD;
 								font-family: PingFang SC;
 								font-size: 22rpx;
 								color: #000000;
 							}
 							.item-limit-total {
-								line-height: 40rpx;
-								padding: 5rpx 10rpx;
+								line-height: 32rpx;
+								padding: 4rpx 10rpx;
 								border-top-right-radius: 6rpx;
 								border-bottom-right-radius: 6rpx;
 								border: 1rpx solid rgba(255, 255, 255, 0.4);

@@ -124,7 +124,7 @@
 		</view>
 		<view class="balance-content">
 			<view class="balance-item">
-				<view class="balance-item-num">{{ balance }}</view>
+				<view class="balance-item-num">{{ balance || 0.00 }}</view>
 				<view class="balance-item-title">钱包余额</view>
 			</view>
 			<view class="balance-item">
@@ -384,7 +384,7 @@
 		data() {
 			return {
 				history: '',
-				balance: 0,
+				balance: 0.00,
 				air_drop: 0,
 				userData: {},
 				userAuthor: {},
@@ -397,7 +397,6 @@
 				},
 				showSignIn: false,
 				showElem:false,
-				balance: 0.00
 			};
 		},
 		onShow() {
@@ -425,7 +424,6 @@
 				this.$u.api.center_index().then(res => {
 					if (res.code == 200) {
 						this.history = res.data.history
-						this.balance = res.data.balance
 						this.air_drop = res.data.air_drop
 						this.userData = res.data.user
 						this.userAuthor = res.data.authors

@@ -111,9 +111,9 @@
 						@keyup.delete="onDelete(index)"
 						maxlength="1" />
 				</view>
-				<view class="pay-popup-btn" @click="buyConfirm">
+				<!-- <view class="pay-popup-btn" @click="buyConfirm">
 					<text class="pay-popup-btn-text">确认</text>
-				</view>
+				</view> -->
 			</view>
 		</view>
 	</view>
@@ -348,6 +348,8 @@ export default {
         this.isInputError = true
       } else {
         this.isInputError = false
+				// 输入完密码直接提交
+				this.buyConfirm()
       }
     },
     onDelete (index) {
@@ -703,7 +705,7 @@ export default {
 	  background-color: rgba(0,0,0,0.5);
 		.pay-popup-content {
 			width: 560rpx;
-			height: 370rpx;
+			height: 252rpx;
 			border-radius: 16rpx;
 			background: #1A1B1E;
 			position: absolute;

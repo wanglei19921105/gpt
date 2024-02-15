@@ -258,7 +258,6 @@
 		onLoad() {
       clearInterval(this.times)
 			this.getHomedata()
-			this.getUserinfo()
 			this.getInfoLB()
 			this.getInfo()
       this.signInLog = []
@@ -289,21 +288,10 @@
 			goBark() {
 				uni.navigateBack();
 			},
-			getUserinfo() {
-				this.$u.api.center_index().then(res => {
-					if (res.code == 200) {
-						this.userData = res.data.user
-					}
-					uni.stopPullDownRefresh()
-				}).catch(err => {
-					uni.stopPullDownRefresh()
-				})
-			},
 			getHomedata() {
 				this.$u.api.center_index().then(res => {
 					if (res.code == 200) {
-						// this.sign = res.data.sign;
-						this.user = res.data.user;
+						this.userData = res.data.user;
 						this.signStatus = res.data.sign.status;
 					}
 					uni.stopPullDownRefresh()
@@ -312,9 +300,7 @@
 				})
 			},
 			async signIn(o) {
-
 				let data = await this.getNum()
-				console.log(data)
 				if (data.code == 400) {
 					this.showSignInText = true
 					this.alertText = data.message
@@ -322,7 +308,7 @@
 				} else {
 					this.sign = data.data
 				}
-				if (!(this.user && this.user.phone)) {
+				if (!(this.userData && this.userData.phone)) {
 					return uni.navigateTo({
 						url: '/pages/my/bindPhone/bindPhone'
 					})
@@ -337,7 +323,6 @@
 							this.showSignIn = false
 							this.signStatus = 1
 							this.getHomedata()
-							this.getUserinfo()
 							this.getInfoLB()
 							this.getInfo()
 						}

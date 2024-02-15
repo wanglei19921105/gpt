@@ -244,12 +244,14 @@
 						.price-item-unit {
 							font-family: PingFang SC;
 							font-size: 24rpx;
+							font-weight: 500;
 							color: #FFFFFF;
 							line-height: 34rpx;
 						}
 						.price-item-num {
 							font-family: PingFang SC;
 							font-size: 36rpx;
+							font-weight: 500;
 							color: #FFFFFF;
 							line-height: 50rpx;
 						}

@@ -402,7 +402,6 @@ export default {
 		}
 		.specia-detail-card {
 			width: 100%;
-			height: 390rpx;
 			border-radius: 10px;
 			background: #1A1B1E;
 			padding: 24rpx 30rpx 30rpx;

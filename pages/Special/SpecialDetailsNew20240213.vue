@@ -54,18 +54,20 @@
 			<view class="specia-detail-purchase-list m-t-30" v-if="purchaseList.length">
 				<view class="purchase-list-title">购买动态</view>
 				<view class="purchase-list-content">
-					<view class="purchase-list-item" v-for="(item, index) in purchaseList" :key="index">
-						<view class="purchase-list-item-cover">
-              <image class="purchase-list-item-cover-img" :src="item.avatar" mode="aspectFill"></image>
-            </view>
-						<view class="purchase-list-item-info">
-							<view class="purchase-list-item-text">
-								<view class="nick-name">{{ item.nickname || '用户昵称' }}</view>
-              	<view class="quantity">获得总收益{{ item.amount }}元</view>
+					<view :style="transitionStyle">
+						<view class="purchase-list-item" v-for="(item, index) in purchaseList" :key="index">
+							<view class="purchase-list-item-cover">
+								<image class="purchase-list-item-cover-img" :src="item.avatar" mode="aspectFill"></image>
 							</view>
-							<view class="purchase-list-item-text">
-								<view class="time" v-if="item.purchased_at ">{{ item.purchased_at }} 购买成功</view>
-              	<view class="mount">￥{{ item.paid_amount || 0 }}</view>
+							<view class="purchase-list-item-info">
+								<view class="purchase-list-item-text">
+									<view class="nick-name">{{ item.nickname || '用户昵称' }}</view>
+									<view class="quantity">获得总收益{{ item.amount }}元</view>
+								</view>
+								<view class="purchase-list-item-text">
+									<view class="time" v-if="item.purchased_at ">{{ item.purchased_at }} 购买成功</view>
+									<view class="mount">￥{{ item.paid_amount || 0 }}</view>
+								</view>
 							</view>
 						</view>
 					</view>
@@ -181,6 +183,8 @@ export default {
       ],
       isInputError: false,
 			requestIndex: 0,
+			transitionStyle: '',
+			timer: null,
 		};
 	},
 	onLoad(option) {
@@ -189,6 +193,7 @@ export default {
 			this.getGoodsInfo()
 			this.getGoodsSoldList()
 		}
+		clearTimeout(this.timer)
 	},
 	watch: {
 		requestIndex: {
@@ -298,8 +303,11 @@ export default {
 				if (res.code == 200) {
 					const data = res.data || {}
 					const userList = data && data.users && data.users.data || []
-					this.purchaseList = userList;
+					this.purchaseList = [...userList, ...userList];
 					this.requestIndex += 1;
+					if (this.purchaseList.length > 3) {
+						this.transitionFn()
+					}
 				}
 			}).catch(err => {
 				this.purchaseList = []
@@ -334,7 +342,7 @@ export default {
 		
 			})
 		},
-		onInput (index) {
+		onInput(index) {
       // index < 5 ，如果是第6格，不触发光标移动至下一个输入框。
       if (this.inputbox[index].value && index < 5) {
         this.$refs['ref' + (index + 1)][0].$el.querySelector('input').focus()
@@ -352,7 +360,7 @@ export default {
 				this.buyConfirm()
       }
     },
-    onDelete (index) {
+    onDelete(index) {
       // 如果是第1格，不触发光标移动至上一个输入框
       if (index > 0) {
         this.$refs['ref' + (index - 1)][0].$el.querySelector('input').focus()
@@ -370,6 +378,20 @@ export default {
 			const s = date.getSeconds() < 10 ? ('0' + date.getseconds()) : date.getSeconds()
 			const formatdate = y+'-'+m+'-'+d + " " + h + ":" + f + ":" + s;
 			return formatdate;
+		},
+		transitionFn() {
+			clearTimeout(this.timer)
+			// 主要通过 transition 的过度时间 控制 滚动速度
+			this.timer = setTimeout(() => {
+				this.transitionStyle = 'transition: all 10s linear 0s;transform: translateY(-50%);'
+				setInterval(() => {
+					this.transitionStyle = ''
+					setTimeout(() => {
+						this.transitionStyle =
+							'transition: all 10s linear 0s;transform: translateY(-50%);'
+					}, 20)
+				}, 10000)
+			}, 20)
 		},
 	},
 	filters: {
@@ -544,8 +566,8 @@ export default {
 			.purchase-list-content {
 				width: 100%;
 				max-height: 396rpx;
-				overflow-y: auto;
 				margin-top: 16rpx;
+				overflow: hidden;
 				.purchase-list-item {
 					display: flex;
 					align-items: center;

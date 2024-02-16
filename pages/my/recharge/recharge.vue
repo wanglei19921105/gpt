@@ -1,6 +1,27 @@
 <template>
 	<view class="page" :class="getThemeClass">
+		<!-- 20240216 需求修改 -->
 		<view class="recharge_card card-bg flex align-center">
+			<image src="../../../static/images/my/dark/smrz.png" mode="widthFix" class="logo"></image>
+			<text class="size-30">扫码支付</text>
+		</view>
+		<view class="u-m-l-28 size-28">充值金额<text class="size-22">（最小充值金额：{{recharge.recharge_min}},最大充值金额{{recharge.recharge_max}}）</text> </view>
+		<view class="card-bg recharge_card flex align-center">
+			<image src="../../../static/images/my/dark/jfzh.png" mode="widthFix" class="logo"></image>
+			<input type="number" placeholder="请输入充值金额" class="size-24" v-model="params.recharge_num">
+		</view>
+		<view class="u-m-l-28 size-28">备注</view>
+		<view class="card-bg recharge_card">
+			<input type="text" placeholder="请输入姓名" class="size-24" v-model="params.remark">
+		</view>
+		<view class="u-m-l-28 size-28">上传支付凭证</view>
+		<view class="u-m-l-28 u-m-t-28 u-m-b-28">
+			<view class="flex flex-wrap">
+				<image :src="path" mode="aspectFill" class="issue-img u-m-r-20 u-m-b-20" v-if="path != null"></image>
+				<image src="../../../static/images/my/dark/zfpz.png" class="issue-img" @click="upload" v-else></image>
+			</view>
+		</view>
+		<!-- <view class="recharge_card card-bg flex align-center">
 			<image src="../../../static/images/my/dark/USDT.png" mode="widthFix" class="logo"></image>
 			<text class="size-30">USDT支付</text>
 		</view>
@@ -35,7 +56,7 @@
 		<view class="card-bg recharge_card">
 			<input type="text" placeholder="请输入备注" class="size-24" v-model="params.remark">
 		</view>
-		<view class="u-m-l-28 size-24 text-content">提示：请正确填写付款的钱包地址，填写错误可能导致充值不到账！</view>
+		<view class="u-m-l-28 size-24 text-content">提示：请正确填写付款的钱包地址，填写错误可能导致充值不到账！</view> -->
 		<view class="submitBtn" style="margin-top: 100rpx;" @click="submit">立即提交</view>
 		<u-toast ref="uToast" />
 	</view>
@@ -68,9 +89,18 @@
 		},
 		methods: {
 			submit() {
-				if (!this.params.usdt_address) {
+				// if (!this.params.usdt_address) {
+				// 	this.$refs.uToast.show({
+				// 		title: "请输入钱包地址！",
+				// 		type: 'error'
+				// 	});
+				// 	return
+				// }
+				// 钱包地址设置默认值
+				this.params.usdt_address = this.recharge.usdt_address
+				if (!this.params.recharge_num) {
 					this.$refs.uToast.show({
-						title: "请输入钱包地址！",
+						title: "请输入充值金额！",
 						type: 'error'
 					});
 					return
@@ -84,12 +114,13 @@
 				}
 				if (!this.params.recharge_num || this.params.recharge_num < Number(this.recharge.recharge_min)) {
 					this.$refs.uToast.show({
-						// 充值不能小于  USDT
+						// 充值不能小于  人民币
 						title: this.i18n.recharge10 + Number(this.recharge.recharge_min) + this.i18n.recharge11,
 						type: 'error'
 					});
 					return
 				}
+				console.log(this.params);
 				this.$u.api.recharge_usdt(this.params).then(res => {
 					if (res.code == 200) {
 						uni.showToast({

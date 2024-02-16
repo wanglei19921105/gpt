@@ -71,22 +71,22 @@
                 <view class="ClearL"></view>
               </view>
             </view>
-            <view class="DanMu Width100 OverF_Y_A">
-              <view class="WidthGlobal1 MarginAuto MarginT_20rpx">
-                <view class="ShowUnit" v-for="(item,index) in infoLB" :key="index" :class="index !== 0 ? 'MarginT_32rpx':''">
-                  <view class="ImgBox BorderR_50 OverH FloatL">
-                    <image :src="(item.user || {}).avatar" mode="aspectFill" class="Width100 Height100 BorderR_50"></image>
-                  </view>
-                  <view class="TextBox FloatR">
-                    <text class="Block FloatL FontS_24rpx Color_FFFFFF MarginT_4rpx">{{ (item.user || {}).nickname }}</text>
-                    <text class="Block FloatR Color_FFFFFF MarginT_4rpx FontS32rpx" >获得 <b style="color:red">{{item.red_packet}}元微信红包&nbsp;&nbsp;</b><b style="color: yellow;">{{item.points}}积分</b></text>
-                    <view class="ClearL"></view>
-                    <text class="Block FloatL FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.mobile }}</text>
-                    <text class="Block FloatR FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.created_at }}签到成功</text>
-                    <view class="ClearL"></view>
-                  </view>
-                  <view class="ClearL"></view>
-                </view>
+            <view class="DanMu Width100 OverH">
+              <view class="WidthGlobal1 MarginAuto MarginT_20rpx" :style="transitionStyle">
+								<view class="ShowUnit" v-for="(item,index) in infoLB" :key="index" :class="index !== 0 ? 'MarginT_32rpx':''">
+									<view class="ImgBox BorderR_50 OverH FloatL">
+										<image :src="(item.user || {}).avatar" mode="aspectFill" class="Width100 Height100 BorderR_50"></image>
+									</view>
+									<view class="TextBox FloatR">
+										<text class="Block FloatL FontS_24rpx Color_FFFFFF MarginT_4rpx">{{ (item.user || {}).nickname }}</text>
+										<text class="Block FloatR Color_FFFFFF MarginT_4rpx FontS32rpx" >获得 <b style="color:red">{{item.red_packet}}元微信红包&nbsp;&nbsp;</b><b style="color: yellow;">{{item.points}}积分</b></text>
+										<view class="ClearL"></view>
+										<text class="Block FloatL FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.mobile }}</text>
+										<text class="Block FloatR FontS_24rpx Color_B4B4B6 MarginT_12rpx">{{ item.created_at }}签到成功</text>
+										<view class="ClearL"></view>
+									</view>
+									<view class="ClearL"></view>
+								</view>
               </view>
             </view>
           </view>
@@ -236,9 +236,10 @@
 				alertText: '',
 				page: 1,
 				teammore: true,
-        times: null,
+				timer: null,
 				users: [],
 				infoLB: [],
+				transitionStyle: '',
 				info: {},
 				infoSelf: {},
 				userData: {},
@@ -256,7 +257,7 @@
 			};
 		},
 		onLoad() {
-      clearInterval(this.times)
+			clearTimeout(this.timer)
 			this.getHomedata()
 			this.getInfoLB()
 			this.getInfo()
@@ -264,7 +265,7 @@
       this.listQuery.page = 1
 		},
     onUnload(){
-      clearInterval(this.times)
+			clearTimeout(this.timer)
     },
 		onShow() {
 			this.bgUrl1 = "background-image:url('" + this.$.imgUrl +
@@ -336,9 +337,13 @@
 					page: this.signPage
 				}).then(res => {
 					if (res.code == 200) {
+						this.infoLB = []
 						const data = res.data || {}
 						if (data && data.faker_signs && data.faker_signs.data) {
-							this.infoLB = data.faker_signs.data
+							this.infoLB = [...data.faker_signs.data, ...data.faker_signs.data]
+							if (this.infoLB.length > 3) {
+								this.transitionFn()
+							}
 						}
 					}
 				}).catch(err => {
@@ -427,10 +432,21 @@
 					}
 				})
 			},
+			transitionFn() {
+				// 主要通过 transition 的过度时间 控制 滚动速度
+				clearTimeout(this.timer)
+				this.timer = setTimeout(() => {
+					this.transitionStyle = 'transition: all 100s linear 0s;transform: translateY(-50%);'
+					setInterval(() => {
+						this.transitionStyle = ''
+						setTimeout(() => {
+							this.transitionStyle =
+								'transition: all 100s linear 0s;transform: translateY(-50%);'
+						}, 20)
+					}, 100000)
+				}, 20)
+			},
 		},
-		pageNext() {
-			console.log('jiazai');
-		}
 	}
 </script>
 

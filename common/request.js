@@ -29,18 +29,24 @@ const install = (Vue, vm) => {
 
 	// 响应拦截，如配置，每次请求结束都会执行本方法
 	Vue.prototype.$u.http.interceptor.response = (res) => {
-		if(res.code == 300)
-		{
+		if (res.code == 200) {
+			return res;
+		} else if(res.code == 300) { // 未实名认证
 			vm.$u.toast(res.message);
-			setTimeout(function()
-			{
+			setTimeout(() => {
 				uni.navigateTo({
 					url:'/pages/my/verified/verified'
 				})
 			},400)
-		}
-		if (res.code == 200) {
-			return res;
+			return false
+		} else if (res.code == 303) { // 未绑定银行卡
+			vm.$u.toast(res.message || '未绑定银行卡');
+			setTimeout(() => {
+				uni.navigateTo({
+					url:'/pages/my/bind-bank/bind-bank'
+				})
+			},400)
+			return false
 		} else if (res.code == 400) {
 			vm.$u.toast(res.message);
 			if(res.message == "绑定手机号后才能操作"){

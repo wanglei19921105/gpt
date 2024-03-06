@@ -143,9 +143,9 @@
 						<u-image :src="`/static/images/my/${getThemeName}/qyzh.png`" width="60" height="60"></u-image>
 						<text class="u-font-24 text-content u-m-t-20">提现</text>
 					</view>
-					<view class="u-flex-col align-center" @click="openWin('/pages/my/contact/contact')">
+					<view class="u-flex-col align-center" @click="openHref('https://work.weixin.qq.com/kfid/kfc177e49834ebc5b69')">
 						<u-image :src="`/static/images/my/${getThemeName}/qyzh.png`" width="60" height="60"></u-image>
-						<text class="u-font-24 text-content u-m-t-20">商行</text>
+						<text class="u-font-24 text-content u-m-t-20">微信客服</text>
 					</view>
 					<view class="u-flex-col align-center" @click="openWin('../../my/recharge/transfer')">
 						<u-image :src="`/static/images/my/${getThemeName}/qyzh.png`" width="60" height="60"></u-image>
@@ -456,6 +456,9 @@
 				if(!tel) return ''
     		const reg = /^(\d{3})\d{4}(\d{4})$/;  
     		return tel.replace(reg, "$1****$2");
+			},
+			openHref(url) {
+				location.href = url
 			}
 		},
 		computed: {

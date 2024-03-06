@@ -87,15 +87,14 @@
 		<!-- 菜单 -->
 
 		<view class="new-page-padding">
-			<view class="home-notice card-bg flex align-center">
+			<view class="home-notice card-bg flex align-center" @click="openWin('../blogs/blogs')">
 				<view class="u-m-r-20 flex-shink">
 					<image src="/static/images/index/light/ggao_icon.png"
 						style="width: 160rpx;height: 40rpx;margin-top: 15rpx;" mode=""></image>
 				</view>
 
 				<swiper :circular="true" :autoplay="true" :interval="3000" :vertical="true" class="home-noticeswi">
-					<swiper-item v-for="(item,index) in noticelist" :key="index" class="home-noticeswiitem"
-						@click="openWin('../../blog/blog-def/blog-def?id='+item.id)">
+					<swiper-item v-for="(item,index) in noticelist" :key="index" class="home-noticeswiitem">
 						<view class="line-1" style="font-size:24rpx;width: 550rpx;color: #747982;">{{item.title}}</view>
 					</swiper-item>
 				</swiper>
@@ -246,6 +245,19 @@
 		</view>
 		<u-modal class="my-modal" v-model="showSignIn" :content="`签到将获得 ${sign.num} 积分`" title="签到"
 			:confirm-color="getMainColor" @confirm="signIn(1)" confirmText="签到" show-cancel-button asyncClose></u-modal>
+		<uni-popup ref="startPopup" type="center" :animation="true" >
+			<view class="flex align-center start-opup-box">
+				<!-- <u-image :src="startAnimationUrl" mode="scaleToFill" class="start-img"></u-image> -->
+				<u-image
+					:src="startAnimationUrl" 
+					class="start-img"
+					@click="openWin('../../blog/blog-def/blog-def?id='+noticelist[0].id)"
+					width="600"
+					height="900"
+				></u-image>
+				<uni-icons type="close" color="#fff" class="u-m-t-25" @click="$refs.startPopup.close()" size="36"></uni-icons>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
@@ -425,7 +437,7 @@
 					this.userCheck = res.data.check
 					this.noticelist = res.data.notices
 					this.startAnimationUrl = res.data.banner_tan?.pic
-					if (this.startAnimationUrl && res.data.banner_tan.status === 0) {
+					if (this.startAnimationUrl && res.data.banner_tan.status === 1) {
 						this.$refs.startPopup.open()
 					}
 					uni.stopPullDownRefresh()
@@ -1007,7 +1019,9 @@
 		height: 80rpx;
 		line-height: 80rpx;
 	}
-
+	.uni-popup {
+		z-index: 9999;
+	}
 	// 开屏弹窗
 	.start-opup-box {
 		flex-direction: column;

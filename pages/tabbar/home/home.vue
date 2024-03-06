@@ -251,11 +251,11 @@
 				<u-image
 					:src="startAnimationUrl" 
 					class="start-img"
-					@click="openWin('../../blog/blog-def/blog-def?id='+noticelist[0].id)"
+					@click="toImageUrl('../../blog/blog-def/blog-def?id='+noticelist[0].id)"
 					width="600"
 					height="900"
 				></u-image>
-				<uni-icons type="close" color="#fff" class="u-m-t-25" @click="$refs.startPopup.close()" size="36"></uni-icons>
+				<uni-icons type="close" color="#fff" class="u-m-t-25" @click="closePopupHandle()" size="36"></uni-icons>
 			</view>
 		</uni-popup>
 	</view>
@@ -356,6 +356,7 @@
 					total_send: '',
 				},
 				$: this.$,
+				closePopup: false,
 			}
 		},
 		onShow() {
@@ -437,7 +438,7 @@
 					this.userCheck = res.data.check
 					this.noticelist = res.data.notices
 					this.startAnimationUrl = res.data.banner_tan?.pic
-					if (this.startAnimationUrl && res.data.banner_tan.status === 1) {
+					if (this.startAnimationUrl && res.data.banner_tan.status === 1 && !this.closePopup) {
 						this.$refs.startPopup.open()
 					}
 					uni.stopPullDownRefresh()
@@ -623,6 +624,15 @@
 					});
 					return
 				} else {}
+			},
+			closePopupHandle() {
+				this.closePopup = true
+				this.$refs.startPopup.close()
+			},
+			toImageUrl(url) {
+				this.openWin(url)
+				this.closePopupHandle()
+				
 			}
 		}
 	}

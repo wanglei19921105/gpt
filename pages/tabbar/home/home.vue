@@ -251,7 +251,7 @@
 				<u-image
 					:src="startAnimationUrl" 
 					class="start-img"
-					@click="toImageUrl('../../blog/blog-def/blog-def?id='+noticelist[0].id)"
+					@click="toImageUrl(startAnimationLink)"
 					width="600"
 					height="900"
 				></u-image>
@@ -291,6 +291,7 @@
 				blindboxList: [],
 				clendar: [],
 				startAnimationUrl: '',
+				startAnimationLink: '',
 				isDouble: false,
 				currBanner: 0,
 				userCheck: 0,
@@ -438,6 +439,7 @@
 					this.userCheck = res.data.check
 					this.noticelist = res.data.notices
 					this.startAnimationUrl = res.data.banner_tan?.pic
+					this.startAnimationLink = res.data.banner_tan?.link
 					if (this.startAnimationUrl && res.data.banner_tan.status === 1 && !this.closePopup) {
 						this.$refs.startPopup.open()
 					}
@@ -630,7 +632,10 @@
 				this.$refs.startPopup.close()
 			},
 			toImageUrl(url) {
-				this.openWin(url)
+				// 原跳转链接
+				// '../../blog/blog-def/blog-def?id='+noticelist[0].id
+				location.href = url
+				// this.openWin(url)
 				this.closePopupHandle()
 				
 			}

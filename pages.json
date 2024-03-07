@@ -1553,6 +1553,15 @@
 
 		},
 		{
+			"path": "pages/my/mySignIn/mySignInNew20240306",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
 			"path": "pages/my/mySignIn/mySignInNewLog",
 			"style": {
 				"navigationBarTitleText": "签到记录",
